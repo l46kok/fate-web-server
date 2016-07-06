@@ -8,7 +8,7 @@ namespace Executable.Controllers
     {
         public PlayerSearchModule()
         {
-            // Get player list by name
+            /*// Get player list by name
             Get["/player/{server}/{name}"] = param =>
             {
                 string serverName = param.server;
@@ -73,7 +73,7 @@ namespace Executable.Controllers
 
                     return Response.AsJson(playerData.ToArray());
                 }
-            };
+            };*/
         }
     }
 }
