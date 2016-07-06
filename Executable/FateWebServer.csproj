@@ -7,8 +7,8 @@
     <ProjectGuid>{0C192AB3-AA00-4BA3-A949-BB5184B591A7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Executable</RootNamespace>
-    <AssemblyName>Executable</AssemblyName>
+    <RootNamespace>FateWebServer</RootNamespace>
+    <AssemblyName>FateWebServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
