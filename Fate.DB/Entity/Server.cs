@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entitya
+namespace Fate.DB.Entity
 {
     using System;
     using System.Collections.Generic;

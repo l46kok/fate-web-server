@@ -7,34 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entitya
+namespace Fate.DB.Entity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Game
+    public partial class HeroType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Game()
+        public HeroType()
         {
             this.gameplayerdetail = new HashSet<GamePlayerDetail>();
+            this.herotypename = new HashSet<HeroTypeName>();
+            this.playerherostat = new HashSet<PlayerHeroStat>();
         }
     
-        public int GameID { get; set; }
-        public int FK_ServerID { get; set; }
-        public string GameName { get; set; }
-        public System.DateTime PlayedDate { get; set; }
-        public System.TimeSpan Duration { get; set; }
-        public string Result { get; set; }
-        public string MapVersion { get; set; }
-        public string ReplayUrl { get; set; }
-        public string MatchType { get; set; }
-        public string Log { get; set; }
-        public int TeamOneWinCount { get; set; }
-        public int TeamTwoWinCount { get; set; }
+        public int HeroTypeID { get; set; }
+        public string HeroUnitTypeID { get; set; }
     
-        public virtual Server server { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GamePlayerDetail> gameplayerdetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HeroTypeName> herotypename { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlayerHeroStat> playerherostat { get; set; }
     }
 }

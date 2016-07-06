@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entitya
+namespace Fate.DB.Entity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Ranking
+    public partial class PlayerStat
     {
-        public int RankID { get; set; }
+        public int PlayerStatID { get; set; }
         public int FK_PlayerID { get; set; }
         public int FK_ServerID { get; set; }
-        public int PlayerStatID { get; set; }
-        public int PlayerRank { get; set; }
+        public int Win { get; set; }
+        public int Loss { get; set; }
+        public int PlayCount { get; set; }
+        public int ELO { get; set; }
+        public int Score { get; set; }
     
         public virtual Server server { get; set; }
     }
