@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB.Entitya
 {
     using System;
     using System.Data.Entity;
@@ -25,14 +25,14 @@ namespace Fate.DB.Entity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<game> game { get; set; }
-        public virtual DbSet<gameplayerdetail> gameplayerdetail { get; set; }
-        public virtual DbSet<herotype> herotype { get; set; }
-        public virtual DbSet<herotypename> herotypename { get; set; }
-        public virtual DbSet<player> player { get; set; }
-        public virtual DbSet<playerherostat> playerherostat { get; set; }
-        public virtual DbSet<playerstat> playerstat { get; set; }
-        public virtual DbSet<ranking> ranking { get; set; }
-        public virtual DbSet<server> server { get; set; }
+        public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<GamePlayerDetail> GamePlayerDetail { get; set; }
+        public virtual DbSet<HeroType> HeroType { get; set; }
+        public virtual DbSet<HeroTypeName> HeroTypeName { get; set; }
+        public virtual DbSet<Player> Player { get; set; }
+        public virtual DbSet<PlayerHeroStat> PlayerHeroStat { get; set; }
+        public virtual DbSet<PlayerStat> PlayerStat { get; set; }
+        public virtual DbSet<Ranking> Ranking { get; set; }
+        public virtual DbSet<Server> Server { get; set; }
     }
 }

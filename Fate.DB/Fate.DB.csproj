@@ -60,69 +60,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\FRS.Context.cs">
+    <Compile Include="Entitya\FRS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FRS.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\FRS.cs">
+    <Compile Include="Entitya\FRS.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\FRS.Designer.cs">
+    <Compile Include="Entitya\FRS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FRS.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Entity\game.cs">
+    <Compile Include="Entitya\Game.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\gameplayerdetail.cs">
+    <Compile Include="Entitya\GamePlayerDetail.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\herotype.cs">
+    <Compile Include="Entitya\HeroType.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\herotypename.cs">
+    <Compile Include="Entitya\HeroTypeName.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\player.cs">
+    <Compile Include="Entitya\Player.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\playerherostat.cs">
+    <Compile Include="Entitya\PlayerHeroStat.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\playerstat.cs">
+    <Compile Include="Entitya\PlayerStat.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ranking.cs">
+    <Compile Include="Entitya\Ranking.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\server.cs">
+    <Compile Include="Entitya\Server.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Entity\FRS.edmx">
+    <EntityDeploy Include="Entitya\FRS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FRS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entity\FRS.edmx.diagram">
+    <None Include="Entitya\FRS.edmx.diagram">
       <DependentUpon>FRS.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Entity\FRS.Context.tt">
+    <Content Include="Entitya\FRS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FRS.edmx</DependentUpon>
       <LastGenOutput>FRS.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entity\FRS.tt">
+    <Content Include="Entitya\FRS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FRS.edmx</DependentUpon>
       <LastGenOutput>FRS.cs</LastGenOutput>

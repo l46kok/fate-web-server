@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB.Entitya
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class game
+    public partial class Game
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public game()
+        public Game()
         {
-            this.gameplayerdetail = new HashSet<gameplayerdetail>();
+            this.gameplayerdetail = new HashSet<GamePlayerDetail>();
         }
     
         public int GameID { get; set; }
@@ -33,8 +33,8 @@ namespace Fate.DB.Entity
         public int TeamOneWinCount { get; set; }
         public int TeamTwoWinCount { get; set; }
     
-        public virtual server server { get; set; }
+        public virtual Server server { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<gameplayerdetail> gameplayerdetail { get; set; }
+        public virtual ICollection<GamePlayerDetail> gameplayerdetail { get; set; }
     }
 }

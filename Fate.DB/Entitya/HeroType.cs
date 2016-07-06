@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB.Entitya
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class herotype
+    public partial class HeroType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public herotype()
+        public HeroType()
         {
-            this.gameplayerdetail = new HashSet<gameplayerdetail>();
-            this.herotypename = new HashSet<herotypename>();
-            this.playerherostat = new HashSet<playerherostat>();
+            this.gameplayerdetail = new HashSet<GamePlayerDetail>();
+            this.herotypename = new HashSet<HeroTypeName>();
+            this.playerherostat = new HashSet<PlayerHeroStat>();
         }
     
         public int HeroTypeID { get; set; }
         public string HeroUnitTypeID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<gameplayerdetail> gameplayerdetail { get; set; }
+        public virtual ICollection<GamePlayerDetail> gameplayerdetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<herotypename> herotypename { get; set; }
+        public virtual ICollection<HeroTypeName> herotypename { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<playerherostat> playerherostat { get; set; }
+        public virtual ICollection<PlayerHeroStat> playerherostat { get; set; }
     }
 }

@@ -7,22 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB.Entitya
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class server
+    public partial class Server
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public server()
+        public Server()
         {
-            this.game = new HashSet<game>();
-            this.gameplayerdetail = new HashSet<gameplayerdetail>();
-            this.player = new HashSet<player>();
-            this.playerherostat = new HashSet<playerherostat>();
-            this.playerstat = new HashSet<playerstat>();
-            this.ranking = new HashSet<ranking>();
+            this.game = new HashSet<Game>();
+            this.gameplayerdetail = new HashSet<GamePlayerDetail>();
+            this.player = new HashSet<Player>();
+            this.playerherostat = new HashSet<PlayerHeroStat>();
+            this.playerstat = new HashSet<PlayerStat>();
+            this.ranking = new HashSet<Ranking>();
         }
     
         public int ServerID { get; set; }
@@ -30,16 +30,16 @@ namespace Fate.DB.Entity
         public bool IsServiced { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<game> game { get; set; }
+        public virtual ICollection<Game> game { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<gameplayerdetail> gameplayerdetail { get; set; }
+        public virtual ICollection<GamePlayerDetail> gameplayerdetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<player> player { get; set; }
+        public virtual ICollection<Player> player { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<playerherostat> playerherostat { get; set; }
+        public virtual ICollection<PlayerHeroStat> playerherostat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<playerstat> playerstat { get; set; }
+        public virtual ICollection<PlayerStat> playerstat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ranking> ranking { get; set; }
+        public virtual ICollection<Ranking> ranking { get; set; }
     }
 }

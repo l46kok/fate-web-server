@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="frsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="frsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="game">
           <Key>
             <PropertyRef Name="GameID" />
@@ -313,12 +313,11 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
             <End Role="ranking" EntitySet="ranking" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="frsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="game">
+        <EntityType Name="Game">
           <Key>
             <PropertyRef Name="GameID" />
           </Key>
@@ -337,7 +336,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <NavigationProperty Name="server" Relationship="Self.fk_Game_Server" FromRole="game" ToRole="server" />
           <NavigationProperty Name="gameplayerdetail" Relationship="Self.fk_GamePlayerDetail_Game1" FromRole="game" ToRole="gameplayerdetail" />
         </EntityType>
-        <EntityType Name="gameplayerdetail">
+        <EntityType Name="GamePlayerDetail">
           <Key>
             <PropertyRef Name="GamePlayerDetailID" />
             <PropertyRef Name="FK_GameID" />
@@ -361,7 +360,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <NavigationProperty Name="herotype" Relationship="Self.fk_GamePlayerDetail_HeroType1" FromRole="gameplayerdetail" ToRole="herotype" />
           <NavigationProperty Name="server" Relationship="Self.fk_GamePlayerDetail_Server1" FromRole="gameplayerdetail" ToRole="server" />
         </EntityType>
-        <EntityType Name="herotype">
+        <EntityType Name="HeroType">
           <Key>
             <PropertyRef Name="HeroTypeID" />
           </Key>
@@ -371,7 +370,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <NavigationProperty Name="herotypename" Relationship="Self.fk_HeroTypeName_HeroType1" FromRole="herotype" ToRole="herotypename" />
           <NavigationProperty Name="playerherostat" Relationship="Self.fk_PlayerHeroStat_HeroType1" FromRole="herotype" ToRole="playerherostat" />
         </EntityType>
-        <EntityType Name="herotypename">
+        <EntityType Name="HeroTypeName">
           <Key>
             <PropertyRef Name="HeroTypeNameID" />
             <PropertyRef Name="FK_HeroTypeID" />
@@ -383,7 +382,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <Property Name="HeroTitle" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="herotype" Relationship="Self.fk_HeroTypeName_HeroType1" FromRole="herotypename" ToRole="herotype" />
         </EntityType>
-        <EntityType Name="player">
+        <EntityType Name="Player">
           <Key>
             <PropertyRef Name="PlayerID" />
             <PropertyRef Name="FK_ServerID" />
@@ -399,7 +398,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <Property Name="UnbannedOn" Type="DateTime" />
           <NavigationProperty Name="server" Relationship="Self.fk_Player_Server" FromRole="player" ToRole="server" />
         </EntityType>
-        <EntityType Name="playerherostat">
+        <EntityType Name="PlayerHeroStat">
           <Key>
             <PropertyRef Name="PlayerHeroStatID" />
             <PropertyRef Name="FK_PlayerID" />
@@ -417,7 +416,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <NavigationProperty Name="herotype" Relationship="Self.fk_PlayerHeroStat_HeroType1" FromRole="playerherostat" ToRole="herotype" />
           <NavigationProperty Name="server" Relationship="Self.fk_PlayerHeroStat_Server1" FromRole="playerherostat" ToRole="server" />
         </EntityType>
-        <EntityType Name="playerstat">
+        <EntityType Name="PlayerStat">
           <Key>
             <PropertyRef Name="PlayerStatID" />
             <PropertyRef Name="FK_PlayerID" />
@@ -433,7 +432,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <Property Name="Score" Type="Int32" Nullable="false" />
           <NavigationProperty Name="server" Relationship="Self.fk_PlayerStat_Server1" FromRole="playerstat" ToRole="server" />
         </EntityType>
-        <EntityType Name="ranking">
+        <EntityType Name="Ranking">
           <Key>
             <PropertyRef Name="RankID" />
             <PropertyRef Name="FK_PlayerID" />
@@ -446,7 +445,7 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <Property Name="PlayerRank" Type="Int32" Nullable="false" />
           <NavigationProperty Name="server" Relationship="Self.fk_Ranking_Server1" FromRole="ranking" ToRole="server" />
         </EntityType>
-        <EntityType Name="server">
+        <EntityType Name="Server">
           <Key>
             <PropertyRef Name="ServerID" />
           </Key>
@@ -461,8 +460,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <NavigationProperty Name="ranking" Relationship="Self.fk_Ranking_Server1" FromRole="server" ToRole="ranking" />
         </EntityType>
         <Association Name="fk_Game_Server">
-          <End Role="server" Type="Self.server" Multiplicity="1" />
-          <End Role="game" Type="Self.game" Multiplicity="*" />
+          <End Role="server" Type="frsModel.Server" Multiplicity="1" />
+          <End Role="game" Type="frsModel.Game" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="server">
               <PropertyRef Name="ServerID" />
@@ -473,8 +472,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_GamePlayerDetail_Game1">
-          <End Role="game" Type="Self.game" Multiplicity="1" />
-          <End Role="gameplayerdetail" Type="Self.gameplayerdetail" Multiplicity="*" />
+          <End Role="game" Type="frsModel.Game" Multiplicity="1" />
+          <End Role="gameplayerdetail" Type="frsModel.GamePlayerDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="game">
               <PropertyRef Name="GameID" />
@@ -485,8 +484,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_GamePlayerDetail_HeroType1">
-          <End Role="herotype" Type="Self.herotype" Multiplicity="1" />
-          <End Role="gameplayerdetail" Type="Self.gameplayerdetail" Multiplicity="*" />
+          <End Role="herotype" Type="frsModel.HeroType" Multiplicity="1" />
+          <End Role="gameplayerdetail" Type="frsModel.GamePlayerDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="herotype">
               <PropertyRef Name="HeroTypeID" />
@@ -497,8 +496,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_GamePlayerDetail_Server1">
-          <End Role="server" Type="Self.server" Multiplicity="1" />
-          <End Role="gameplayerdetail" Type="Self.gameplayerdetail" Multiplicity="*" />
+          <End Role="server" Type="frsModel.Server" Multiplicity="1" />
+          <End Role="gameplayerdetail" Type="frsModel.GamePlayerDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="server">
               <PropertyRef Name="ServerID" />
@@ -509,8 +508,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_HeroTypeName_HeroType1">
-          <End Role="herotype" Type="Self.herotype" Multiplicity="1" />
-          <End Role="herotypename" Type="Self.herotypename" Multiplicity="*" />
+          <End Role="herotype" Type="frsModel.HeroType" Multiplicity="1" />
+          <End Role="herotypename" Type="frsModel.HeroTypeName" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="herotype">
               <PropertyRef Name="HeroTypeID" />
@@ -521,8 +520,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PlayerHeroStat_HeroType1">
-          <End Role="herotype" Type="Self.herotype" Multiplicity="1" />
-          <End Role="playerherostat" Type="Self.playerherostat" Multiplicity="*" />
+          <End Role="herotype" Type="frsModel.HeroType" Multiplicity="1" />
+          <End Role="playerherostat" Type="frsModel.PlayerHeroStat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="herotype">
               <PropertyRef Name="HeroTypeID" />
@@ -533,8 +532,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Player_Server">
-          <End Role="server" Type="Self.server" Multiplicity="1" />
-          <End Role="player" Type="Self.player" Multiplicity="*" />
+          <End Role="server" Type="frsModel.Server" Multiplicity="1" />
+          <End Role="player" Type="frsModel.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="server">
               <PropertyRef Name="ServerID" />
@@ -545,8 +544,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PlayerHeroStat_Server1">
-          <End Role="server" Type="Self.server" Multiplicity="1" />
-          <End Role="playerherostat" Type="Self.playerherostat" Multiplicity="*" />
+          <End Role="server" Type="frsModel.Server" Multiplicity="1" />
+          <End Role="playerherostat" Type="frsModel.PlayerHeroStat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="server">
               <PropertyRef Name="ServerID" />
@@ -557,8 +556,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_PlayerStat_Server1">
-          <End Role="server" Type="Self.server" Multiplicity="1" />
-          <End Role="playerstat" Type="Self.playerstat" Multiplicity="*" />
+          <End Role="server" Type="frsModel.Server" Multiplicity="1" />
+          <End Role="playerstat" Type="frsModel.PlayerStat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="server">
               <PropertyRef Name="ServerID" />
@@ -569,8 +568,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_Ranking_Server1">
-          <End Role="server" Type="Self.server" Multiplicity="1" />
-          <End Role="ranking" Type="Self.ranking" Multiplicity="*" />
+          <End Role="server" Type="frsModel.Server" Multiplicity="1" />
+          <End Role="ranking" Type="frsModel.Ranking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="server">
               <PropertyRef Name="ServerID" />
@@ -581,54 +580,54 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="frsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="game" EntityType="Self.game" />
-          <EntitySet Name="gameplayerdetail" EntityType="Self.gameplayerdetail" />
-          <EntitySet Name="herotype" EntityType="Self.herotype" />
-          <EntitySet Name="herotypename" EntityType="Self.herotypename" />
-          <EntitySet Name="player" EntityType="Self.player" />
-          <EntitySet Name="playerherostat" EntityType="Self.playerherostat" />
-          <EntitySet Name="playerstat" EntityType="Self.playerstat" />
-          <EntitySet Name="ranking" EntityType="Self.ranking" />
-          <EntitySet Name="server" EntityType="Self.server" />
+          <EntitySet Name="Game" EntityType="frsModel.Game" />
+          <EntitySet Name="GamePlayerDetail" EntityType="frsModel.GamePlayerDetail" />
+          <EntitySet Name="HeroType" EntityType="frsModel.HeroType" />
+          <EntitySet Name="HeroTypeName" EntityType="frsModel.HeroTypeName" />
+          <EntitySet Name="Player" EntityType="frsModel.Player" />
+          <EntitySet Name="PlayerHeroStat" EntityType="frsModel.PlayerHeroStat" />
+          <EntitySet Name="PlayerStat" EntityType="frsModel.PlayerStat" />
+          <EntitySet Name="Ranking" EntityType="frsModel.Ranking" />
+          <EntitySet Name="Server" EntityType="frsModel.Server" />
           <AssociationSet Name="fk_Game_Server" Association="Self.fk_Game_Server">
-            <End Role="server" EntitySet="server" />
-            <End Role="game" EntitySet="game" />
+            <End Role="server" EntitySet="Server" />
+            <End Role="game" EntitySet="Game" />
           </AssociationSet>
           <AssociationSet Name="fk_GamePlayerDetail_Game1" Association="Self.fk_GamePlayerDetail_Game1">
-            <End Role="game" EntitySet="game" />
-            <End Role="gameplayerdetail" EntitySet="gameplayerdetail" />
+            <End Role="game" EntitySet="Game" />
+            <End Role="gameplayerdetail" EntitySet="GamePlayerDetail" />
           </AssociationSet>
           <AssociationSet Name="fk_GamePlayerDetail_HeroType1" Association="Self.fk_GamePlayerDetail_HeroType1">
-            <End Role="herotype" EntitySet="herotype" />
-            <End Role="gameplayerdetail" EntitySet="gameplayerdetail" />
+            <End Role="herotype" EntitySet="HeroType" />
+            <End Role="gameplayerdetail" EntitySet="GamePlayerDetail" />
           </AssociationSet>
           <AssociationSet Name="fk_GamePlayerDetail_Server1" Association="Self.fk_GamePlayerDetail_Server1">
-            <End Role="server" EntitySet="server" />
-            <End Role="gameplayerdetail" EntitySet="gameplayerdetail" />
+            <End Role="server" EntitySet="Server" />
+            <End Role="gameplayerdetail" EntitySet="GamePlayerDetail" />
           </AssociationSet>
           <AssociationSet Name="fk_HeroTypeName_HeroType1" Association="Self.fk_HeroTypeName_HeroType1">
-            <End Role="herotype" EntitySet="herotype" />
-            <End Role="herotypename" EntitySet="herotypename" />
+            <End Role="herotype" EntitySet="HeroType" />
+            <End Role="herotypename" EntitySet="HeroTypeName" />
           </AssociationSet>
           <AssociationSet Name="fk_PlayerHeroStat_HeroType1" Association="Self.fk_PlayerHeroStat_HeroType1">
-            <End Role="herotype" EntitySet="herotype" />
-            <End Role="playerherostat" EntitySet="playerherostat" />
+            <End Role="herotype" EntitySet="HeroType" />
+            <End Role="playerherostat" EntitySet="PlayerHeroStat" />
           </AssociationSet>
           <AssociationSet Name="fk_Player_Server" Association="Self.fk_Player_Server">
-            <End Role="server" EntitySet="server" />
-            <End Role="player" EntitySet="player" />
+            <End Role="server" EntitySet="Server" />
+            <End Role="player" EntitySet="Player" />
           </AssociationSet>
           <AssociationSet Name="fk_PlayerHeroStat_Server1" Association="Self.fk_PlayerHeroStat_Server1">
-            <End Role="server" EntitySet="server" />
-            <End Role="playerherostat" EntitySet="playerherostat" />
+            <End Role="server" EntitySet="Server" />
+            <End Role="playerherostat" EntitySet="PlayerHeroStat" />
           </AssociationSet>
           <AssociationSet Name="fk_PlayerStat_Server1" Association="Self.fk_PlayerStat_Server1">
-            <End Role="server" EntitySet="server" />
-            <End Role="playerstat" EntitySet="playerstat" />
+            <End Role="server" EntitySet="Server" />
+            <End Role="playerstat" EntitySet="PlayerStat" />
           </AssociationSet>
           <AssociationSet Name="fk_Ranking_Server1" Association="Self.fk_Ranking_Server1">
-            <End Role="server" EntitySet="server" />
-            <End Role="ranking" EntitySet="ranking" />
+            <End Role="server" EntitySet="Server" />
+            <End Role="ranking" EntitySet="Ranking" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -637,8 +636,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="frsModelStoreContainer" CdmEntityContainer="frsEntities">
-          <EntitySetMapping Name="game">
-            <EntityTypeMapping TypeName="frsModel.game">
+          <EntitySetMapping Name="Game">
+            <EntityTypeMapping TypeName="frsModel.Game">
               <MappingFragment StoreEntitySet="game">
                 <ScalarProperty Name="GameID" ColumnName="GameID" />
                 <ScalarProperty Name="FK_ServerID" ColumnName="FK_ServerID" />
@@ -655,8 +654,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="gameplayerdetail">
-            <EntityTypeMapping TypeName="frsModel.gameplayerdetail">
+          <EntitySetMapping Name="GamePlayerDetail">
+            <EntityTypeMapping TypeName="frsModel.GamePlayerDetail">
               <MappingFragment StoreEntitySet="gameplayerdetail">
                 <ScalarProperty Name="GamePlayerDetailID" ColumnName="GamePlayerDetailID" />
                 <ScalarProperty Name="FK_GameID" ColumnName="FK_GameID" />
@@ -673,16 +672,16 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="herotype">
-            <EntityTypeMapping TypeName="frsModel.herotype">
+          <EntitySetMapping Name="HeroType">
+            <EntityTypeMapping TypeName="frsModel.HeroType">
               <MappingFragment StoreEntitySet="herotype">
                 <ScalarProperty Name="HeroTypeID" ColumnName="HeroTypeID" />
                 <ScalarProperty Name="HeroUnitTypeID" ColumnName="HeroUnitTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="herotypename">
-            <EntityTypeMapping TypeName="frsModel.herotypename">
+          <EntitySetMapping Name="HeroTypeName">
+            <EntityTypeMapping TypeName="frsModel.HeroTypeName">
               <MappingFragment StoreEntitySet="herotypename">
                 <ScalarProperty Name="HeroTypeNameID" ColumnName="HeroTypeNameID" />
                 <ScalarProperty Name="FK_HeroTypeID" ColumnName="FK_HeroTypeID" />
@@ -692,8 +691,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="player">
-            <EntityTypeMapping TypeName="frsModel.player">
+          <EntitySetMapping Name="Player">
+            <EntityTypeMapping TypeName="frsModel.Player">
               <MappingFragment StoreEntitySet="player">
                 <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
                 <ScalarProperty Name="FK_ServerID" ColumnName="FK_ServerID" />
@@ -707,8 +706,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="playerherostat">
-            <EntityTypeMapping TypeName="frsModel.playerherostat">
+          <EntitySetMapping Name="PlayerHeroStat">
+            <EntityTypeMapping TypeName="frsModel.PlayerHeroStat">
               <MappingFragment StoreEntitySet="playerherostat">
                 <ScalarProperty Name="PlayerHeroStatID" ColumnName="PlayerHeroStatID" />
                 <ScalarProperty Name="FK_PlayerID" ColumnName="FK_PlayerID" />
@@ -721,8 +720,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="playerstat">
-            <EntityTypeMapping TypeName="frsModel.playerstat">
+          <EntitySetMapping Name="PlayerStat">
+            <EntityTypeMapping TypeName="frsModel.PlayerStat">
               <MappingFragment StoreEntitySet="playerstat">
                 <ScalarProperty Name="PlayerStatID" ColumnName="PlayerStatID" />
                 <ScalarProperty Name="FK_PlayerID" ColumnName="FK_PlayerID" />
@@ -735,8 +734,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ranking">
-            <EntityTypeMapping TypeName="frsModel.ranking">
+          <EntitySetMapping Name="Ranking">
+            <EntityTypeMapping TypeName="frsModel.Ranking">
               <MappingFragment StoreEntitySet="ranking">
                 <ScalarProperty Name="RankID" ColumnName="RankID" />
                 <ScalarProperty Name="FK_PlayerID" ColumnName="FK_PlayerID" />
@@ -746,8 +745,8 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="server">
-            <EntityTypeMapping TypeName="frsModel.server">
+          <EntitySetMapping Name="Server">
+            <EntityTypeMapping TypeName="frsModel.Server">
               <MappingFragment StoreEntitySet="server">
                 <ScalarProperty Name="ServerID" ColumnName="ServerID" />
                 <ScalarProperty Name="ServerName" ColumnName="ServerName" />
