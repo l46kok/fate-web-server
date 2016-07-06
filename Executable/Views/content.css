@@ -1,0 +1,17 @@
+﻿#content, #content * {
+    list-style:none;
+    border:0;
+    padding:0;
+    margin:0;
+}
+
+#content {
+    background-color:#EEEEEE;
+    position: fixed;
+    top: 120px;
+    left: 173px;
+    width: 100%;
+    height:100%;
+    text-align:left;
+    padding-top:20px;
+}
