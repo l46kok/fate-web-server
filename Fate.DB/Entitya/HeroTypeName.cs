@@ -7,22 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB.Entitya
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class playerstat
+    public partial class HeroTypeName
     {
-        public int PlayerStatID { get; set; }
-        public int FK_PlayerID { get; set; }
-        public int FK_ServerID { get; set; }
-        public int Win { get; set; }
-        public int Loss { get; set; }
-        public int PlayCount { get; set; }
-        public int ELO { get; set; }
-        public int Score { get; set; }
+        public int HeroTypeNameID { get; set; }
+        public int FK_HeroTypeID { get; set; }
+        public string Language { get; set; }
+        public string HeroName { get; set; }
+        public string HeroTitle { get; set; }
     
-        public virtual server server { get; set; }
+        public virtual HeroType herotype { get; set; }
     }
 }
