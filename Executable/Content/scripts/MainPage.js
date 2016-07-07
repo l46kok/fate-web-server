@@ -2,6 +2,9 @@
     $('body').on('hidden.bs.modal', '.modal', function () {
         $(this).removeData('bs.modal');
     });
+    $(".noExpand").click(function (event) {
+        event.stopPropagation();
+    });
     $('#collapsibleTable').on('shown.bs.collapse', function (e) {
         var divDom = $(e.target);
         var isDataLoaded = divDom.attr("data-isLoaded");

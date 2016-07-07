@@ -81,5 +81,19 @@ namespace Fate.DB.DAL
                 return db.Game.FirstOrDefault(x => x.GameID == gameId)?.Log;
             }
         }
+
+        public GameReplayData GetReplayData(int gameId)
+        {
+            using (var db = new frsEntities())
+            {
+                GameReplayData data = new GameReplayData();
+                Game game = db.Game.FirstOrDefault(x => x.GameID == gameId);
+                if (game == null)
+                    return null;
+                data.PlayedDateTime = game.PlayedDate;
+                data.ReplayPath = game.ReplayUrl;
+                return data;
+            }
+        }
     }
 }
