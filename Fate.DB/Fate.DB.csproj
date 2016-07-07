@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\GameDAL.cs" />
     <Compile Include="Entity\FRS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,7 +116,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Fate.Common\Fate.Common.csproj">
+      <Project>{f3e85a9c-6a70-4631-836c-1e3b26e6bba0}</Project>
+      <Name>Fate.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Entity\FRS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

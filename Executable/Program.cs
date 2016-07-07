@@ -10,22 +10,24 @@ namespace Executable
 
         static void Main()
         {
-            NancyHost host;
-
             #region Making new instance of NancyHost
             var uri = new Uri("http://localhost:" + Port + "/");
-            var config = new HostConfiguration(); config.UrlReservations.CreateAutomatically = true;
+            var config = new HostConfiguration
+            {
+                UrlReservations = {CreateAutomatically = true},
+                AllowChunkedEncoding = false
+            };
 
-            host = new NancyHost(config, uri);
+            var host = new NancyHost(config, uri);
             #endregion
             #region NancyFX hosting loop
             try
             {
                 host.Start();
 
-                Console.Write("Start hosting the Fate/Another ranking system frontend\n" +
+                Console.Write("Fate/Another III Ranking System Web Server\n" +
                     "\t\"" + uri + "\"\n" +
-                    "To stop the hosting, input \"" + EscapeString + "\".\n\n");
+                    "To quit, input \"" + EscapeString + "\".\n\n");
                 do Console.Write("> "); while (Console.ReadLine() != EscapeString) ;
             }
             catch (Exception e)
