@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Fate.Common.Data;
@@ -11,10 +13,11 @@ namespace Fate.WebServiceLayer
 {
     public class GameSL
     {
+        private static readonly GameDAL _gameDal = new GameDAL();
         public IEnumerable<GameData> GetRecentGames(int count)
         {
-            GameDAL gameDal = new GameDAL();
-            List<GameData> recentGameList = gameDal.GetRecentGameDataList(count).ToList();
+            
+            List<GameData> recentGameList = _gameDal.GetRecentGameDataList(count).ToList();
             foreach (GameData data in recentGameList)
             {
                 if (data.TeamOneWinCount > data.TeamTwoWinCount)
@@ -35,8 +38,16 @@ namespace Fate.WebServiceLayer
 
         public string GetGameLog(int gameId)
         {
-            GameDAL gameDal = new GameDAL();
-            return gameDal.GetGameLog(gameId);
+            return _gameDal.GetGameLog(gameId);
+        }
+
+        public GameReplayData GetReplayData(int gameId)
+        {
+            GameReplayData data = _gameDal.GetReplayData(gameId);
+            if (data == null)
+                return null;
+            data.ReplayPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), ContentURL.GetLocalReplayPath(data.ReplayPath));
+            return data;
         }
     }
 }

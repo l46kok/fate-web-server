@@ -9,7 +9,6 @@ namespace FateWebServer.Controllers
         private static readonly GameDetailSL gameDetailSl = new GameDetailSL();
         public GameDetailModule()
         {
-            
             Get["/gameDetail/{gameId}"] = param =>
             {
                 int gameIdParam = param.gameId;
