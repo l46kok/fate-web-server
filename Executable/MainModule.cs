@@ -11,12 +11,12 @@ namespace Executable
     {
         public MainModule()
         {
-            Get["/"] = _ => View["Views/MainPage.html"];
-            Get["/SearchPlayer"] = _ => View["Views/SearchPlayer.html"];
+            Get["/"] = _ => View["Views/MainPage.sshtml"];
+/*            Get["/SearchPlayer"] = _ => View["Views/SearchPlayer.html"];
             Get["/SearchGame"] = _ => View["Views/SearchGame.html"];
             Get["/Home"] = _ => View["Views/Home.html"];
             Get["/About"] = _ => View["Views/About.html"];
-            Get["/PlayerStats"] = _ => View["Views/PlayerStats.html"];
+            Get["/PlayerStats"] = _ => View["Views/PlayerStats.html"];*/
         }
     }
 }
