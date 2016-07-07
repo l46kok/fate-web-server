@@ -20,41 +20,59 @@ namespace Fate.DB.DAL
             var gameDataList = new List<GameData>();
             using (var db = new frsEntities())
             {
-                var recentGameQueryData = (from game in db.Game
+                var recentGameQueryData = (
+                    from game in db.Game
                     join server in db.Server on game.FK_ServerID equals server.ServerID
+                    join gameDetail in db.GamePlayerDetail on game.GameID equals gameDetail.FK_GameID
                     orderby game.GameID
+                    group game by new { game.GameID,game.GameName, game.PlayedDate, game.Duration, game.Result, game.MapVersion, game.ReplayUrl, game.MatchType, server.ServerName } into g
                     select new
                     {
-                        game.GameName,
-                        game.Duration,
-                        game.Log,
-                        game.MapVersion,
-                        game.MatchType,
-                        game.PlayedDate,
-                        game.ReplayUrl,
-                        game.Result,
-                        server.ServerName
+                        g.Key.GameID,
+                        g.Key.GameName,
+                        g.Key.Duration,
+                        g.Key.MapVersion,
+                        g.Key.MatchType,
+                        g.Key.PlayedDate,
+                        g.Key.ReplayUrl,
+                        g.Key.Result,
+                        g.Key.ServerName,
+                        PlayerCount = g.Count()
                     }).Take(count);
 
                 foreach (var data in recentGameQueryData)
                 {
                     var gameData = new GameData
                     {
+                        GameID = data.GameID,
                         GameName = data.GameName,
                         Duration = data.Duration,
-                        Log = data.Log,
                         MapVersion = data.MapVersion,
                         MatchType = data.MatchType,
                         PlayedDate = data.PlayedDate,
                         ReplayUrl = data.ReplayUrl,
                         Result = data.Result,
-                        ServerName = data.ServerName
+                        ServerName = data.ServerName,
+                        PlayerCount = data.PlayerCount
                     };
                     gameDataList.Add(gameData);
                 }
             }
 
             return gameDataList;
+        }
+
+        /// <summary>
+        /// Retrieves the chat log from the game
+        /// </summary>
+        /// <param name="gameId">Game ID of the game</param>
+        /// <returns>Log (string)</returns>
+        public string GetGameLog(int gameId)
+        {
+            using (var db = new frsEntities())
+            {
+                return db.Game.FirstOrDefault(x => x.GameID == gameId)?.Log;
+            }
         }
     }
 }

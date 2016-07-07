@@ -17,5 +17,11 @@ namespace Fate.WebServiceLayer
             IEnumerable<GameData> recentGameList = gameDal.GetRecentGameDataList(count);
             return recentGameList;
         }
+
+        public string GetGameLog(int gameId)
+        {
+            GameDAL gameDal = new GameDAL();
+            return gameDal.GetGameLog(gameId);
+        }
     }
 }

@@ -87,6 +87,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Log.sshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Views\MasterPage.sshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -95,6 +98,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\replays\" />
     <Folder Include="Properties\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
@@ -112,6 +116,14 @@
       <Project>{9cd88ae0-6373-4e02-b7e5-10541169b9ad}</Project>
       <Name>Fate.WebServiceLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\icons\ViewLog.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\icons\SaveReplay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
