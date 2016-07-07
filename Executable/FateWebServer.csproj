@@ -100,7 +100,6 @@
   <ItemGroup>
     <Folder Include="Content\replays\" />
     <Folder Include="Properties\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\css\MasterPage.css">
@@ -124,6 +123,11 @@
     <EmbeddedResource Include="Content\icons\SaveReplay.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\scripts\MainPage.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

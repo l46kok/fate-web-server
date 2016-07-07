@@ -32,7 +32,7 @@
 					<td>@Current.MapVersion</td>
 					<td>@Current.PlayerCount</td>
 					<td>@Current.ServerName</td>
-					<td><a href="/Log?gameId=1" data-target="#chatLogModal" data-toggle="modal"><img src="/Content/icons/ViewLog.png" alt="View the chat log"></a></td>
+					<td><a href="/Log?gameId=@Current.GameID" data-target="#chatLogModal" data-toggle="modal"><img src="/Content/icons/ViewLog.png" alt="View the chat log"></a></td>
 					<td><img src="/Content/icons/SaveReplay.png" alt="Download Replay"></td>
 				</tr>
 				@EndEach
@@ -65,4 +65,5 @@
   </div>
 </div>
 
+<script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
 @EndSection
