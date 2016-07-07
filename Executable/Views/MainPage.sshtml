@@ -8,16 +8,61 @@
       <div class="page-header">
         <h1>Recent Games</h1>
       </div>
-      <p class="lead">@Model.CurrentBotTime</p>
-	  <p class="lead">@Model.RecentGameDataList[0].GameName</p>
-      <p>Back to <a href="http://getbootstrap.com/examples/sticky-footer">the default sticky footer</a> minus the navbar.</p>
+      <p class="lead">Current Bot DateTime: @Model.CurrentBotTime</p>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>Date</th>
+					<th>Game Name</th>
+					<th>Duration</th>
+					<th>Map Version</th>
+					<th>Players</th>
+					<th>Server</th>
+					<th>Log</th>
+					<th>Replay</th>
+				</tr>
+				</thead>
+				<tbody>
+				@Each.Model.RecentGameDataList
+					<tr>
+					<td>@Current.PlayedDate</td>
+					<td>@Current.GameName</td>
+					<td>@Current.Duration</td>
+					<td>@Current.MapVersion</td>
+					<td>@Current.PlayerCount</td>
+					<td>@Current.ServerName</td>
+					<td><a href="/Log?gameId=1" data-target="#chatLogModal" data-toggle="modal"><img src="/Content/icons/ViewLog.png" alt="View the chat log"></a></td>
+					<td><img src="/Content/icons/SaveReplay.png" alt="Download Replay"></td>
+				</tr>
+				@EndEach
+				</tbody>
+			</table>
+		</div>
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">(C) 2016 by Clan UFW (l46kok@USEast).</p>
-      </div>
-    </footer>
-
+	<!-- Modal -->
+	<div class="modal fade" id="chatLogModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Modal Header</h4>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+			</div>
+      
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="container">
+		<p class="text-muted">(C) 2016 by Clan UFW (l46kok@USEast).</p>
+		</div>
+	</footer>
+  </div>
+</div>
 
 @EndSection
