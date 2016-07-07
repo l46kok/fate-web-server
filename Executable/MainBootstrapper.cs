@@ -16,9 +16,7 @@ namespace FateWebServer
         {
             base.ConfigureConventions(nancyConventions);
 
-            Conventions.StaticContentsConventions.Add(
-                StaticContentConventionBuilder.AddDirectory("/", "Assets")
-            );
+            StaticConfiguration.DisableErrorTraces = false;
         }
 
         protected override byte[] FavIcon
