@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentURL.cs" />
+    <Compile Include="GameDetailSL.cs" />
     <Compile Include="GameSL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

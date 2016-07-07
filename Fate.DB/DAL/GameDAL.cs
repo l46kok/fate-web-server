@@ -25,7 +25,10 @@ namespace Fate.DB.DAL
                     join server in db.Server on game.FK_ServerID equals server.ServerID
                     join gameDetail in db.GamePlayerDetail on game.GameID equals gameDetail.FK_GameID
                     orderby game.GameID
-                    group game by new { game.GameID,game.GameName, game.PlayedDate, game.Duration, game.Result, game.MapVersion, game.ReplayUrl, game.MatchType, server.ServerName } into g
+                    group game by new { game.GameID,game.GameName, game.PlayedDate,
+                                        game.Duration, game.Result, game.MapVersion,
+                                        game.ReplayUrl, game.MatchType, server.ServerName,
+                                        game.TeamOneWinCount, game.TeamTwoWinCount} into g
                     select new
                     {
                         g.Key.GameID,
@@ -37,6 +40,8 @@ namespace Fate.DB.DAL
                         g.Key.ReplayUrl,
                         g.Key.Result,
                         g.Key.ServerName,
+                        g.Key.TeamOneWinCount,
+                        g.Key.TeamTwoWinCount,
                         PlayerCount = g.Count()
                     }).Take(count);
 
@@ -53,7 +58,9 @@ namespace Fate.DB.DAL
                         ReplayUrl = data.ReplayUrl,
                         Result = data.Result,
                         ServerName = data.ServerName,
-                        PlayerCount = data.PlayerCount
+                        PlayerCount = data.PlayerCount,
+                        TeamOneWinCount = data.TeamOneWinCount,
+                        TeamTwoWinCount = data.TeamTwoWinCount
                     };
                     gameDataList.Add(gameData);
                 }
