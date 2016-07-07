@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\GameDAL.cs" />
+    <Compile Include="DAL\GameDetailDAL.cs" />
     <Compile Include="Entity\FRS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

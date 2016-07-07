@@ -14,7 +14,22 @@ namespace Fate.WebServiceLayer
         public IEnumerable<GameData> GetRecentGames(int count)
         {
             GameDAL gameDal = new GameDAL();
-            IEnumerable<GameData> recentGameList = gameDal.GetRecentGameDataList(count);
+            List<GameData> recentGameList = gameDal.GetRecentGameDataList(count).ToList();
+            foreach (GameData data in recentGameList)
+            {
+                if (data.TeamOneWinCount > data.TeamTwoWinCount)
+                {
+                    data.Result = $@"Team 1 Victory ({data.TeamOneWinCount}-{data.TeamTwoWinCount})";
+                }
+                else if (data.TeamOneWinCount < data.TeamTwoWinCount)
+                {
+                    data.Result = $@"Team 2 Victory ({data.TeamOneWinCount}-{data.TeamTwoWinCount})";
+                }
+                else
+                {
+                    data.Result = $@"Draw ({data.TeamOneWinCount}-{data.TeamTwoWinCount})";
+                }
+            }
             return recentGameList;
         }
 
