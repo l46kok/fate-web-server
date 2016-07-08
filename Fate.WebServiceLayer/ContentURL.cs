@@ -15,8 +15,10 @@ namespace Fate.WebServiceLayer
         {
             _heroIconDic.Add("H000",@"/Content/icons/BTNSaber.jpg");
             _heroIconDic.Add("H002",@"/Content/icons/BTNChulainn.jpg");
+            _heroIconDic.Add("H004", @"/Content/icons/BTNCaster.jpg");
             _heroIconDic.Add("H001", @"/Content/icons/BTNArcherIcon.jpg");
             _heroIconDic.Add("H005", @"/Content/icons/BTNAssassinIcon.jpg");
+            _heroIconDic.Add("H006", @"/Content/icons/BTNBerserker.jpg");
             _heroIconDic.Add("H007", @"/Content/icons/BTNDarkSaber.jpg");
             _heroIconDic.Add("H00Y", @"/Content/icons/BTNDrake.jpg");
             _heroIconDic.Add("H00I", @"/Content/icons/BTNGawain.jpg");
@@ -34,6 +36,7 @@ namespace Fate.WebServiceLayer
             _heroIconDic.Add("H01F", @"/Content/icons/BTNVlad.jpg");
             _heroIconDic.Add("H01Q", @"/Content/icons/BTNYeopo.jpg");
             _heroIconDic.Add("H04D", @"/Content/icons/BTNZeroLancer.jpg");
+            _heroIconDic.Add("H01A", @"/Content/icons/BTNLi.jpg");
         }
         public static string GetHeroIconURL(string heroUnitTypeId)
         {
