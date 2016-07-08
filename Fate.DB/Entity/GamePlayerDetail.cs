@@ -26,6 +26,7 @@ namespace Fate.DB.Entity
         public string Result { get; set; }
         public int ScoreDiff { get; set; }
         public int ELODiff { get; set; }
+        public int GoldSpent { get; set; }
     
         public virtual Game game { get; set; }
         public virtual HeroType herotype { get; set; }

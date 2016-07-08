@@ -24,6 +24,9 @@
         <AssociationConnector Association="frsModel.fk_PlayerHeroStat_Server1" ManuallyRouted="false" />
         <AssociationConnector Association="frsModel.fk_PlayerStat_Server1" ManuallyRouted="false" />
         <AssociationConnector Association="frsModel.fk_Ranking_Server1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="frsModel.GameItemPurchase" Width="1.5" PointX="7.625" PointY="0.875" />
+        <EntityTypeShape EntityType="frsModel.ItemInfo" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="frsModel.fk_GameItemPurchase_ItemID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

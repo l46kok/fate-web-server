@@ -24,11 +24,11 @@ namespace Fate.DB.DAL
                     from game in db.Game
                     join server in db.Server on game.FK_ServerID equals server.ServerID
                     join gameDetail in db.GamePlayerDetail on game.GameID equals gameDetail.FK_GameID
-                    orderby game.GameID
                     group game by new { game.GameID,game.GameName, game.PlayedDate,
                                         game.Duration, game.Result, game.MapVersion,
                                         game.ReplayUrl, game.MatchType, server.ServerName,
                                         game.TeamOneWinCount, game.TeamTwoWinCount} into g
+                    orderby g.Key.GameID descending
                     select new
                     {
                         g.Key.GameID,

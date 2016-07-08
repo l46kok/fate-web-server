@@ -80,6 +80,9 @@
     <Compile Include="Entity\Game.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\GameItemPurchase.cs">
+      <DependentUpon>FRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\GamePlayerDetail.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
@@ -87,6 +90,9 @@
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\HeroTypeName.cs">
+      <DependentUpon>FRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ItemInfo.cs">
       <DependentUpon>FRS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Player.cs">
