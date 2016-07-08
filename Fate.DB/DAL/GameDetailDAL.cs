@@ -26,7 +26,8 @@ namespace Fate.DB.DAL
                         Kills = game.Kills,
                         Assists = game.Assists,
                         Deaths = game.Deaths,
-                        Team = game.Team
+                        Team = game.Team,
+                        GoldSpent = game.GoldSpent
                     });
                 return gameDetailQueryData.ToList();
             }
