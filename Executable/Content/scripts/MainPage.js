@@ -24,7 +24,7 @@
                 headerRow.append('<th class=centerText>Kills</th>');
                 headerRow.append('<th class=centerText>Deaths</th>');
                 headerRow.append('<th class=centerText>Assists</th>');
-                headerRow.append('<th class=centerText>Gold Used</th>');
+                headerRow.append('<th class=centerText>Gold Spent</th>');
                 tableHeader.append(headerRow);
                 table.append(tableHeader);
                 table.append(tableBody);
@@ -36,7 +36,7 @@
                     playerRow.append("<td class=centerText>" + elem.kills + "</td>");
                     playerRow.append("<td class=centerText>" + elem.deaths + "</td>");
                     playerRow.append("<td class=centerText>" + elem.assists + "</td>");
-                    playerRow.append("<td class=centerText>" + "0" + "</td>");
+                    playerRow.append("<td class=centerText>" + elem.goldSpent + "</td>");
                     tableBody.append(playerRow);
                 });
                 var teamTotalRow = $('<tr></tr>');
@@ -44,7 +44,7 @@
                 teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Kills"] + "</b></td>");
                 teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Deaths"] + "</b></td>");
                 teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Assists"] + "</b></td>");
-                teamTotalRow.append("<td class=centerText><b>" + "0" + "</b></td>");
+                teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Gold"] + "</b></td>");
                 tableBody.append(teamTotalRow);
             }
         });

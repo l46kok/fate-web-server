@@ -19,6 +19,7 @@ namespace Fate.WebServiceLayer
                 dataModel.Team1Kills += data.Kills;
                 dataModel.Team1Deaths += data.Deaths;
                 dataModel.Team1Assists += data.Assists;
+                dataModel.Team1Gold += data.GoldSpent;
                 data.HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID);
             }
             foreach (GamePlayerDetailData data in dataModel.Team2Data)
@@ -26,6 +27,7 @@ namespace Fate.WebServiceLayer
                 dataModel.Team2Kills += data.Kills;
                 dataModel.Team2Deaths += data.Deaths;
                 dataModel.Team2Assists += data.Assists;
+                dataModel.Team2Gold += data.GoldSpent;
                 data.HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID);
             }
             return dataModel;

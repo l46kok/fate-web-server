@@ -8,6 +8,7 @@
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int Assists { get; set; }
+        public int GoldSpent { get; set; }
         public string Team { get; set; }
     }
 }
