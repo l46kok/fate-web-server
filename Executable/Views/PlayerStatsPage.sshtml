@@ -1,0 +1,15 @@
+﻿@Master['MasterPage']
+
+@Section['Content']
+
+<link href="/Content/css/MainPage.css" rel="stylesheet">
+<!-- Begin page content -->
+<div class="container">
+	<div class="page-header">
+		@IfNot.HasFoundUser
+		   <h1 class="HeaderTitle">Player @Model.UserName has not played any games on this bot.</h1>
+		   <h3 class="HeaderSubTitle">Please check spelling and server</h3>
+		@EndIf
+	</div>
+</div>
+@EndSection

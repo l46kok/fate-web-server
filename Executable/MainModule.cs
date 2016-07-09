@@ -30,6 +30,15 @@ namespace Executable
                 string gameLog = Regex.Replace(_gameSl.GetGameLog(Request.Query.gameId), @"\r\n?|\n", "<br />"); 
                 return View["Views/Log.sshtml",gameLog];
             };
+            Get["/PlayerStats/{server}/{playerName}"] = param =>
+            {
+                PlayerStatsPageViewModel vm = new PlayerStatsPageViewModel
+                {
+                    HasFoundUser = false,
+                    UserName = param.playerName
+                };
+                return View["Views/PlayerStatsPage.sshtml", vm];
+            };
 
             /*            Get["/SearchPlayer"] = _ => View["Views/SearchPlayer.html"];
                         Get["/SearchGame"] = _ => View["Views/SearchGame.html"];
