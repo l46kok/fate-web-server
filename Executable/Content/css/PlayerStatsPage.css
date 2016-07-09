@@ -1,0 +1,53 @@
+﻿.HeaderTitle {
+    color: #242929;
+    font-size: 26px;
+}
+
+.HeaderSubTitle {
+    color: #555e5e;
+    font-size: 18px;
+}
+
+.hiddenRow {
+    padding: 0 !important;
+    cursor: default !important;
+}
+
+.hiddenRow tbody tr td {
+    background-color: white !important;
+    cursor: default !important;
+}
+
+.table-hover tbody tr:hover td
+{
+    background-color: #cdf6ff;
+    cursor: pointer; 
+    cursor: hand;
+}
+
+.innerTable {
+    margin-bottom: 0 !important;
+}
+
+.imageCenter {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.heroicon {
+    margin-right: 10px;
+}
+
+.centerText { 
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.team1Bar {
+    background-color: #9fc9e6;
+}
+
+.team2Bar {
+    background-color: #ffada7;
+}
