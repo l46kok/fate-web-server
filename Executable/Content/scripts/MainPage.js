@@ -17,7 +17,7 @@
 
             var table = $('<table></table>').addClass('table table-condensed innerTable');
             for (var i = 1; i < 3; i++) {
-                var tableBody = $('<tbody></tbody>')
+                var tableBody = $('<tbody></tbody>');
                 var tableHeader = $('<thead></thead>');
                 var headerRow = $("<tr class=team" + i + "Bar></tr>");
                 headerRow.append('<th>Team ' + i + "</th>");
@@ -32,7 +32,7 @@
 
                 $.each(data["team" + i + "Data"], function (idx, elem) {
                     var playerRow = $('<tr></tr>');
-                    playerRow.append("<td><img class=heroicon height=32 width=32 src='" + elem.heroImageURL + "'><b>" + elem.playerName + "</b></td>");
+                    playerRow.append("<td><img class=heroicon height=32 width=32 src='" + elem.heroImageURL + "'><b>" + '<a href="/PlayerStats/USEast/'+ elem.playerName + '">' + elem.playerName + "</b></td>");
                     playerRow.append("<td class=centerText>" + elem.kills + "</td>");
                     playerRow.append("<td class=centerText>" + elem.deaths + "</td>");
                     playerRow.append("<td class=centerText>" + elem.assists + "</td>");
