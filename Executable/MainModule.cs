@@ -34,7 +34,7 @@ namespace Executable
             {
                 PlayerStatsPageViewModel vm = new PlayerStatsPageViewModel
                 {
-                    HasFoundUser = false,
+                    HasFoundUser = true,
                     UserName = param.playerName
                 };
                 return View["Views/PlayerStatsPage.sshtml", vm];

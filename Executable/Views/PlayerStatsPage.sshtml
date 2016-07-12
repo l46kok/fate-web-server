@@ -2,14 +2,128 @@
 
 @Section['Content']
 
-<link href="/Content/css/MainPage.css" rel="stylesheet">
+<link href="/Content/css/PlayerStatsPage.css" rel="stylesheet">
 <!-- Begin page content -->
 <div class="container">
-	<div class="page-header">
-		@IfNot.HasFoundUser
+	@IfNot.HasFoundUser
+		<div class="page-header">
 		   <h1 class="HeaderTitle">Player @Model.UserName has not played any games on this bot.</h1>
 		   <h3 class="HeaderSubTitle">Please check spelling and server</h3>
-		@EndIf
+		</div>
+	@EndIf
+	@If.HasFoundUser
+	<div class="row statsBox statsHeader">
+		<div class="col-md-6">
+			<div class="row">
+				<h2 class="HeaderUserName">@Model.UserName</h2>
+			</div>
+			<div class="row WinLossPct">
+				<span class="Win">100W</span> <span class="Loss">64L</span> (54.3%)
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row centerText KDA">
+				<span class="Kill">8.1</span>
+				/
+				<span class="Death">4.3</span>
+				/
+				<span class="Assist">10.4</span>
+				</span>KDA</span>
+			</div>
+			<div class="row centerText">
+				<h4>Average 4.33 KDA</h4>
+			</div>
+			<div class="row centerText">
+				<h4>Last game played on July 11th, 2016 at 3:17 AM</h4>
+			</div>
+		</div>
 	</div>
+	
+	<div class="row">
+		<div class="text-center col-md-4 statsSidePadding">
+			<div class="statsBox">
+				<table class="table table-borderless SideStatsTable table-condensed">
+					<tbody>
+						<tr>
+							<td rowspan="2" class="centerText sideStatsRowBorder"><img height="48" width="48" src="/Content/icons/BTNArcherIcon.jpg"></td>
+							<td class="sideStatsServantName"><b>Archer (5th)</b></td>
+							<td class="sideStatsText"><b>4.31:1 KDA</b></td>
+						</tr>
+						<tr class="sideStatsRowBorder">
+							<td class="sideStatsText">100 W 50 L (75%)</td>
+							<td class="sideStatsText">3.0 / 2.1 / 5.1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="text-center col-md-8 noPaddingRight">
+			<div class="statsBox">
+				<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#demo">
+					<div class="gameTableCell centerText gameResultInfo">
+						<div>July 11th, 2016</div>
+						<div>Victory (12-4)</div>
+					</div>
+					<div class="gameTableCell gameHeroPic centerText">
+						<img height="48" width="48" src="/Content/icons/BTNArcherIcon.jpg">
+					</div>
+					<div class="gameTableCell gameKDA centerText">
+						<div>3.1:1 KDA</div>
+						<div>4.1 / 2.3 /5.3</div>
+					</div>
+					<div class="gameTableCell gameLevelGold centerText">
+						<div>Level 24</div>
+						<div>523400 Gold</div>
+					</div>
+					<div class="gameTableCell centerText gameTeamInfo">
+						<div class="team">
+							<div class="player">
+								<div class="playerInfo">
+									<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someoneasfsafsafasfasfsf
+								</div>
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someoneaaabbbcde
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someone
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someone
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someone
+							</div>
+						</div>
+					</div>
+					<div class="gameTableCell centerText gameTeamInfo">
+						<div class="team">
+							<div class="player">
+								<div class="playerInfo">
+									<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someoneasfsafsafasfasfsf
+								</div>
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someoneaaabbbcde
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someone
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someone
+							</div>
+							<div class="player">
+								<img height="16" width="16" src="/Content/icons/BTNArcherIcon.jpg">Someone
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="accordian-body collapse" id="demo"> 
+					<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">
+				</div> 
+			</div>
+		</div>
+	</div>
+	@EndIf
 </div>
 @EndSection
