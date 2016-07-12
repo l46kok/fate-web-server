@@ -45,6 +45,10 @@
     <Compile Include="Data\GameDetailData.cs" />
     <Compile Include="Data\GamePlayerDetailData.cs" />
     <Compile Include="Data\GameReplayData.cs" />
+    <Compile Include="Data\PlayerGameSummaryData.cs" />
+    <Compile Include="Data\PlayerGameTeamPlayerData.cs" />
+    <Compile Include="Data\PlayerHeroStatSummaryData.cs" />
+    <Compile Include="Data\PlayerStatSummaryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

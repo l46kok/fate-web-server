@@ -451,11 +451,11 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <Property Name="FK_ServerID" Type="Int32" Nullable="false" />
           <Property Name="FK_HeroTypeID" Type="Int32" Nullable="false" />
           <Property Name="HeroPlayCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="herotype" Relationship="Self.fk_PlayerHeroStat_HeroType1" FromRole="playerherostat" ToRole="herotype" />
+          <NavigationProperty Name="server" Relationship="Self.fk_PlayerHeroStat_Server1" FromRole="playerherostat" ToRole="server" />
           <Property Name="TotalHeroKills" Type="Int32" Nullable="false" />
           <Property Name="TotalHeroDeaths" Type="Int32" Nullable="false" />
           <Property Name="TotalHeroAssists" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="herotype" Relationship="Self.fk_PlayerHeroStat_HeroType1" FromRole="playerherostat" ToRole="herotype" />
-          <NavigationProperty Name="server" Relationship="Self.fk_PlayerHeroStat_Server1" FromRole="playerherostat" ToRole="server" />
         </EntityType>
         <EntityType Name="PlayerStat">
           <Key>
@@ -789,15 +789,15 @@ warning 6035: The relationship 'fk_Ranking_PlayerStat1' has columns that are not
           <EntitySetMapping Name="PlayerHeroStat">
             <EntityTypeMapping TypeName="frsModel.PlayerHeroStat">
               <MappingFragment StoreEntitySet="playerherostat">
+                <ScalarProperty Name="TotalHeroAssists" ColumnName="TotalHeroAssists" />
+                <ScalarProperty Name="TotalHeroDeaths" ColumnName="TotalHeroDeaths" />
+                <ScalarProperty Name="TotalHeroKills" ColumnName="TotalHeroKills" />
                 <ScalarProperty Name="PlayerHeroStatID" ColumnName="PlayerHeroStatID" />
                 <ScalarProperty Name="FK_PlayerID" ColumnName="FK_PlayerID" />
                 <ScalarProperty Name="FK_ServerID" ColumnName="FK_ServerID" />
                 <ScalarProperty Name="FK_HeroTypeID" ColumnName="FK_HeroTypeID" />
                 <ScalarProperty Name="HeroPlayCount" ColumnName="HeroPlayCount" />
-                <ScalarProperty Name="TotalHeroKills" ColumnName="TotalHeroKills" />
-                <ScalarProperty Name="TotalHeroDeaths" ColumnName="TotalHeroDeaths" />
-                <ScalarProperty Name="TotalHeroAssists" ColumnName="TotalHeroAssists" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PlayerStat">

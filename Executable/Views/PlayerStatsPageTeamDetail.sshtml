@@ -1,0 +1,5 @@
+﻿@Each
+	<div class="playerInfo">
+		<img height="16" width="16" src="@Current.HeroImageURL">@Current.PlayerName
+	</div>
+@EndEach
