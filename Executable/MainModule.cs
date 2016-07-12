@@ -6,15 +6,17 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Fate.Common.Data;
 using Fate.WebServiceLayer;
-using FateWebServer.ViewModels;
+using Fate.WebServiceLayer.ViewModels;
 using Nancy;
+using Nancy.Linker;
 
 namespace Executable
 {
     public class MainModule : NancyModule
     {
         private static readonly GameSL _gameSl = new GameSL();
-        public MainModule()
+        private static readonly PlayerStatSL _playerStatsl = new PlayerStatSL();
+        public MainModule(IResourceLinker linker)
         {
             Get["/"] = _ =>
             {
@@ -25,6 +27,13 @@ namespace Executable
                 };
                 return View["Views/MainPage.sshtml", mpVm];
             };
+
+            Post["/Search"] = param =>
+            {
+                return Response.AsRedirect($"/PlayerStats/USEast/{Request.Form.searchPlayerName}");
+            };
+
+
             Get["/Log"] = x =>
             {
                 string gameLog = Regex.Replace(_gameSl.GetGameLog(Request.Query.gameId), @"\r\n?|\n", "<br />"); 
@@ -32,19 +41,9 @@ namespace Executable
             };
             Get["/PlayerStats/{server}/{playerName}"] = param =>
             {
-                PlayerStatsPageViewModel vm = new PlayerStatsPageViewModel
-                {
-                    HasFoundUser = true,
-                    UserName = param.playerName
-                };
-                return View["Views/PlayerStatsPage.sshtml", vm];
+                PlayerStatsPageViewModel summaryData = _playerStatsl.GetPlayerStatSummary(param.playerName, param.server);
+                return View["Views/PlayerStatsPage.sshtml", summaryData];
             };
-
-            /*            Get["/SearchPlayer"] = _ => View["Views/SearchPlayer.html"];
-                        Get["/SearchGame"] = _ => View["Views/SearchGame.html"];
-                        Get["/Home"] = _ => View["Views/Home.html"];
-                        Get["/About"] = _ => View["Views/About.html"];
-                        Get["/PlayerStats"] = _ => View["Views/PlayerStats.html"];*/
         }
     }
 }

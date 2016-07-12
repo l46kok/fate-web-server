@@ -165,7 +165,6 @@
 
 .playerInfo {
 	max-width: 150px;
-	display: inline-block;
 	text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
