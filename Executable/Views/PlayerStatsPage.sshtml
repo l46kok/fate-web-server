@@ -64,7 +64,7 @@
 				<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#demo">
 					<div class="gameTableCell centerText gameResultInfo">
 						<div>@Current.PlayedDate</div>
-						<div>@Current.GameResult (12-4)</div>
+						<div>@Current.GameResult (@Current.TeamOneWinCount - @Current.TeamTwoWinCount)</div>
 					</div>
 					<div class="gameTableCell gameHeroPic centerText">
 						<img height="48" width="48" src="@Current.HeroImageURL">
