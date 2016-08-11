@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class HeroTypeName
+    public partial class attributeinfo
     {
-        public int HeroTypeNameID { get; set; }
-        public int FK_HeroTypeID { get; set; }
-        public string Language { get; set; }
-        public string HeroName { get; set; }
-        public string HeroTitle { get; set; }
-    
-        public virtual HeroType herotype { get; set; }
+        public int AttributeInfoID { get; set; }
+        public string AttributeAbilID { get; set; }
+        public string AttributeName { get; set; }
     }
 }

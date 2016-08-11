@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PlayerHeroStat
+    public partial class herotypename
     {
-        public int PlayerHeroStatID { get; set; }
-        public int FK_PlayerID { get; set; }
-        public int FK_ServerID { get; set; }
+        public int HeroTypeNameID { get; set; }
         public int FK_HeroTypeID { get; set; }
-        public int HeroPlayCount { get; set; }
-        public int TotalHeroKills { get; set; }
-        public int TotalHeroDeaths { get; set; }
-        public int TotalHeroAssists { get; set; }
+        public string Language { get; set; }
+        public string HeroName { get; set; }
+        public string HeroTitle { get; set; }
     
-        public virtual HeroType herotype { get; set; }
-        public virtual Server server { get; set; }
+        public virtual herotype herotype { get; set; }
     }
 }

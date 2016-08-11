@@ -7,18 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class GameItemPurchase
+    public partial class godshelpuse
     {
-        public int GameItemPurchaseID { get; set; }
-        public int FK_ItemID { get; set; }
+        public int GodsHelpUseID { get; set; }
+        public int FK_GodsHelpInfoID { get; set; }
         public int FK_GamePlayerDetailID { get; set; }
-        public int ItemPurchaseCount { get; set; }
-    
-        public virtual ItemInfo iteminfo { get; set; }
     }
 }

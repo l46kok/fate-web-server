@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemInfo
+    public partial class iteminfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ItemInfo()
+        public iteminfo()
         {
-            this.gameitempurchase = new HashSet<GameItemPurchase>();
+            this.gameitempurchase = new HashSet<gameitempurchase>();
         }
     
         public int ItemID { get; set; }
@@ -26,6 +26,6 @@ namespace Fate.DB.Entity
         public int ItemCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GameItemPurchase> gameitempurchase { get; set; }
+        public virtual ICollection<gameitempurchase> gameitempurchase { get; set; }
     }
 }
