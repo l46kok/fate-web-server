@@ -132,7 +132,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="frsdb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>frsdb.Designer.cs</LastGenOutput>

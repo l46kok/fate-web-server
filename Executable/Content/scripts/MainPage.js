@@ -11,7 +11,7 @@
         if (isDataLoaded === "1")
             return;
         var gameId = $(e.target).attr("data-gameId");
-        $.get("gameDetail/" + gameId, function (data) {
+        $.get("/gameDetail/" + gameId, function (data) {
             divDom.attr("data-isLoaded", 1);
             divDom.empty();
 
@@ -21,9 +21,12 @@
                 var tableHeader = $('<thead></thead>');
                 var headerRow = $("<tr class=team" + i + "Bar></tr>");
                 headerRow.append('<th>Team ' + i + "</th>");
+                headerRow.append('<th class=centerText>Level</th>');
                 headerRow.append('<th class=centerText>Kills</th>');
                 headerRow.append('<th class=centerText>Deaths</th>');
                 headerRow.append('<th class=centerText>Assists</th>');
+                headerRow.append('<th class=centerText>Damage Dealt</th>');
+                headerRow.append('<th class=centerText>Gods Help</th>');
                 headerRow.append('<th class=centerText>Gold Spent</th>');
                 tableHeader.append(headerRow);
                 table.append(tableHeader);
@@ -32,19 +35,29 @@
 
                 $.each(data["team" + i + "Data"], function (idx, elem) {
                     var playerRow = $('<tr></tr>');
-                    playerRow.append("<td><img class=heroicon height=32 width=32 src='" + elem.heroImageURL + "'><b>" + '<a href="/PlayerStats/USEast/'+ elem.playerName + '">' + elem.playerName + "</b></td>");
+                    playerRow.append("<td class=leftText><img class=heroicon height=32 width=32 src='" + elem.heroImageURL + "'><b>" + '<a href="/PlayerStats/USEast/' + elem.playerName + '">' + elem.playerName + "</b></td>");
+                    playerRow.append("<td class=centerText>" + elem.level + "</td>");
                     playerRow.append("<td class=centerText>" + elem.kills + "</td>");
                     playerRow.append("<td class=centerText>" + elem.deaths + "</td>");
                     playerRow.append("<td class=centerText>" + elem.assists + "</td>");
-                    playerRow.append("<td class=centerText>" + elem.goldSpent + "</td>");
+                    playerRow.append("<td class=centerText>" + numberUtil.formatDecimal(elem.damageDealt) + "</td>");
+                    var godsHelpCol = $('<td class=centerText></td>')
+                    $.each(elem.godsHelpImageURLList, function (i, url) {
+                        godsHelpCol.append("<img class=heroicon height=32 width=32 src='" + url + "'>");
+                    });
+                    playerRow.append(godsHelpCol);
+                    playerRow.append("<td class=centerText>" + numberUtil.formatNumber(elem.goldSpent) + "</td>");
                     tableBody.append(playerRow);
                 });
-                var teamTotalRow = $('<tr></tr>');
-                teamTotalRow.append("<td></td>");
-                teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Kills"] + "</b></td>");
-                teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Deaths"] + "</b></td>");
-                teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Assists"] + "</b></td>");
-                teamTotalRow.append("<td class=centerText><b>" + data["team" + i + "Gold"] + "</b></td>");
+                var teamTotalRow = $("<tr></tr>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'><b>Total</b></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + data["team" + i + "Kills"] + " </b></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + data["team" + i + "Deaths"] + " </b></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + data["team" + i + "Assists"] + " </b></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + numberUtil.formatDecimal(data["team" + i + "DamageDealt"]) + " </b></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + numberUtil.formatNumber(data["team" + i + "Gold"]) + " </b></td>");
                 tableBody.append(teamTotalRow);
             }
         });

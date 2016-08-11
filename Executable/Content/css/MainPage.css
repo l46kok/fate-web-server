@@ -35,10 +35,17 @@
     vertical-align: middle !important;
 }
 
-.team1Bar {
-    background-color: #9fc9e6;
+.leftText { 
+    text-align: left;
 }
 
-.team2Bar {
-    background-color: #ffada7;
+.team1Bar,
+.innerTable tbody tr td.team1total {
+    background-color: #9fc9e6 !important;
 }
+
+.team2Bar,
+.innerTable tbody tr td.team2total {
+    background-color: #ffada7 !important;
+}
+

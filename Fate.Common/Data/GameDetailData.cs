@@ -10,9 +10,11 @@ namespace Fate.Common.Data
         public int Team1Deaths { get; set; }
         public int Team1Assists { get; set; }
         public int Team1Gold { get; set; }
+        public double Team1DamageDealt { get; set; }
         public int Team2Kills { get; set; }
         public int Team2Deaths { get; set; }
         public int Team2Assists { get; set; }
         public int Team2Gold { get; set; }
+        public double Team2DamageDealt { get; set; }
     }
 }

@@ -76,12 +76,16 @@ namespace Fate.WebServiceLayer
             {
                 PlayerGameSummaryViewModel vmGame = new PlayerGameSummaryViewModel
                 {
+                    GameID = gameSummary.GameID,
                     PlayedDate = gameSummary.PlayedDate.ToShortDateString(),
-                    GoldSpent = gameSummary.GoldSpent,
+                    GoldSpent = $"{gameSummary.GoldSpent:n0}",
                     GameResult = gameSummary.GameResult,
                     HeroKills = gameSummary.HeroKills,
                     HeroDeaths = gameSummary.HeroDeaths,
                     HeroAssists = gameSummary.HeroAssists,
+                    HeroLevel = gameSummary.HeroLevel,
+                    DamageDealt = $"{((int)gameSummary.DamageDealt):n0}",
+                    DamageTaken = $"{((int)gameSummary.DamageTaken):n0}",
                     HeroKDA =
                         ((gameSummary.HeroKills*1.0 + gameSummary.HeroAssists)/gameSummary.HeroDeaths).ToString("0.00"),
                     HeroImageURL = ContentURL.GetHeroIconURL(gameSummary.HeroUnitTypeID),

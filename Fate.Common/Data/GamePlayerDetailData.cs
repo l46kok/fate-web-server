@@ -1,14 +1,22 @@
-﻿namespace Fate.Common.Data
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Fate.Common.Data
 {
     public class GamePlayerDetailData
     {
         public string PlayerName { get; set; }
         public string HeroUnitTypeID { get; set; }
         public string HeroImageURL { get; set; }
+        public List<string> GodsHelpImageURLList { get; set; }
+        public int Level { get; set; }
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int Assists { get; set; }
         public int GoldSpent { get; set; }
+        public double DamageDealt { get; set; }
+        public double DamageTaken { get; set; }
+        public List<string> GodsHelpAbilIDList { get; set; } 
         public string Team { get; set; }
     }
 }

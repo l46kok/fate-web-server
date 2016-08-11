@@ -58,10 +58,10 @@
 				</table>
 			</div>
 		</div>
-		<div class="text-center col-md-8 noPaddingRight">
+		<div id="collapsibleTable" class="text-center col-md-8 noPaddingRight">
 			@Each.Model.PlayerGameSummaryData
 			<div class="statsBox">
-				<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#demo">
+				<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#collapsible@Current.GameID">
 					<div class="gameTableCell centerText gameResultInfo">
 						<div>@Current.PlayedDate</div>
 						<div>@Current.GameResult (@Current.TeamOneWinCount - @Current.TeamTwoWinCount)</div>
@@ -74,8 +74,9 @@
 						<div>@Current.HeroKills / @Current.HeroDeaths / @Current.HeroAssists</div>
 					</div>
 					<div class="gameTableCell gameLevelGold centerText">
-						<div>Level </div>
+						<div>Level @Current.HeroLevel</div>
 						<div>@Current.GoldSpent Gold</div>
+						<div>@Current.DamageDealt Damage</div>
 					</div>
 					<div class="gameTableCell centerText gameTeamInfo">
 						<div class="team">
@@ -92,9 +93,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="accordian-body collapse" id="demo"> 
+				<div class="accordian-body collapse" data-gameId="@Current.GameID" id="collapsible@Current.GameID"> 
 					<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">
-					Not Implemented Yet
 				</div> 
 			</div>
 			@EndEach
@@ -102,4 +102,6 @@
 	</div>
 	@EndIf
 </div>
+
+<script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
 @EndSection

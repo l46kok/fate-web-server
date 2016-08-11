@@ -10,6 +10,7 @@ namespace Fate.WebServiceLayer
     public static class ContentURL
     {
         private static readonly Dictionary<string, string> _heroIconDic = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> _ghIconDic = new Dictionary<string, string>();
 
         static ContentURL()
         {
@@ -38,11 +39,25 @@ namespace Fate.WebServiceLayer
             _heroIconDic.Add("H01Q", @"/Content/icons/BTNYeopo.jpg");
             _heroIconDic.Add("H04D", @"/Content/icons/BTNZeroLancer.jpg");
             _heroIconDic.Add("H01A", @"/Content/icons/BTNLi.jpg");
+            _ghIconDic.Add("A04B", @"/Content/icons/GHGold.jpg");
+            _ghIconDic.Add("A04F", @"/Content/icons/GHLevelUp.jpg");
+            _ghIconDic.Add("A0DD", @"/Content/icons/GHStats.jpg");
+            _ghIconDic.Add("A04C", @"/Content/icons/GHAMP.jpg");
+            _ghIconDic.Add("A04D", @"/Content/icons/GHFullHealPot.jpg");
+            _ghIconDic.Add("A00U", @"/Content/icons/GHInvulBird.jpg");
         }
+
         public static string GetHeroIconURL(string heroUnitTypeId)
         {
-            string url = "";
+            string url;
             _heroIconDic.TryGetValue(heroUnitTypeId, out url);
+            return url;
+        }
+
+        public static string GetGodsHelpIconURL(string godsHelpAbilId)
+        {
+            string url;
+            _ghIconDic.TryGetValue(godsHelpAbilId, out url);
             return url;
         }
 
