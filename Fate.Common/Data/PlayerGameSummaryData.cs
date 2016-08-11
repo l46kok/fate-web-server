@@ -15,6 +15,9 @@ namespace Fate.Common.Data
         public int HeroKills { get; set; }
         public int HeroDeaths { get; set; }
         public int HeroAssists { get; set; }
+        public int HeroLevel { get; set; }
         public int GoldSpent { get; set; }
+        public double DamageDealt { get; set; }
+        public double DamageTaken { get; set; } 
     }
 }

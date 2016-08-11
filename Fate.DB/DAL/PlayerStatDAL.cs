@@ -134,7 +134,7 @@ namespace Fate.DB.DAL
                     join heroType in db.herotype on gameDetail.FK_HeroTypeID equals heroType.HeroTypeID
                     where gameDetail.FK_PlayerID == playerId
                     orderby game.GameID descending
-                    select new PlayerGameSummaryData()
+                    select new PlayerGameSummaryData
                     {
                         GameID = game.GameID,
                         GoldSpent = gameDetail.GoldSpent,
@@ -144,8 +144,11 @@ namespace Fate.DB.DAL
                         HeroDeaths = gameDetail.Deaths,
                         HeroAssists = gameDetail.Assists,
                         HeroUnitTypeID = heroType.HeroUnitTypeID,
+                        HeroLevel = gameDetail.HeroLevel,
                         TeamOneWinCount = game.TeamOneWinCount,
-                        TeamTwoWinCount = game.TeamTwoWinCount
+                        TeamTwoWinCount = game.TeamTwoWinCount,
+                        DamageDealt = gameDetail.DamageDealt,
+                        DamageTaken = gameDetail.DamageTaken
                     }).ToList();
 
                 foreach (PlayerGameSummaryData data in gameSummaryData)

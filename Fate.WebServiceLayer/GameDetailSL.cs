@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Fate.Common.Data;
 using Fate.DB.DAL;
@@ -7,6 +8,17 @@ namespace Fate.WebServiceLayer
 {
     public class GameDetailSL
     {
+        private void PopulateImageURL(GamePlayerDetailData data)
+        {
+            data.HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID);
+            data.GodsHelpImageURLList = new List<string>();
+            foreach (string url in data.GodsHelpAbilIDList.Where(x=>!String.IsNullOrEmpty(x))
+                                                          .Select(ContentURL.GetGodsHelpIconURL)
+                                                          .Where(url => !String.IsNullOrEmpty(url)))
+            {
+                data.GodsHelpImageURLList.Add(url);
+            }
+        }
         public GameDetailData GetGameDetail(int gameId)
         {
             GameDetailData dataModel = new GameDetailData();
@@ -20,7 +32,8 @@ namespace Fate.WebServiceLayer
                 dataModel.Team1Deaths += data.Deaths;
                 dataModel.Team1Assists += data.Assists;
                 dataModel.Team1Gold += data.GoldSpent;
-                data.HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID);
+                dataModel.Team1DamageDealt += data.DamageDealt;
+                PopulateImageURL(data);
             }
             foreach (GamePlayerDetailData data in dataModel.Team2Data)
             {
@@ -28,7 +41,8 @@ namespace Fate.WebServiceLayer
                 dataModel.Team2Deaths += data.Deaths;
                 dataModel.Team2Assists += data.Assists;
                 dataModel.Team2Gold += data.GoldSpent;
-                data.HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID);
+                dataModel.Team2DamageDealt += data.DamageDealt;
+                PopulateImageURL(data);
             }
             return dataModel;
         }
