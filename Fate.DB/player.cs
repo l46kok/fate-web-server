@@ -7,22 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PlayerStat
+    public partial class player
     {
-        public int PlayerStatID { get; set; }
-        public int FK_PlayerID { get; set; }
+        public int PlayerID { get; set; }
         public int FK_ServerID { get; set; }
-        public int Win { get; set; }
-        public int Loss { get; set; }
-        public int PlayCount { get; set; }
-        public int ELO { get; set; }
-        public int Score { get; set; }
+        public string PlayerName { get; set; }
+        public System.DateTime RegDate { get; set; }
+        public bool IsBanned { get; set; }
+        public System.DateTime LastUpdatedOn { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public Nullable<System.DateTime> BannedOn { get; set; }
+        public Nullable<System.DateTime> UnbannedOn { get; set; }
     
-        public virtual Server server { get; set; }
+        public virtual server server { get; set; }
     }
 }

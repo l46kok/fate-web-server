@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fate.DB.Entity
+namespace Fate.DB
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Ranking
+    public partial class attributelearn
     {
-        public int RankID { get; set; }
-        public int FK_PlayerID { get; set; }
-        public int FK_ServerID { get; set; }
-        public int PlayerStatID { get; set; }
-        public int PlayerRank { get; set; }
-    
-        public virtual Server server { get; set; }
+        public int AttributeLearnID { get; set; }
+        public int FK_AttributeInfoID { get; set; }
+        public int FK_GamePlayerDetailID { get; set; }
     }
 }

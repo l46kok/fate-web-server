@@ -17,9 +17,9 @@ namespace Executable.Controllers
                 using (var db = new RankingSystemEntities())
                 {
                     var playerData =
-                        from player in db.Player
-                        from server in db.Server
-                        from playerStat in db.PlayerStat
+                        from player in db.player
+                        from server in db.server
+                        from playerStat in db.playerstat
                         where player.PlayerName.StartsWith(playerName)
                                 && server.ServerName == serverName
                                 && player.FK_ServerID == server.ServerID
@@ -53,9 +53,9 @@ namespace Executable.Controllers
                         return null;
 
                     var playerData =
-                        from player in db.Player
-                        from server in db.Server
-                        from playerStat in db.PlayerStat
+                        from player in db.player
+                        from server in db.server
+                        from playerStat in db.playerstat
                         where player.PlayerID == playerId
                                 && server.ServerID == player.FK_ServerID
                                 && playerStat.FK_PlayerID == player.PlayerID

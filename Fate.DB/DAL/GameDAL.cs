@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Fate.Common.Data;
-using Fate.DB.Entity;
 
 namespace Fate.DB.DAL
 {
@@ -18,12 +17,12 @@ namespace Fate.DB.DAL
         public IEnumerable<GameData> GetRecentGameDataList(int count)
         {
             var gameDataList = new List<GameData>();
-            using (var db = new frsEntities())
+            using (var db = new frsDb())
             {
                 var recentGameQueryData = (
-                    from game in db.Game
-                    join server in db.Server on game.FK_ServerID equals server.ServerID
-                    join gameDetail in db.GamePlayerDetail on game.GameID equals gameDetail.FK_GameID
+                    from game in db.game
+                    join server in db.server on game.FK_ServerID equals server.ServerID
+                    join gameDetail in db.gameplayerdetail on game.GameID equals gameDetail.FK_GameID
                     group game by new { game.GameID,game.GameName, game.PlayedDate,
                                         game.Duration, game.Result, game.MapVersion,
                                         game.ReplayUrl, game.MatchType, server.ServerName,
@@ -76,18 +75,18 @@ namespace Fate.DB.DAL
         /// <returns>Log (string)</returns>
         public string GetGameLog(int gameId)
         {
-            using (var db = new frsEntities())
+            using (var db = new frsDb())
             {
-                return db.Game.FirstOrDefault(x => x.GameID == gameId)?.Log;
+                return db.game.FirstOrDefault(x => x.GameID == gameId)?.Log;
             }
         }
 
         public GameReplayData GetReplayData(int gameId)
         {
-            using (var db = new frsEntities())
+            using (var db = new frsDb())
             {
                 GameReplayData data = new GameReplayData();
-                Game game = db.Game.FirstOrDefault(x => x.GameID == gameId);
+                game game = db.game.FirstOrDefault(x => x.GameID == gameId);
                 if (game == null)
                     return null;
                 data.PlayedDateTime = game.PlayedDate;
