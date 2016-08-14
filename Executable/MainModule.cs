@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Fate.Common.Data;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
 using Nancy;
 using Nancy.Linker;
 
-namespace Executable
+namespace FateWebServer
 {
     public class MainModule : NancyModule
     {
@@ -29,16 +25,15 @@ namespace Executable
                 return View["Views/MainPage.sshtml", mpVm];
             };
 
-            Post["/Search"] = param =>
-            {
-                return Response.AsRedirect($"/PlayerStats/USEast/{Request.Form.searchPlayerName}");
-            };
+            Post["/Search"] = param => Response.AsRedirect($"/PlayerStats/USEast/{Request.Form.searchPlayerName}");
 
             Get["/GameList"] = param =>
             {
                 GameListData data = _gameListSl.GetGameList();
                 return View["Views/GameList.sshtml", data];
             };
+
+            Get["/About"] = Param => View["Views/About.sshtml"];
 
             Get["/Log"] = x =>
             {
