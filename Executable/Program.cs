@@ -1,9 +1,9 @@
 ﻿using System;
 using Nancy.Hosting.Self;
 
-namespace Executable
+namespace FateWebServer
 {
-    class Program
+    static class Program
     {
         const ushort Port = 64402;
         const string EscapeString = "/Terminate";
