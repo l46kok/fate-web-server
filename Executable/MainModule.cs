@@ -15,7 +15,8 @@ namespace Executable
     public class MainModule : NancyModule
     {
         private static readonly GameSL _gameSl = new GameSL();
-        private static readonly PlayerStatSL _playerStatsl = new PlayerStatSL();
+        private static readonly PlayerStatSL _playerStatsSl = new PlayerStatSL();
+        private static readonly GameListSL _gameListSl = GameListSL.Instance;
         public MainModule(IResourceLinker linker)
         {
             Get["/"] = _ =>
@@ -33,6 +34,11 @@ namespace Executable
                 return Response.AsRedirect($"/PlayerStats/USEast/{Request.Form.searchPlayerName}");
             };
 
+            Get["/GameList"] = param =>
+            {
+                GameListData data = _gameListSl.GetGameList();
+                return View["Views/GameList.sshtml", data];
+            };
 
             Get["/Log"] = x =>
             {
@@ -41,7 +47,7 @@ namespace Executable
             };
             Get["/PlayerStats/{server}/{playerName}"] = param =>
             {
-                PlayerStatsPageViewModel summaryData = _playerStatsl.GetPlayerStatSummary(param.playerName, param.server);
+                PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server);
                 return View["Views/PlayerStatsPage.sshtml", summaryData];
             };
         }
