@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Fate.Common.Data;
@@ -53,6 +54,81 @@ namespace Fate.DB.DAL
                     });
                 return gameDetailQueryData.ToList();
             }
-        } 
+        }
+
+        public PlayerGameBuildData GetPlayerGameBuildDetail(string playerName, int gameId)
+        {
+            using (frsDb db = new frsDb())
+            {
+                //Find gamePlayerDetailId first
+                int gamePlayerDetailId = (
+                    from game in db.game
+                    join gameDetail in db.gameplayerdetail on game.GameID equals gameDetail.FK_GameID
+                    join player in db.player on gameDetail.FK_PlayerID equals player.PlayerID
+                    where game.GameID == gameId && player.PlayerName == playerName
+                    select gameDetail.GamePlayerDetailID).FirstOrDefault();
+
+                if (gamePlayerDetailId == 0)
+                    return null;
+
+                //Find stat learn information
+                var heroStatLearnQuery = (
+                    from herostatinfo in db.herostatinfo
+                    join herostatlearn in db.herostatlearn on herostatinfo.HeroStatInfoID equals
+                        herostatlearn.FK_HeroStatInfoID
+                    where herostatlearn.FK_GamePlayerDetailID == gamePlayerDetailId
+                    select new
+                    {
+                        herostatinfo.HeroStatAbilID,
+                        herostatlearn.LearnCount
+                    });
+
+                PlayerGameBuildData buildData = new PlayerGameBuildData();
+                buildData.StatBuildDic = new Dictionary<string, int>();
+                foreach (var heroStat in heroStatLearnQuery)
+                {
+                    buildData.StatBuildDic.Add(heroStat.HeroStatAbilID,heroStat.LearnCount);
+                }
+
+                //Find attribute information
+                var heroAttributeQuery = (
+                    from attributeinfo in db.attributeinfo
+                    join attributelearn in db.attributelearn on attributeinfo.AttributeInfoID equals attributelearn.FK_AttributeInfoID
+                    where attributelearn.FK_GamePlayerDetailID == gamePlayerDetailId
+                    select new
+                    {
+                        attributeinfo.AttributeAbilID,
+                        attributeinfo.AttributeName
+                    });
+
+                buildData.LearnedAttributeList = new List<Tuple<string, string>>();
+                foreach (var attribute in heroAttributeQuery)
+                {
+                    Tuple<string,string> attrTuple = new Tuple<string, string>(attribute.AttributeAbilID,attribute.AttributeName);
+                    buildData.LearnedAttributeList.Add(attrTuple);
+                }
+
+                //Find Ward/Familiar Information
+                var itemKeys = new string[] { "I003", "I00N", "SWAR", "I002", "I005" };
+                
+                var wardFamiliarQuery = (
+                    from iteminfo in db.iteminfo
+                    join itembuy in db.gameitempurchase on iteminfo.ItemID equals itembuy.FK_ItemID
+                    where itembuy.FK_GamePlayerDetailID == gamePlayerDetailId && itemKeys.Contains(iteminfo.ItemTypeID)
+                    select new
+                    {
+                        iteminfo.ItemTypeID,
+                        itembuy.ItemPurchaseCount
+                    });
+
+                buildData.WardFamiliarDic = new Dictionary<string, int>();
+                foreach (var item in wardFamiliarQuery)
+                {
+                    buildData.WardFamiliarDic.Add(item.ItemTypeID, item.ItemPurchaseCount);
+                }
+
+                return buildData;
+            }
+        }
     }
 }

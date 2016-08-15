@@ -6,7 +6,7 @@ namespace FateWebServer.Controllers
 {
     public class GameDetailModule : NancyModule
     {
-        private static readonly GameDetailSL gameDetailSl = new GameDetailSL();
+        private static readonly GameDetailSL gameDetailSl = GameDetailSL.Instance;
         public GameDetailModule()
         {
             Get["/gameDetail/{gameId}"] = param =>

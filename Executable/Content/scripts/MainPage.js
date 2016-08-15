@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).find(".modal-content").html('<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">')
         $(this).removeData('bs.modal');
     });
     $(".noExpand").click(function (event) {
@@ -48,7 +49,7 @@
                     });
                     playerRow.append(godsHelpCol);
                     playerRow.append("<td class=centerText>" + numberUtil.formatNumber(elem.goldSpent) + "</td>");
-                    playerRow.append('<td class=centerText><a href=/PlayerGameDetail/' + gameId + '/' + elem.playerName + ' data-target="#playerGameDetail" data-toggle="modal"><img src="/Content/icons/PlayerGameDetail.png" width=24 height=24 alt="View player game detail"></a></td>');
+                    playerRow.append('<td class=centerText><a href=/PlayerGameBuildDetail/' + gameId + '/' + elem.playerName + ' data-target="#playerGameDetail" data-toggle="modal"><img src="/Content/icons/PlayerGameDetail.png" width=24 height=24 alt="View player game detail"></a></td>');
                     tableBody.append(playerRow);
                 });
                 var teamTotalRow = $("<tr></tr>");

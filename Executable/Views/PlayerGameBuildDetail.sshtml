@@ -1,0 +1,137 @@
+﻿<link href="/Content/css/PlayerGameDetail.css" rel="stylesheet">
+  <div class="statsBox">
+    <div class="statsHeader">
+      Stats Build
+    </div>
+    <table class="table statsTable table-striped table-bordered">
+      <thead>
+        <tr>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsStr.jpg">
+              <div>Strength</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsAgi.jpg">
+              <div>Agility</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsInt.jpg">
+              <div>Intelligence</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsAtk.jpg">
+              <div>Attack</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsArmor.jpg">
+              <div>Armor</div>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="centerText statVal">@Model.Strength</td>
+          <td class="centerText statVal">@Model.Agility</td>
+          <td class="centerText statVal">@Model.Intelligence</td>
+          <td class="centerText statVal">@Model.Attack</td>
+          <td class="centerText statVal">@Model.Armor</td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsHealthRegen.jpg">
+              <div>Health Regen</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsManaRegen.jpg">
+              <div>Mana Regen</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsMS.jpg">
+              <div>Move Speed</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/GHGold.jpg">
+              <div>Gold Regen</div>
+            </th>
+          <th class="centerText">
+            <img height="32" width="32" src="/content/icons/stats/StatsPrelati.jpg">
+              <div>Prelati Mana</div>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="centerText statVal">@Model.HealthRegen</td>
+          <td class="centerText statVal">@Model.ManaRegen</td>
+          <td class="centerText statVal">@Model.MoveSpeed</td>
+          <td class="centerText statVal">@Model.GoldRegen</td>
+          <td class="centerText statVal">@Model.PrelatiMana</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="statsBox">
+    <div class="statsHeader">
+      Attributes
+    </div>
+    <div style="margin-left: 13px; font-size: 13pt">
+      <b>Not Implemented Yet</b>
+    </div>
+  </div>
+  <div class="statsBox">
+    <div class="statsHeader">
+      Command Seals
+    </div>
+    <table class="table statsTable table-striped table-bordered">
+      <thead>
+        <tr>
+          <th class="centerText">
+            <img height="48" width="48" src="/content/icons/commandseal/FirstCS.jpg">
+              <div>First</div>
+            </th>
+          <th class="centerText">
+            <img height="48" width="48" src="/content/icons/commandseal/SecondCS.jpg">
+              <div>Second</div>
+            </th>
+          <th class="centerText">
+            <img height="48" width="48" src="/content/icons/commandseal/ThirdCS.jpg">
+              <div>Third</div>
+            </th>
+          <th class="centerText">
+            <img height="48" width="48" src="/content/icons/commandseal/FourthCS.jpg">
+              <div>Fourth</div>
+            </th>
+        </tr>
+      </thead>
+    </table>
+    <div style="margin-left: 13px; font-size: 13pt">
+      <b>Not Implemented Yet</b>
+    </div>
+  </div>
+  <div class="statsBox">
+    <div class="statsHeader">
+      Wards / Familiar Bought
+    </div>
+    <table class="table statsTable table-striped table-bordered">
+      <thead>
+        <tr>
+          <th class="centerText">
+            <img height="48" width="48" src="/content/icons/items/ItemWard.jpg">
+              <div>Wards</div>
+            </th>
+          <th class="centerText">
+            <img height="48" width="48" src="/content/icons/items/ItemFamiliar.jpg">
+              <div>Familiar</div>
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="centerText statVal">@Model.WardCount</td>
+          <td class="centerText statVal">@Model.FamiliarCount</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
