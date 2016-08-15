@@ -106,6 +106,15 @@
 	@EndIf
 </div>
 
+<div class="modal fade" id="playerGameDetail" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">
+		</div>
+	</div>
+</div>
+
 <script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
 <script language="JavaScript" src="/Content/scripts/PlayerStatsPage.js"></script>
 @EndSection

@@ -1,9 +1,13 @@
-﻿<link href="/Content/css/PlayerGameDetail.css" rel="stylesheet">
-  <div class="statsBox">
-    <div class="statsHeader">
+﻿<link href="/Content/css/PlayerGameBuildDetail.css" rel="stylesheet">
+  <div class="statsBuildBox">
+    <div class="statsBuildHeader">
+     <img class="playerNameImg" height="48" width="48" src="@Model.HeroIconURL">
+        <span>@Model.PlayerName</span>
+     </div>
+    <div class="statsBuildHeader">
       Stats Build
     </div>
-    <table class="table statsTable table-striped table-bordered">
+    <table class="table statsBuildTable table-striped table-bordered">
       <thead>
         <tr>
           <th class="centerText">
@@ -30,11 +34,11 @@
       </thead>
       <tbody>
         <tr>
-          <td class="centerText statVal">@Model.Strength</td>
-          <td class="centerText statVal">@Model.Agility</td>
-          <td class="centerText statVal">@Model.Intelligence</td>
-          <td class="centerText statVal">@Model.Attack</td>
-          <td class="centerText statVal">@Model.Armor</td>
+          <td class="centerText statBuildVal">@Model.Strength</td>
+          <td class="centerText statBuildVal">@Model.Agility</td>
+          <td class="centerText statBuildVal">@Model.Intelligence</td>
+          <td class="centerText statBuildVal">@Model.Attack</td>
+          <td class="centerText statBuildVal">@Model.Armor</td>
         </tr>
       </tbody>
       <thead>
@@ -63,25 +67,25 @@
       </thead>
       <tbody>
         <tr>
-          <td class="centerText statVal">@Model.HealthRegen</td>
-          <td class="centerText statVal">@Model.ManaRegen</td>
-          <td class="centerText statVal">@Model.MoveSpeed</td>
-          <td class="centerText statVal">@Model.GoldRegen</td>
-          <td class="centerText statVal">@Model.PrelatiMana</td>
+          <td class="centerText statBuildVal">@Model.HealthRegen</td>
+          <td class="centerText statBuildVal">@Model.ManaRegen</td>
+          <td class="centerText statBuildVal">@Model.MoveSpeed</td>
+          <td class="centerText statBuildVal">@Model.GoldRegen</td>
+          <td class="centerText statBuildVal">@Model.PrelatiMana</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="statsBox">
-    <div class="statsHeader">
+  <div class="statsBuildBox">
+    <div class="statsBuildHeader">
       Attributes
     </div>
     <div style="margin-left: 13px; font-size: 13pt">
       <b>Not Implemented Yet</b>
     </div>
   </div>
-  <div class="statsBox">
-    <div class="statsHeader">
+  <div class="statsBuildBox">
+    <div class="statsBuildHeader">
       Command Seals
     </div>
     <table class="table statsTable table-striped table-bordered">
@@ -110,8 +114,8 @@
       <b>Not Implemented Yet</b>
     </div>
   </div>
-  <div class="statsBox">
-    <div class="statsHeader">
+  <div class="statsBuildBox">
+    <div class="statsBuildHeader">
       Wards / Familiar Bought
     </div>
     <table class="table statsTable table-striped table-bordered">
@@ -129,8 +133,8 @@
       </thead>
       <tbody>
         <tr>
-          <td class="centerText statVal">@Model.WardCount</td>
-          <td class="centerText statVal">@Model.FamiliarCount</td>
+          <td class="centerText statBuildVal">@Model.WardCount</td>
+          <td class="centerText statBuildVal">@Model.FamiliarCount</td>
         </tr>
       </tbody>
     </table>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Fate.Common.Data;
 
 namespace Fate.DB.DAL
@@ -71,6 +70,16 @@ namespace Fate.DB.DAL
                 if (gamePlayerDetailId == 0)
                     return null;
 
+                //Find HeroUnitTypeId
+                string heroTypeUnitId = (
+                    from herotype in db.herotype
+                    join gameDetail in db.gameplayerdetail on herotype.HeroTypeID equals gameDetail.FK_HeroTypeID
+                    where gameDetail.GamePlayerDetailID == gamePlayerDetailId
+                    select herotype.HeroUnitTypeID).First();
+
+                PlayerGameBuildData buildData = new PlayerGameBuildData();
+                buildData.HeroUnitTypeId = heroTypeUnitId;
+
                 //Find stat learn information
                 var heroStatLearnQuery = (
                     from herostatinfo in db.herostatinfo
@@ -83,7 +92,6 @@ namespace Fate.DB.DAL
                         herostatlearn.LearnCount
                     });
 
-                PlayerGameBuildData buildData = new PlayerGameBuildData();
                 buildData.StatBuildDic = new Dictionary<string, int>();
                 foreach (var heroStat in heroStatLearnQuery)
                 {

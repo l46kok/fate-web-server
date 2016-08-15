@@ -241,7 +241,7 @@
     <EmbeddedResource Include="Content\css\About.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\css\PlayerGameDetail.css">
+    <EmbeddedResource Include="Content\css\PlayerGameBuildDetail.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Content\icons\commandseal\FirstCS.jpg">

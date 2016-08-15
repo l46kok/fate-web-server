@@ -1,4 +1,4 @@
-﻿.statsBox {
+﻿.statsBuildBox {
 	border-left: 1px solid #cdd2d2;
 	border-right: 1px solid #cdd2d2;
 	border-top: 1px solid #cdd2d2;
@@ -8,17 +8,17 @@
 	margin: 8px;
 }
 
-.statsHeader {
+.statsBuildHeader {
 	font-size: 15pt;
 	padding: 10px 15px;
 	background: #F2F2F2;
 	border-bottom: 1px solid #cdd2d2;
 }
 
-.statVal {
+.statBuildVal {
 	font-size: 13pt;
 }
 
-.statsTable {
+.statsBuildTable {
 	margin-bottom: 0px !important;
 }

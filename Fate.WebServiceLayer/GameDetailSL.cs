@@ -60,6 +60,8 @@ namespace Fate.WebServiceLayer
             PlayerGameBuildViewModel vm = new PlayerGameBuildViewModel();
             PlayerGameBuildData data = _detailDal.GetPlayerGameBuildDetail(playerName, gameId);
             //TO DO: Is there any cleaner way of doing this?
+            vm.PlayerName = playerName;
+            vm.HeroIconURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeId);
             vm.Strength = data.StatBuildDic.GetValueOrDefault("A02W");
             vm.Agility = data.StatBuildDic.GetValueOrDefault("A03D");
             vm.Intelligence = data.StatBuildDic.GetValueOrDefault("A03E");
