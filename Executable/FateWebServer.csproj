@@ -81,7 +81,7 @@
     <Compile Include="CustomRootPathProvider.cs" />
     <Compile Include="MainBootstrapper.cs" />
     <Compile Include="MainModule.cs" />
-    <Compile Include="Controllers\PlayerSearchModule.cs" />
+    <Compile Include="Controllers\PlayerStatsModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Utility\NancyExtensions.cs" />
   </ItemGroup>
@@ -145,70 +145,70 @@
     <None Include="Views\PlayerStatsPageTeamDetail.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Content\icons\BTNBerserker.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNBerserker.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNLi.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNLi.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNArcherIcon.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNArcherIcon.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNAssassinIcon.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNAssassinIcon.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNAvenger.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNAvenger.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNDarkSaber.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNDarkSaber.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNDrake.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNDrake.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNGawain.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNGawain.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNGilgamesh.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNGilgamesh.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNGilles.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNGilles.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNIskander.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNIskander.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNKarna.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNKarna.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNLancelot.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNLancelot.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNNero.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNNero.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNNursery.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNNursery.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNRider.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNRider.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNRobin.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNRobin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNTamamo.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNTamamo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNTrueAssassin.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNTrueAssassin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNVlad.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNVlad.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNYeopo.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNYeopo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNZeroLancer.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNZeroLancer.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\css\MainPage.css">
@@ -217,13 +217,13 @@
     <EmbeddedResource Include="Content\icons\Loading.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNCaster.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNCaster.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNChulainn.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNChulainn.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Content\icons\BTNSaber.jpg">
+    <EmbeddedResource Include="Content\icons\heroes\BTNSaber.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="favicon.ico">
@@ -270,6 +270,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\AboutCarousel5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\scripts\PlayerStatsPage.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\scripts\GameList.js">

@@ -12,11 +12,17 @@ namespace Fate.WebServiceLayer
     public class PlayerStatSL
     {
         private static readonly PlayerStatDAL _playerStatDal = new PlayerStatDAL();
-        public PlayerStatsPageViewModel GetPlayerStatSummary(string playerName, string serverName)
+        private static readonly PlayerStatSL _instance = new PlayerStatSL();
+        public static PlayerStatSL Instance => _instance;
+
+        private PlayerStatSL() { }
+
+        public PlayerStatsPageViewModel GetPlayerStatSummary(string playerName, string serverName, int lastGameId)
         {
             PlayerStatsPageViewModel vm = new PlayerStatsPageViewModel
             {
-                UserName = playerName
+                UserName = playerName,
+                Server = serverName
             };
             //Get player total summary first
             PlayerStatSummaryData summaryData = _playerStatDal.GetPlayerSummary(playerName, serverName);
@@ -68,9 +74,26 @@ namespace Fate.WebServiceLayer
 
             }
             vm.PlayerHeroStatSummaryData = vmHeroStats;
+            vm.PlayerGameSummaryData = GetPlayerGameSummary(summaryData.PlayerId,lastGameId);
+            vm.LastGameID = vm.PlayerGameSummaryData.Min(x => x.GameID);
+            return vm;
+        }
 
+        public List<PlayerGameSummaryViewModel> GetPlayerGameSummary(string playerName, string serverName, int lastGameId)
+        {
+            //Get player total summary first
+            PlayerStatSummaryData summaryData = _playerStatDal.GetPlayerSummary(playerName, serverName);
+            if (summaryData == null)
+            {
+                return null;
+            }
+            return GetPlayerGameSummary(summaryData.PlayerId, lastGameId);
+        }
+
+        private List<PlayerGameSummaryViewModel> GetPlayerGameSummary(int playerId, int lastGameId)
+        {
             //Get player game summary
-            List<PlayerGameSummaryData> playerGameSummaryData =_playerStatDal.GetPlayerGameSummaryData(summaryData.PlayerId);
+            List<PlayerGameSummaryData> playerGameSummaryData = _playerStatDal.GetPlayerGameSummaryData(playerId, lastGameId);
             List<PlayerGameSummaryViewModel> vmGameSummary = new List<PlayerGameSummaryViewModel>();
             foreach (PlayerGameSummaryData gameSummary in playerGameSummaryData)
             {
@@ -87,7 +110,7 @@ namespace Fate.WebServiceLayer
                     DamageDealt = $"{((int)gameSummary.DamageDealt):n0}",
                     DamageTaken = $"{((int)gameSummary.DamageTaken):n0}",
                     HeroKDA =
-                        ((gameSummary.HeroKills*1.0 + gameSummary.HeroAssists)/gameSummary.HeroDeaths).ToString("0.00"),
+                        ((gameSummary.HeroKills * 1.0 + gameSummary.HeroAssists) / gameSummary.HeroDeaths).ToString("0.00"),
                     HeroImageURL = ContentURL.GetHeroIconURL(gameSummary.HeroUnitTypeID),
                     TeamOneWinCount = gameSummary.TeamOneWinCount,
                     TeamTwoWinCount = gameSummary.TeamTwoWinCount
@@ -102,8 +125,7 @@ namespace Fate.WebServiceLayer
                 }
                 vmGameSummary.Add(vmGame);
             }
-            vm.PlayerGameSummaryData = vmGameSummary;
-            return vm;
+            return vmGameSummary;
         }
     }
 }
