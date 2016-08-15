@@ -5,6 +5,8 @@ namespace Fate.WebServiceLayer.ViewModels
 {
     public class PlayerGameBuildViewModel
     {
+        public string PlayerName { get; set; }
+        public string HeroIconURL { get; set; }
         public int Strength { get; set; }
         public int Agility { get; set; }
         public int Intelligence { get; set; }
