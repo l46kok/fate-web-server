@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Fate.Common.Data;
 using Fate.DB.DAL;
+using Fate.WebServiceLayer.Extension;
+using Fate.WebServiceLayer.ViewModels;
 
 namespace Fate.WebServiceLayer
 {
     public class GameDetailSL
     {
+        private static readonly GameDetailDAL _detailDal = new GameDetailDAL();
+        private static readonly GameDetailSL _instance = new GameDetailSL();
+        public static GameDetailSL Instance => _instance;
+
+        private GameDetailSL() { }
+
         private void PopulateImageURL(GamePlayerDetailData data)
         {
             data.HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID);
@@ -22,8 +30,7 @@ namespace Fate.WebServiceLayer
         public GameDetailData GetGameDetail(int gameId)
         {
             GameDetailData dataModel = new GameDetailData();
-            GameDetailDAL detailDal = new GameDetailDAL();
-            List<GamePlayerDetailData> gameDetailData = detailDal.GetGameDetails(gameId);
+            List<GamePlayerDetailData> gameDetailData = _detailDal.GetGameDetails(gameId);
             dataModel.Team1Data = gameDetailData.Where(x => x.Team == "1").ToList();
             dataModel.Team2Data = gameDetailData.Where(x => x.Team == "2").ToList();
             foreach (GamePlayerDetailData data in dataModel.Team1Data)
@@ -47,5 +54,28 @@ namespace Fate.WebServiceLayer
             return dataModel;
         }
 
+
+        public PlayerGameBuildViewModel GetPlayerGameBuild(int gameId, string playerName)
+        {
+            PlayerGameBuildViewModel vm = new PlayerGameBuildViewModel();
+            PlayerGameBuildData data = _detailDal.GetPlayerGameBuildDetail(playerName, gameId);
+            //TO DO: Is there any cleaner way of doing this?
+            vm.Strength = data.StatBuildDic.GetValueOrDefault("A02W");
+            vm.Agility = data.StatBuildDic.GetValueOrDefault("A03D");
+            vm.Intelligence = data.StatBuildDic.GetValueOrDefault("A03E");
+            vm.Attack = data.StatBuildDic.GetValueOrDefault("A03W");
+            vm.Armor = data.StatBuildDic.GetValueOrDefault("A03X");
+            vm.HealthRegen = data.StatBuildDic.GetValueOrDefault("A03Y");
+            vm.ManaRegen = data.StatBuildDic.GetValueOrDefault("A03Z");
+            vm.MoveSpeed = data.StatBuildDic.GetValueOrDefault("A04Y");
+            vm.GoldRegen = data.StatBuildDic.GetValueOrDefault("A0A9");
+            vm.PrelatiMana = data.StatBuildDic.GetValueOrDefault("A0CJ");
+            vm.WardCount += data.WardFamiliarDic.GetValueOrDefault("I003");
+            vm.WardCount += data.WardFamiliarDic.GetValueOrDefault("I00N");
+            vm.WardCount += data.WardFamiliarDic.GetValueOrDefault("SWAR");
+            vm.FamiliarCount += data.WardFamiliarDic.GetValueOrDefault("I002");
+            vm.FamiliarCount += data.WardFamiliarDic.GetValueOrDefault("I005");
+            return vm;
+        }
     }
 }

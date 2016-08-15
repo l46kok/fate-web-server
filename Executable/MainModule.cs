@@ -13,6 +13,7 @@ namespace FateWebServer
         private static readonly GameSL _gameSl = new GameSL();
         private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;
         private static readonly GameListSL _gameListSl = GameListSL.Instance;
+        private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
         public MainModule(IResourceLinker linker)
         {
             Get["/"] = _ =>
@@ -35,9 +36,10 @@ namespace FateWebServer
 
             Get["/About"] = Param => View["Views/About.sshtml"];
 
-            Get["/PlayerGameDetail/{GameID}/{PlayerName}"] = param =>
+            Get["/PlayerGameBuildDetail/{GameID}/{PlayerName}"] = param =>
             {
-                return View["Views/PlayerGameDetail.sshtml"];
+                PlayerGameBuildViewModel vm = _gameDetailSl.GetPlayerGameBuild(param.GameID, param.PlayerName);
+                return View["Views/PlayerGameBuildDetail.sshtml",vm];
             };
 
             Get["/Log"] = x =>
@@ -47,7 +49,7 @@ namespace FateWebServer
             };
             Get["/PlayerStats/{server}/{playerName}"] = param =>
             {
-                PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server, Int32.MaxValue);
+                PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server, int.MaxValue);
                 return View["Views/PlayerStatsPage.sshtml", summaryData];
             };
         }
