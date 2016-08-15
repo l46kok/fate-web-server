@@ -11,7 +11,7 @@ namespace FateWebServer
     public class MainModule : NancyModule
     {
         private static readonly GameSL _gameSl = new GameSL();
-        private static readonly PlayerStatSL _playerStatsSl = new PlayerStatSL();
+        private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;
         private static readonly GameListSL _gameListSl = GameListSL.Instance;
         public MainModule(IResourceLinker linker)
         {
@@ -42,7 +42,7 @@ namespace FateWebServer
             };
             Get["/PlayerStats/{server}/{playerName}"] = param =>
             {
-                PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server);
+                PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server, Int32.MaxValue);
                 return View["Views/PlayerStatsPage.sshtml", summaryData];
             };
         }

@@ -93,7 +93,6 @@ namespace Fate.DB.DAL
                         heroStatSummary.Losses = summaryData.ResultCount;
                     }
                 }
-                heroStatSummaryList = heroStatSummaryList.OrderByDescending(x => x.HeroTotalPlayCount).ToList();
 
                 var heroSummaryKDAQuery = (
                     from playerHeroStat in db.playerherostat
@@ -120,11 +119,13 @@ namespace Fate.DB.DAL
                     heroStatSummary.HeroTotalAssists = kdaData.TotalHeroAssists;
                     heroStatSummary.HeroName = kdaData.HeroName;
                 }
+
+                heroStatSummaryList = heroStatSummaryList.OrderByDescending(x => x.HeroTotalPlayCount).ToList();
                 return heroStatSummaryList;
             }
         }
 
-        public List<PlayerGameSummaryData> GetPlayerGameSummaryData(int playerId)
+        public List<PlayerGameSummaryData> GetPlayerGameSummaryData(int playerId, int gameId)
         {
             using (frsDb db = new frsDb())
             {
@@ -132,7 +133,7 @@ namespace Fate.DB.DAL
                     from game in db.game
                     join gameDetail in db.gameplayerdetail on game.GameID equals gameDetail.FK_GameID
                     join heroType in db.herotype on gameDetail.FK_HeroTypeID equals heroType.HeroTypeID
-                    where gameDetail.FK_PlayerID == playerId
+                    where gameDetail.FK_PlayerID == playerId && game.GameID < gameId
                     orderby game.GameID descending
                     select new PlayerGameSummaryData
                     {
@@ -149,7 +150,7 @@ namespace Fate.DB.DAL
                         TeamTwoWinCount = game.TeamTwoWinCount,
                         DamageDealt = gameDetail.DamageDealt,
                         DamageTaken = gameDetail.DamageTaken
-                    }).ToList();
+                    }).Take(4).ToList();
 
                 foreach (PlayerGameSummaryData data in gameSummaryData)
                 {

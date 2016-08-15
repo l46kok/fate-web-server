@@ -98,10 +98,14 @@
 				</div> 
 			</div>
 			@EndEach
+			<div id="showMoreBox" class="statsBox hoverDiv" data-lastGameId="@Model.LastGameID" data-userName="@Model.UserName" data-server="@Model.Server">
+				Show More
+			</div>
 		</div>
 	</div>
 	@EndIf
 </div>
 
 <script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
+<script language="JavaScript" src="/Content/scripts/PlayerStatsPage.js"></script>
 @EndSection

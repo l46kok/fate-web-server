@@ -142,6 +142,12 @@
 	margin-left: 5px;
 }
 
+#showMoreBox {
+	border-bottom:1pt solid #cbcccc !important;
+	height: 50px;
+	line-height: 50px; /* <-- this is what you must define */
+}
+
 .gameHeroPic {
 	width: 100px;
 }
