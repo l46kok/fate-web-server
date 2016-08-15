@@ -35,6 +35,11 @@ namespace FateWebServer
 
             Get["/About"] = Param => View["Views/About.sshtml"];
 
+            Get["/PlayerGameDetail/{GameID}/{PlayerName}"] = param =>
+            {
+                return View["Views/PlayerGameDetail.sshtml"];
+            };
+
             Get["/Log"] = x =>
             {
                 string gameLog = Regex.Replace(_gameSl.GetGameLog(Request.Query.gameId), @"\r\n?|\n", "<br />"); 

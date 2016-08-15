@@ -28,6 +28,7 @@
                 headerRow.append('<th class=centerText>Damage Dealt</th>');
                 headerRow.append('<th class=centerText>Gods Help</th>');
                 headerRow.append('<th class=centerText>Gold Spent</th>');
+                headerRow.append('<th class=centerText>Detail</th>');
                 tableHeader.append(headerRow);
                 table.append(tableHeader);
                 table.append(tableBody);
@@ -47,6 +48,7 @@
                     });
                     playerRow.append(godsHelpCol);
                     playerRow.append("<td class=centerText>" + numberUtil.formatNumber(elem.goldSpent) + "</td>");
+                    playerRow.append('<td class=centerText><a href=/PlayerGameDetail/' + gameId + '/' + elem.playerName + ' data-target="#playerGameDetail" data-toggle="modal"><img src="/Content/icons/PlayerGameDetail.png" width=24 height=24 alt="View player game detail"></a></td>');
                     tableBody.append(playerRow);
                 });
                 var teamTotalRow = $("<tr></tr>");
@@ -58,6 +60,7 @@
                 teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + numberUtil.formatDecimal(data["team" + i + "DamageDealt"]) + " </b></td>");
                 teamTotalRow.append("<td class='team" + i + "total centerText'></td>");
                 teamTotalRow.append("<td class='team" + i + "total centerText'><b>" + numberUtil.formatNumber(data["team" + i + "Gold"]) + " </b></td>");
+                teamTotalRow.append("<td class='team" + i + "total centerText'></td>");
                 tableBody.append(teamTotalRow);
             }
         });
