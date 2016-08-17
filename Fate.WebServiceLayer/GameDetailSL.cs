@@ -81,6 +81,17 @@ namespace Fate.WebServiceLayer
             vm.SecondCS = data.CommandSealDic.GetValueOrDefault("A043");
             vm.ThirdCS = data.CommandSealDic.GetValueOrDefault("A044");
             vm.FourthCS = data.CommandSealDic.GetValueOrDefault("A05Q");
+
+            vm.AttributeList = new List<PlayerGameBuildAttribute>();
+            foreach (Tuple<string, string> attributeData in data.LearnedAttributeList)
+            {
+                PlayerGameBuildAttribute attr = new PlayerGameBuildAttribute
+                {
+                    AttributeImgUrl = ContentURL.GetAttributeIconURL(attributeData.Item1),
+                    AttributeName = attributeData.Item2
+                };
+                vm.AttributeList.Add(attr);
+            }
             return vm;
         }
     }

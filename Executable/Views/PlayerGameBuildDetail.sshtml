@@ -1,9 +1,9 @@
-﻿<link href="/Content/css/PlayerGameBuildDetail.css" rel="stylesheet">
+﻿<link href="/Content/css/PlayerGameBuildDetail.css?id=1" rel="stylesheet">
   <div class="statsBuildBox">
     <div class="statsBuildHeader">
-     <img class="playerNameImg" height="48" width="48" src="@Model.HeroIconURL">
+      <img class="playerNameImg" height="48" width="48" src="@Model.HeroIconURL">
         <span>@Model.PlayerName</span>
-     </div>
+      </div>
     <div class="statsBuildHeader">
       Stats Build
     </div>
@@ -80,9 +80,11 @@
     <div class="statsBuildHeader">
       Attributes
     </div>
-    <div style="margin-left: 13px; font-size: 13pt">
-      <b>Not Implemented Yet</b>
-    </div>
+    @Each.Model.AttributeList
+    <div class="statsAttribute">
+      <img height="48" width="48" style="margin-right: 5px" src="@Current.AttributeImgUrl">@Current.AttributeName
+		</div>
+    @EndEach
   </div>
   <div class="statsBuildBox">
     <div class="statsBuildHeader">

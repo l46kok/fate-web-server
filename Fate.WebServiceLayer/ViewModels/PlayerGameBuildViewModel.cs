@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Fate.WebServiceLayer.ViewModels
 {
@@ -23,5 +22,12 @@ namespace Fate.WebServiceLayer.ViewModels
         public int FourthCS { get; set; }
         public int WardCount { get; set; }
         public int FamiliarCount { get; set; }
+        public List<PlayerGameBuildAttribute> AttributeList { get; set; } 
+    }
+
+    public class PlayerGameBuildAttribute
+    {
+        public string AttributeImgUrl { get; set; }
+        public string AttributeName { get; set; }
     }
 }
