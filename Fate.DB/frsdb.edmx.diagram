@@ -33,6 +33,7 @@
         <AssociationConnector Association="frsEntities.fk_PlayerHeroStat_Server1" ManuallyRouted="false" />
         <AssociationConnector Association="frsEntities.fk_PlayerStat_Server1" ManuallyRouted="false" />
         <AssociationConnector Association="frsEntities.fk_Ranking_Server1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="frsEntities.commandsealuse" Width="1.5" PointX="8.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

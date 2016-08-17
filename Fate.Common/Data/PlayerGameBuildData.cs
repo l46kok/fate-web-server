@@ -8,6 +8,7 @@ namespace Fate.Common.Data
         public Dictionary<string, int> StatBuildDic { get; set; } 
         public List<Tuple<string,string>> LearnedAttributeList { get; set; } 
         public Dictionary<string, int> WardFamiliarDic { get; set; }
+        public Dictionary<string, int> CommandSealDic { get; set; } 
         public string HeroUnitTypeId { get; set; }
     }
 }

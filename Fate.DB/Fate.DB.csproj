@@ -66,6 +66,9 @@
     <Compile Include="attributelearn.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="commandsealuse.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\GameDAL.cs" />
     <Compile Include="DAL\GameDetailDAL.cs" />
     <Compile Include="DAL\PlayerStatDAL.cs" />
