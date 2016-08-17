@@ -42,5 +42,6 @@ namespace Fate.DB
         public virtual DbSet<playerstat> playerstat { get; set; }
         public virtual DbSet<ranking> ranking { get; set; }
         public virtual DbSet<server> server { get; set; }
+        public virtual DbSet<commandsealuse> commandsealuse { get; set; }
     }
 }

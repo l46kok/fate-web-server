@@ -109,10 +109,15 @@
             </th>
         </tr>
       </thead>
+      <tbody>
+        <tr>
+          <td class="centerText statBuildVal">@Model.FirstCS</td>
+          <td class="centerText statBuildVal">@Model.SecondCS</td>
+          <td class="centerText statBuildVal">@Model.ThirdCS</td>
+          <td class="centerText statBuildVal">@Model.FourthCS</td>
+        </tr>
+      </tbody>
     </table>
-    <div style="margin-left: 13px; font-size: 13pt">
-      <b>Not Implemented Yet</b>
-    </div>
   </div>
   <div class="statsBuildBox">
     <div class="statsBuildHeader">

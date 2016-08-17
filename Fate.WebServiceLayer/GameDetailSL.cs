@@ -77,6 +77,10 @@ namespace Fate.WebServiceLayer
             vm.WardCount += data.WardFamiliarDic.GetValueOrDefault("SWAR");
             vm.FamiliarCount += data.WardFamiliarDic.GetValueOrDefault("I002");
             vm.FamiliarCount += data.WardFamiliarDic.GetValueOrDefault("I005");
+            vm.FirstCS = data.CommandSealDic.GetValueOrDefault("A094");
+            vm.SecondCS = data.CommandSealDic.GetValueOrDefault("A043");
+            vm.ThirdCS = data.CommandSealDic.GetValueOrDefault("A044");
+            vm.FourthCS = data.CommandSealDic.GetValueOrDefault("A05Q");
             return vm;
         }
     }

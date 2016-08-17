@@ -135,6 +135,24 @@ namespace Fate.DB.DAL
                     buildData.WardFamiliarDic.Add(item.ItemTypeID, item.ItemPurchaseCount);
                 }
 
+                //Find CommandSeal Info
+                var commandSealKeys = new string[] { "A05Q", "A094", "A043", "A044"};
+
+                var commandSealQuery = (
+                    from commandseal in db.commandsealuse
+                    where commandseal.FK_GamePlayerDetailID == gamePlayerDetailId && commandSealKeys.Contains(commandseal.CommandSealAbilID)
+                    select new
+                    {
+                        commandseal.CommandSealAbilID,
+                        commandseal.UseCount
+                    });
+
+                buildData.CommandSealDic = new Dictionary<string, int>();
+                foreach (var cs in commandSealQuery)
+                {
+                    buildData.CommandSealDic.Add(cs.CommandSealAbilID,cs.UseCount);
+                }
+
                 return buildData;
             }
         }
