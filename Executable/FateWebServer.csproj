@@ -83,6 +83,7 @@
     <Compile Include="MainModule.cs" />
     <Compile Include="Controllers\PlayerStatsModule.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Utility\ConfigHandler.cs" />
     <Compile Include="Utility\NancyExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +101,7 @@
     </None>
     <None Include="Views\PlayerGameBuildDetail.sshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Views\Log.sshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

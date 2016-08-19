@@ -9,7 +9,7 @@ namespace Fate.DB.DAL
     {
         public List<GamePlayerDetailData> GetGameDetails(int gameId)
         {
-            using (frsDb db = new frsDb())
+            using (frsDb db = frsDb.Create())
             {
                 //EF Produces monsterous query on this
                 //Perhaps in the future, we need to conver it into raw SQL
@@ -57,7 +57,7 @@ namespace Fate.DB.DAL
 
         public PlayerGameBuildData GetPlayerGameBuildDetail(string playerName, int gameId)
         {
-            using (frsDb db = new frsDb())
+            using (frsDb db = frsDb.Create())
             {
                 //Find gamePlayerDetailId first
                 int gamePlayerDetailId = (

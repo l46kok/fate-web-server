@@ -9,7 +9,7 @@ namespace Fate.DB.DAL
     {
         public PlayerStatSummaryData GetPlayerSummary(string playerName, string serverName)
         {
-            using (frsDb db = new frsDb())
+            using (frsDb db = frsDb.Create())
             {
                 PlayerStatSummaryData summaryData = (
                     from playerStat in db.playerstat
@@ -56,7 +56,7 @@ namespace Fate.DB.DAL
 
         public List<PlayerHeroStatSummaryData> GetPlayerHeroSummary(int playerId)
         {
-            using (frsDb db = new frsDb())
+            using (frsDb db = frsDb.Create())
             {
                 var heroSummaryQuery = (
                     from gameDetail in db.gameplayerdetail
@@ -127,7 +127,7 @@ namespace Fate.DB.DAL
 
         public List<PlayerGameSummaryData> GetPlayerGameSummaryData(int playerId, int gameId)
         {
-            using (frsDb db = new frsDb())
+            using (frsDb db = frsDb.Create())
             {
                 List<PlayerGameSummaryData> gameSummaryData = (
                     from game in db.game
