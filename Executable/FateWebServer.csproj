@@ -90,6 +90,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="config.cfg" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +133,10 @@
     <ProjectReference Include="..\Fate.Common\Fate.Common.csproj">
       <Project>{f3e85a9c-6a70-4631-836c-1e3b26e6bba0}</Project>
       <Name>Fate.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fate.DB\Fate.DB.csproj">
+      <Project>{54bd899d-82fc-477d-92f4-7e12fead2c00}</Project>
+      <Name>Fate.DB</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fate.WebServiceLayer\Fate.WebServiceLayer.csproj">
       <Project>{9cd88ae0-6373-4e02-b7e5-10541169b9ad}</Project>
