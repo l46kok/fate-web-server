@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FateWebServer", "Executable\FateWebServer.csproj", "{0C192AB3-AA00-4BA3-A949-BB5184B591A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FateWebServer", "Fate.WebServer\FateWebServer.csproj", "{0C192AB3-AA00-4BA3-A949-BB5184B591A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fate.DB", "Fate.DB\Fate.DB.csproj", "{54BD899D-82FC-477D-92F4-7E12FEAD2C00}"
 EndProject
