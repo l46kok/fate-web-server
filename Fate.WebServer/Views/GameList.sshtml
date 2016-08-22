@@ -14,20 +14,24 @@
 			<thead>
 				<tr>
 					<th class="col-xs-5 centerText">Game Name</th>
+					<th class="col-xs-3 centerText">Server</th>
 					<th class="col-xs-3 centerText">Owner</th>
 					<th class="col-xs-3 centerText">Slots</th>
 					<th class="col-xs-2 centerText">Copy</th>
 				</tr>
 			</thead>
 			<tbody>
-				@If.Lobby.IsAvailable
-				<tr>
-					<td class="centerText">@Model.Lobby.GameName</td>
-					<td class="centerText">@Model.Lobby.Owner</td>
-					<td class="centerText">@Model.Lobby.PlayerCount / @Model.Lobby.SlotSize</td>
-					<td class="centerText"><button class="gameNameBtn" data-clipboard-text="@Model.Lobby.GameName"><img src="/Content/icons/CopyIcon.png" width=24 height=24></button></td>
-				</tr>
-				@EndIf
+				@Each.Model
+					@If.Lobby.IsAvailable
+					<tr>
+						<td class="centerText">@Current.Lobby.GameName</td>
+						<td class="centerText">@Current.Server</td>
+						<td class="centerText">@Current.Lobby.Owner</td>
+						<td class="centerText">@Current.Lobby.PlayerCount / @Current.Lobby.SlotSize</td>
+						<td class="centerText"><button class="gameNameBtn" data-clipboard-text="@Model.Lobby.GameName"><img src="/Content/icons/CopyIcon.png" width=24 height=24></button></td>
+					</tr>
+					@EndIf
+				@EndEach
 			</tbody>
 		</table>
 	</div>
@@ -37,19 +41,15 @@
 			<thead>
 				<tr>
 					<th class="col-xs-2 centerText">Game Number</th>
-					<th class="col-xs-5 centerText">Game Name</th>
-					<th class="col-xs-3 centerText">Slots</th>
+					<th class="col-xs-4 centerText">Game Name</th>
+					<th class="col-xs-1 centerText">Server</th>
+					<th class="col-xs-1 centerText">Slots</th>
 					<th class="col-xs-3 centerText">Game Duration</th>
 				</tr>
 			</thead>
 			<tbody>
-				@Each.ProgressList
-				<tr>
-					<td class="centerText">@Current.GameNumber</td>
-					<td class="centerText">@Current.GameName</td>
-					<td class="centerText">@Current.PlayerCount / @Current.SlotSize</td>
-					<td class="centerText">@Current.GameDuration Minutes</td>
-				</tr>
+				@Each.Model
+					@Partial['GameListProgress', Current.ProgressList]
 				@EndEach
 			</tbody>
 		</table>

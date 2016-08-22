@@ -1,0 +1,9 @@
+﻿@Each
+	<tr>
+		<td class="centerText">@Current.GameNumber</td>
+		<td class="centerText">@Current.GameName</td>
+		<td class="centerText">@Current.Server</td>
+		<td class="centerText">@Current.PlayerCount / @Current.SlotSize</td>
+		<td class="centerText">@Current.GameDuration Minutes</td>
+	</tr>
+@EndEach
