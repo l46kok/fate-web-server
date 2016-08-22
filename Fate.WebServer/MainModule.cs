@@ -30,8 +30,7 @@ namespace FateWebServer
 
             Get["/GameList"] = param =>
             {
-                GameListData data = _gameListSl.GetGameList();
-                return View["Views/GameList.sshtml", data];
+                return View["Views/GameList.sshtml", _gameListSl.GetGameList()];
             };
 
             Get["/About"] = Param => View["Views/About.sshtml"];
