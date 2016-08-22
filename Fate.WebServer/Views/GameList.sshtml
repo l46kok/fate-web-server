@@ -28,7 +28,7 @@
 						<td class="centerText">@Current.Server</td>
 						<td class="centerText">@Current.Lobby.Owner</td>
 						<td class="centerText">@Current.Lobby.PlayerCount / @Current.Lobby.SlotSize</td>
-						<td class="centerText"><button class="gameNameBtn" data-clipboard-text="@Model.Lobby.GameName"><img src="/Content/icons/CopyIcon.png" width=24 height=24></button></td>
+						<td class="centerText"><button class="gameNameBtn" data-clipboard-text="@Current.Lobby.GameName"><img src="/Content/icons/CopyIcon.png" width=24 height=24></button></td>
 					</tr>
 					@EndIf
 				@EndEach
