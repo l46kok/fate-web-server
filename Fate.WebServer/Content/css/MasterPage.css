@@ -20,7 +20,7 @@ body {
 
 /* Wrapper for page content to push down footer */
 #wrap {
-    max-height: calc(100% - 120px);
+    height: calc(100% - 120px);
     overflow-y: scroll;
     padding: 0px 10%;
     margin-top: 60px;
