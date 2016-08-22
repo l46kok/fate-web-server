@@ -27,8 +27,10 @@ namespace Fate.WebServiceLayer
 
         private GameListSL()
         {
+#if (!DEBUG)
             ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
             ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
+#endif
         }
 
         private void ConnectSocket(string remoteIpAddr, int port, string server)
