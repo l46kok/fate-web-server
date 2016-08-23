@@ -11,7 +11,7 @@ namespace FateWebServer.Controllers
 {
     public class FileDownloadModule : NancyModule
     {
-        private static readonly GameSL gameSl = new GameSL();
+        private static readonly GameSL gameSl = GameSL.Instance;
         public FileDownloadModule()
         {
             Get["/download/replay/{gameId}"] = param =>

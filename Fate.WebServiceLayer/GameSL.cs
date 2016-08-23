@@ -9,7 +9,15 @@ namespace Fate.WebServiceLayer
 {
     public class GameSL
     {
+        private static readonly GameSL _instance = new GameSL();
         private static readonly GameDAL _gameDal = new GameDAL();
+        public static GameSL Instance => _instance;
+
+        private GameSL()
+        {
+            
+        }
+
         public IEnumerable<GameData> GetRecentGames(int count)
         {
             
