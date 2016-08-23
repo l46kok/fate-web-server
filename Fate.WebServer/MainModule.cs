@@ -10,10 +10,12 @@ namespace FateWebServer
 {
     public class MainModule : NancyModule
     {
-        private static readonly GameSL _gameSl = new GameSL();
+        private static readonly GameSL _gameSl = GameSL.Instance;
         private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;
         private static readonly GameListSL _gameListSl = GameListSL.Instance;
         private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
+        private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
+
         public MainModule(IResourceLinker linker)
         {
             Get["/"] = _ =>
@@ -34,6 +36,11 @@ namespace FateWebServer
             };
 
             Get["/About"] = Param => View["Views/About.sshtml"];
+
+            Get["/ServantStatistics"] = Param =>
+            {
+                return View["Views/ServantStatistics.sshtml", _statisticsSl.GetServantStatistics()];
+            };
 
             Get["/PlayerGameBuildDetail/{GameID}/{PlayerName}"] = param =>
             {
