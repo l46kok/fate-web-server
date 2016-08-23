@@ -15,7 +15,7 @@ namespace Fate.WebServiceLayer
         private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
         private const string GET_GAMES_COMMAND = "GetGames";
         private static readonly GameListSL _instance = new GameListSL();
-        private readonly List<SocketData> _socketList = new List<SocketData>();
+        private List<SocketData> _socketList = new List<SocketData>();
 
         public static GameListSL Instance => _instance;
 
@@ -67,6 +67,7 @@ namespace Fate.WebServiceLayer
         public List<GameListData> GetGameList()
         {
             List<GameListData> gameListDataList = new List<GameListData>();
+            bool reconnectSockets = false;
             foreach (SocketData socketData in _socketList)
             {
                 try
@@ -96,8 +97,17 @@ namespace Fate.WebServiceLayer
                 catch (Exception ex)
                 {
                     Console.WriteLine("GetGameList Comm Error: " + ex);
-                    return null;
+                    reconnectSockets = true;
                 }
+            }
+
+            if (reconnectSockets)
+            {
+                Console.WriteLine("Reconnecting GHost sockets");
+                _socketList = new List<SocketData>();
+                ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
+                ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
+                return null;
             }
             return gameListDataList;
         }
