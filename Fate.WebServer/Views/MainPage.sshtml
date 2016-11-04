@@ -75,5 +75,5 @@
 			</div>
 		</div>
 	</div>
-<script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
+<script language="JavaScript" src="/Content/scripts/MainPage.js?ver=1"></script>
 @EndSection
