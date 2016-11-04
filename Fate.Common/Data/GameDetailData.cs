@@ -4,8 +4,11 @@ namespace Fate.Common.Data
 {
     public class GameDetailData
     {
+        public int GameID { get; set; }
         public List<GamePlayerDetailData> Team1Data { get; set; }
         public List<GamePlayerDetailData> Team2Data { get; set; }
+        public int Team1WinCount { get; set; }
+        public int Team2WinCount { get; set; }
         public int Team1Kills { get; set; }
         public int Team1Deaths { get; set; }
         public int Team1Assists { get; set; }

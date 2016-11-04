@@ -8,6 +8,7 @@ namespace Fate.Common.Data
         public readonly List<PlayerGameTeamPlayerData> TeamList = new List<PlayerGameTeamPlayerData>();
         public int GameID { get; set; }
         public DateTime PlayedDate { get; set; }
+        public string Team { get; set; }
         public int TeamOneWinCount { get; set; }
         public int TeamTwoWinCount { get; set; }
         public string GameResult { get; set; }

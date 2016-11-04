@@ -80,6 +80,10 @@
     font-weight: bold;
 }
 
+.GameResult {
+	font-weight: bold;
+}
+
 .Kill {
 	color: #555e5e;
 }
@@ -99,11 +103,11 @@
     font-weight: bold;
 }
 
-.Win {
+.WIN {
 	color: #1f8ecd;
 }
 
-.Loss {
+.LOSS {
 	color: #c6443e;
 }
 
@@ -165,7 +169,11 @@
 }
 
 .gameTeamInfo {
-	width: 150px;
+	width: 145px;
+}
+
+.gameDownloadReplay {
+	vertical-align: bottom;
 }
 
 .team {

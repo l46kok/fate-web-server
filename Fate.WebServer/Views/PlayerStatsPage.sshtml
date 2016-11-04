@@ -18,7 +18,7 @@
 				<h2 class="HeaderUserName">@Model.UserName</h2>
 			</div>
 			<div class="row WinLossPct">
-				<span class="Win">@Model.Wins Wins</span> <span class="Loss">@Model.Losses Losses</span> (@Model.WLPercent)
+				<span class="WIN">@Model.Wins Wins</span> <span class="LOSS">@Model.Losses Losses</span> (@Model.WLPercent)
 			</div>
 		</div>
 		<div class="col-md-6">
@@ -63,8 +63,8 @@
 			<div class="statsBox">
 				<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#collapsible@Current.GameID">
 					<div class="gameTableCell centerText gameResultInfo">
+						<div class="@Current.GameResult GameResult">@Current.GameResult (@Current.TeamOneWinCount - @Current.TeamTwoWinCount)</div>
 						<div>@Current.PlayedDate</div>
-						<div>@Current.GameResult (@Current.TeamOneWinCount - @Current.TeamTwoWinCount)</div>
 					</div>
 					<div class="gameTableCell gameHeroPic centerText">
 						<img height="48" width="48" src="@Current.HeroImageURL">

@@ -5,6 +5,9 @@ namespace Fate.Common.Data
 {
     public class GamePlayerDetailData
     {
+        public int GameID { get; set; }
+        public int TeamOneWinCount { get; set; }
+        public int TeamTwoWinCount { get; set; }
         public string PlayerName { get; set; }
         public string HeroUnitTypeID { get; set; }
         public string HeroImageURL { get; set; }

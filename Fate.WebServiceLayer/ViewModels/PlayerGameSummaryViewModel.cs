@@ -14,6 +14,7 @@ namespace Fate.WebServiceLayer.ViewModels
         public int GameID { get; set; }
         public string PlayedDate { get; set; }
         public string HeroImageURL { get; set; }
+        public string Team { get; set; }
         public int TeamOneWinCount { get; set; }
         public int TeamTwoWinCount { get; set; }
         public string GameResult { get; set; }

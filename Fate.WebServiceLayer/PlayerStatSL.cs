@@ -112,9 +112,19 @@ namespace Fate.WebServiceLayer
                     HeroKDA =
                         ((gameSummary.HeroKills * 1.0 + gameSummary.HeroAssists) / gameSummary.HeroDeaths).ToString("0.00"),
                     HeroImageURL = ContentURL.GetHeroIconURL(gameSummary.HeroUnitTypeID),
-                    TeamOneWinCount = gameSummary.TeamOneWinCount,
-                    TeamTwoWinCount = gameSummary.TeamTwoWinCount
                 };
+
+                //Flip the wins if player is in team 2
+                if (gameSummary.Team == "2")
+                {
+                    vmGame.TeamOneWinCount = gameSummary.TeamTwoWinCount;
+                    vmGame.TeamTwoWinCount = gameSummary.TeamOneWinCount;
+                }
+                else
+                {
+                    vmGame.TeamOneWinCount = gameSummary.TeamOneWinCount;
+                    vmGame.TeamTwoWinCount = gameSummary.TeamTwoWinCount;
+                }
                 foreach (PlayerGameTeamPlayerData gameTeamPlayerData in gameSummary.TeamList)
                 {
                     gameTeamPlayerData.HeroImageURL = ContentURL.GetHeroIconURL(gameTeamPlayerData.HeroUnitTypeID);
