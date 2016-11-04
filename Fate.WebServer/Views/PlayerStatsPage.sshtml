@@ -2,7 +2,7 @@
 
 @Section['Content']
 
-<link href="/Content/css/PlayerStatsPage.css" rel="stylesheet">
+<link href="/Content/css/PlayerStatsPage.css?ver=1" rel="stylesheet">
 <!-- Begin page content -->
 <div class="container">
 	@IfNot.HasFoundUser
