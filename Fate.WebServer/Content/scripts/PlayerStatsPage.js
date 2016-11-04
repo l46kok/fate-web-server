@@ -63,6 +63,14 @@
                 gameTeamInfo2.append(gameTeam2);
                 gameStatsBox.append(gameTeamInfo2);
 
+                var gameReplayInfo = $('<div class="gameTableCell gameDownloadReplay">')
+                var gameReplayInfoHref = $('<a href="/download/replay/' + elem.gameID + '" class="noExpand">')
+                var gameReplayInfoImg = $('<img class="gameDownloadReplayImg" src="/Content/icons/SaveReplay.png" width="32" height="32" alt="Download Replay">');
+
+                gameReplayInfoHref.append(gameReplayInfoImg);
+                gameReplayInfo.append(gameReplayInfoHref);
+                gameStatsBox.append(gameReplayInfo);
+
                 statsBox.append(gameStatsBox);
 
                 var collapsibleGame = $('<div class="accordian-body collapse" data-gameId="' + elem.gameID + '" id="collapsible' + elem.gameID + '">')

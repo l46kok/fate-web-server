@@ -47,7 +47,7 @@
 						<tr>
 							<td rowspan="2" class="centerText sideStatsRowBorder"><img height="48" width="48" src="@Current.HeroImageURL"></td>
 							<td class="sideStatsServantName"><b>@Current.HeroName</b></td>
-							<td class="sideStatsText"><b>@Current.HeroAverageKDA : 1 KDA</b></td>
+							<td class="@Current.HeroKDAColor"><b>@Current.HeroAverageKDA : 1 KDA</b></td>
 						</tr>
 						<tr class="sideStatsRowBorder">
 							<td class="sideStatsText">@Current.HeroWins W @Current.HeroLosses L (@Current.HeroWLPercent)</td>
@@ -70,8 +70,8 @@
 						<img height="48" width="48" src="@Current.HeroImageURL">
 					</div>
 					<div class="gameTableCell gameKDA centerText">
-						<div>@Current.HeroKDA : 1 KDA</div>
-						<div>@Current.HeroKills / @Current.HeroDeaths / @Current.HeroAssists</div>
+						<div class="@Current.HeroKDAColor"><b>@Current.HeroKDA : 1 KDA</b></div>
+						<div><b>@Current.HeroKills / <span class="LOSS">@Current.HeroDeaths</span> / @Current.HeroAssists</b></div>
 					</div>
 					<div class="gameTableCell gameLevelGold centerText">
 						<div>Level @Current.HeroLevel</div>
@@ -91,6 +91,9 @@
 								@Partial['PlayerStatsPageTeamDetail', Current.Team2List]
 							</div>
 						</div>
+					</div>
+					<div class="gameTableCell gameDownloadReplay">
+						<a href="/download/replay/9" class="noExpand"><img class="gameDownloadReplayImg" src="/Content/icons/SaveReplay.png" width="32" height="32" alt="Download Replay"></a> 
 					</div>
 				</div>
 				<div class="accordian-body collapse" data-gameId="@Current.GameID" id="collapsible@Current.GameID"> 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Fate.Common.Data;
 using Fate.DB.DAL;
 using Fate.WebServiceLayer.ViewModels;
+using FateWebServer.Utility;
 
 namespace Fate.WebServiceLayer
 {
@@ -70,9 +71,14 @@ namespace Fate.WebServiceLayer
                 vmHero.HeroAverageDeaths = avgHeroDeaths.ToString("0.0");
                 vmHero.HeroAverageAssists = avgHeroAssists.ToString("0.0");
                 vmHero.HeroAverageKDA = ((avgHeroKills + avgHeroAssists) / avgHeroDeaths).ToString("0.00");
-                vmHeroStats.Add(vmHero);
 
+                double heroKDA = ((avgHeroKills + avgHeroAssists)/avgHeroDeaths);
+                vmHero.HeroAverageKDA = heroKDA.ToString("0.00");
+                vmHero.HeroKDAColor = CSSColorizer.GetKDAColor(heroKDA);
+
+                vmHeroStats.Add(vmHero);
             }
+
             vm.PlayerHeroStatSummaryData = vmHeroStats;
             vm.PlayerGameSummaryData = GetPlayerGameSummary(summaryData.PlayerId,lastGameId);
             vm.LastGameID = vm.PlayerGameSummaryData.Min(x => x.GameID);
@@ -109,11 +115,15 @@ namespace Fate.WebServiceLayer
                     HeroLevel = gameSummary.HeroLevel,
                     DamageDealt = $"{((int)gameSummary.DamageDealt):n0}",
                     DamageTaken = $"{((int)gameSummary.DamageTaken):n0}",
-                    HeroKDA =
-                        ((gameSummary.HeroKills * 1.0 + gameSummary.HeroAssists) / gameSummary.HeroDeaths).ToString("0.00"),
+                    
                     HeroImageURL = ContentURL.GetHeroIconURL(gameSummary.HeroUnitTypeID),
                 };
 
+                double heroKDA =
+                    (gameSummary.HeroKills*1.0 + gameSummary.HeroAssists)/gameSummary.HeroDeaths;
+                vmGame.HeroKDA = heroKDA.ToString("0.00");
+                vmGame.HeroKDAColor = CSSColorizer.GetKDAColor(heroKDA);
+                
                 //Flip the wins if player is in team 2
                 if (gameSummary.Team == "2")
                 {
