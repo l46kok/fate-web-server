@@ -25,6 +25,7 @@ namespace Fate.WebServiceLayer.ViewModels
         public string DamageDealt { get; set; }
         public string DamageTaken { get; set; }
         public string HeroKDA { get; set; }
+        public string HeroKDAColor { get; set; }
         public string GoldSpent { get; set; }
     }
 }

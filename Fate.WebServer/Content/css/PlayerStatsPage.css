@@ -161,7 +161,7 @@
 }
 
 .gameKDA {
-	width: 100px;
+	width: 90px;
 }
 
 .gameLevelGold {
@@ -174,6 +174,30 @@
 
 .gameDownloadReplay {
 	vertical-align: bottom;
+}
+
+.gameDownloadReplayImg {
+    margin-bottom: 5px;
+}
+
+.kdagreen {
+    color: #2fa01c;
+}
+
+.kdablue {
+    color: #1f8ecd;
+}
+
+.kdagold {
+    color: #e19205
+}
+
+.kdanormal {
+    color: #000000
+}
+
+.kdalow {
+    color: #879292
 }
 
 .team {

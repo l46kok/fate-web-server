@@ -11,5 +11,6 @@
         public string HeroAverageDeaths { get; set; }
         public string HeroAverageAssists { get; set; }
         public string HeroAverageKDA { get; set; }
+        public string HeroKDAColor { get; set; }
     }
 }
