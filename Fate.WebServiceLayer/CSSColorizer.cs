@@ -6,7 +6,7 @@
         {
             if (kda >= 5.0)
             {
-                return "kdagreen";
+                return "kdagold";
             }
             if (kda >= 4.0)
             {
