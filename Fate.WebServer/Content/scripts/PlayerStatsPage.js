@@ -29,8 +29,8 @@
                 gameStatsBox.append(gameHeroPic);
 
                 var gameKDA = $('<div class="gameTableCell gameKDA centerText">');
-                gameKDA.append('<div>' + elem.heroKDA + ' : 1 KDA</div>');
-                gameKDA.append('<div>' + elem.heroKills + ' / ' + elem.heroDeaths + ' / ' + elem.heroAssists + '</div>');
+                gameKDA.append('<div class="' + elem.heroKDAColor + '"><b>' + elem.heroKDA + ' : 1 KDA</b></div>');
+                gameKDA.append('<div><b>' + elem.heroKills + ' / <span class="LOSS">' + elem.heroDeaths + '</span> / ' + elem.heroAssists + '</b></div>');
                 gameStatsBox.append(gameKDA);
 
                 var gameLevelGold = $('<div class="gameTableCell gameLevelGold centerText">');

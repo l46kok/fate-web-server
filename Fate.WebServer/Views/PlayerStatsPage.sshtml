@@ -119,5 +119,5 @@
 </div>
 
 <script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
-<script language="JavaScript" src="/Content/scripts/PlayerStatsPage.js"></script>
+<script language="JavaScript" src="/Content/scripts/PlayerStatsPage.js?ver=1"></script>
 @EndSection
