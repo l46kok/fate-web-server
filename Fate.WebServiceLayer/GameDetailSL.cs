@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Fate.Common.Data;
 using Fate.DB.DAL;
 using Fate.WebServiceLayer.Extension;
@@ -33,6 +34,9 @@ namespace Fate.WebServiceLayer
             List<GamePlayerDetailData> gameDetailData = _detailDal.GetGameDetails(gameId);
             dataModel.Team1Data = gameDetailData.Where(x => x.Team == "1").ToList();
             dataModel.Team2Data = gameDetailData.Where(x => x.Team == "2").ToList();
+            dataModel.Team1WinCount = gameDetailData.First(x => x.Team == "1").TeamOneWinCount;
+            dataModel.Team2WinCount = gameDetailData.First(x => x.Team == "2").TeamTwoWinCount;
+            dataModel.GameID = gameDetailData.First().GameID;
             foreach (GamePlayerDetailData data in dataModel.Team1Data)
             {
                 dataModel.Team1Kills += data.Kills;

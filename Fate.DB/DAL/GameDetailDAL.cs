@@ -14,31 +14,38 @@ namespace Fate.DB.DAL
                 //EF Produces monsterous query on this
                 //Perhaps in the future, we need to conver it into raw SQL
                 var gameDetailQueryData = (
-                    from game in db.gameplayerdetail
-                    join heroType in db.herotype on game.FK_HeroTypeID equals heroType.HeroTypeID
-                    join player in db.player on game.FK_PlayerID equals player.PlayerID
-                    join godshelpuse in db.godshelpuse on game.GamePlayerDetailID equals godshelpuse.FK_GamePlayerDetailID into a
+                    from gameplayerdetail in db.gameplayerdetail
+                    join game in db.game on gameplayerdetail.FK_GameID equals game.GameID
+                    join heroType in db.herotype on gameplayerdetail.FK_HeroTypeID equals heroType.HeroTypeID
+                    join player in db.player on gameplayerdetail.FK_PlayerID equals player.PlayerID
+                    join godshelpuse in db.godshelpuse on gameplayerdetail.GamePlayerDetailID equals godshelpuse.FK_GamePlayerDetailID into a
                     from ghUseL in a.DefaultIfEmpty() 
                     join godshelpinfo in db.godshelpinfo on ghUseL.FK_GodsHelpInfoID equals godshelpinfo.GodsHelpInfoID into b
                     from ghInfoL in b.DefaultIfEmpty() //Left outer join in EF... seriously?
-                    where (game.FK_GameID == gameId)
-                    group new { game, heroType, player, ghUseL, ghInfoL} 
+                    where (gameplayerdetail.FK_GameID == gameId)
+                    group new { game = gameplayerdetail, heroType, player, ghUseL, ghInfoL} 
                     by new
                     {
-                        game.GamePlayerDetailID,
-                        game.Kills,
-                        game.Assists,
-                        game.Deaths,
-                        game.Team,
-                        game.GoldSpent,
-                        game.DamageDealt,
-                        game.DamageTaken,
-                        game.HeroLevel,
+                        game.GameID,
+                        game.TeamOneWinCount,
+                        game.TeamTwoWinCount,
+                        gameplayerdetail.GamePlayerDetailID,
+                        gameplayerdetail.Kills,
+                        gameplayerdetail.Assists,
+                        gameplayerdetail.Deaths,
+                        gameplayerdetail.Team,
+                        gameplayerdetail.GoldSpent,
+                        gameplayerdetail.DamageDealt,
+                        gameplayerdetail.DamageTaken,
+                        gameplayerdetail.HeroLevel,
                         player.PlayerName,
                         heroType.HeroUnitTypeID,
                     } into g
                     select new GamePlayerDetailData()
                     {
+                        GameID = g.Key.GameID,
+                        TeamOneWinCount = g.Key.TeamOneWinCount,
+                        TeamTwoWinCount = g.Key.TeamTwoWinCount,
                         PlayerName = g.Key.PlayerName,
                         HeroUnitTypeID = g.Key.HeroUnitTypeID,
                         Kills = g.Key.Kills,

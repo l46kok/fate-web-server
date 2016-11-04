@@ -146,6 +146,7 @@ namespace Fate.DB.DAL
                         HeroAssists = gameDetail.Assists,
                         HeroUnitTypeID = heroType.HeroUnitTypeID,
                         HeroLevel = gameDetail.HeroLevel,
+                        Team = gameDetail.Team,
                         TeamOneWinCount = game.TeamOneWinCount,
                         TeamTwoWinCount = game.TeamTwoWinCount,
                         DamageDealt = gameDetail.DamageDealt,

@@ -20,7 +20,7 @@
                 var statsBox = $('<div class="statsBox"></div>');
                 var gameStatsBox = $('<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#collapsible' + elem.gameID + '"></div>');
                 var gameResultInfo = $('<div class="gameTableCell centerText gameResultInfo">');
-                gameResultInfo.append('<div>' + elem.gameResult + '(' + elem.teamOneWinCount + ' - ' + elem.teamTwoWinCount + ')</div>');
+                gameResultInfo.append('<div class="' + elem.gameResult + ' GameResult">' + elem.gameResult + '(' + elem.teamOneWinCount + ' - ' + elem.teamTwoWinCount + ')</div>');
                 gameResultInfo.append('<div>' + elem.playedDate + '</div>');
                 gameStatsBox.append(gameResultInfo);
 

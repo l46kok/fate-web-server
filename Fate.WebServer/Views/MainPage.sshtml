@@ -34,7 +34,7 @@
 						<td class="centerText">@Current.PlayerCount</td>
 						<td class="centerText">@Current.ServerName</td>
 						<td class="centerText"><a href="/Log?gameId=@Current.GameID" data-target="#chatLogModal" data-toggle="modal"><img src="/Content/icons/ViewLog.png" alt="View the chat log"></a></td>
-						<td class="centerText"><a href="/download/replay/@Current.GameID" class="noExpand"><img src="/Content/icons/SaveReplay.png" alt="Download Replay"></a></td>
+						<td class="centerText"><a href="/download/replay/@Current.GameID" class="noExpand"><img src="/Content/icons/SaveReplay.png" width=32 height=32 alt="Download Replay"></a></td>
 						<td class="centerText">@Current.Result</td>
 					</tr>
 					<tr class="hiddenRow"></tr>
