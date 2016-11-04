@@ -21,7 +21,8 @@
                 var tableBody = $('<tbody></tbody>');
                 var tableHeader = $('<thead></thead>');
                 var headerRow = $("<tr class=team" + i + "Bar></tr>");
-                headerRow.append('<th>Team ' + i + "</th>");
+
+                headerRow.append('<th>Team ' + i + " [Score: " + data["team" + i + "WinCount"] + "]</th>");
                 headerRow.append('<th class=centerText>Level</th>');
                 headerRow.append('<th class=centerText>Kills</th>');
                 headerRow.append('<th class=centerText>Deaths</th>');
