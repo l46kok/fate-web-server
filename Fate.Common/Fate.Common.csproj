@@ -55,6 +55,7 @@
     <Compile Include="Data\PlayerGameSummaryData.cs" />
     <Compile Include="Data\PlayerGameTeamPlayerData.cs" />
     <Compile Include="Data\PlayerHeroStatSummaryData.cs" />
+    <Compile Include="Data\PlayerStatisticsData.cs" />
     <Compile Include="Data\PlayerStatSummaryData.cs" />
     <Compile Include="Data\ServantStatisticsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

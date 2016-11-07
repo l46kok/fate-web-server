@@ -13,18 +13,18 @@
 			Filter Type
 		</div>
 		<div class="searchCriteriaBody" id="searchCriteriaType">
-			<label class="radio-inline"><input type="radio" name="radioCriteriaType" checked="checked">Win Rate</label>
-			<label class="radio-inline"><input type="radio" name="radioCriteriaType">KDA</label>
-			<label class="radio-inline"><input type="radio" name="radioCriteriaType">Damage Dealt</label>
-			<label class="radio-inline"><input type="radio" name="radioCriteriaType">Damage Taken</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType" checked="checked" value="1">Win Rate</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType" value="2">KDA</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType" value="3">Damage Dealt</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType" value="4">Damage Taken</label>
 		</div>
 		<div class="searchCriteriaHeader">
 			Time
 		</div>
 		<div class="searchCriteriaBody" id="searchCriteriaTime">
-			<label class="radio-inline"><input type="radio" name="radioCriteriaTime" checked="checked">Last 7 Days</label>
-			<label class="radio-inline"><input type="radio" name="radioCriteriaTime">Last 30 Days</label>
-			<label class="radio-inline"><input type="radio" name="radioCriteriaTime">All Time</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaTime" checked="checked" value="1">Last 7 Days</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaTime" value="2">Last 30 Days</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaTime" value="3">All Time</label>
 		</div>
 	</div>
 	
@@ -32,9 +32,7 @@
 	<thead> 
 	<tr> 
 		<th>Player</th> 
-		<th colspan="2">Most Played Servant</th> 
 		<th class="winrateheader">Win Rate</th> 
-		<th>Games Played</th> 
 		<th>KDA</th> 
 		<th>Damage Dealt</th> 
 		<th>Damage Taken</th>
@@ -42,18 +40,6 @@
 	</tr> 
 	</thead> 
 	<tbody class="centerText"> 
-<!-- 	@Each.Model
-	<tr> 
-		<td><img src="@Current.HeroImageURL" height=48 width=48></td>
-		<td><div><b>@Current.HeroName</b></div><div>@Current.HeroTitle</div></td> 
-		<td class="leftText"><div class="@Current.KDAColor" style="width: @Current.WinRatio"></div><span class="winrateval">@Current.WinRatio</span></td> 
-		<td>@Current.PlayCount</td> 
-		<td><b>@Current.AvgKDA</b></td> 
-		<td>@Current.AvgDamageDealt</td> 
-		<td>@Current.AvgDamageTaken</td> 
-		<td>@Current.AvgGoldSpent</td> 
-	</tr> 
-	@EndEach -->
 	</tbody> 
 	</table> 
 </div>
