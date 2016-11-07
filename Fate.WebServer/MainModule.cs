@@ -42,6 +42,11 @@ namespace FateWebServer
                 return View["Views/ServantStatistics.sshtml", _statisticsSl.GetServantStatistics()];
             };
 
+            Get["/LeaderBoards"] = Param =>
+            {
+                return View["Views/LeaderBoards.sshtml"];
+            };
+
             Get["/PlayerGameBuildDetail/{GameID}/{PlayerName}"] = param =>
             {
                 PlayerGameBuildViewModel vm = _gameDetailSl.GetPlayerGameBuild(param.GameID, param.PlayerName);
