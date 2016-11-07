@@ -32,6 +32,12 @@ namespace Fate.WebServiceLayer
         {
             GameDetailData dataModel = new GameDetailData();
             List<GamePlayerDetailData> gameDetailData = _detailDal.GetGameDetails(gameId);
+            //Populate godshelp information first
+            foreach (GamePlayerDetailData data in gameDetailData)
+            {
+                data.GodsHelpAbilIDList = data.GodsHelpAbilIDConcat?.Split(',').ToList() ?? new List<string>();
+            }
+
             dataModel.Team1Data = gameDetailData.Where(x => x.Team == "1").ToList();
             dataModel.Team2Data = gameDetailData.Where(x => x.Team == "2").ToList();
             dataModel.Team1WinCount = gameDetailData.First(x => x.Team == "1").TeamOneWinCount;

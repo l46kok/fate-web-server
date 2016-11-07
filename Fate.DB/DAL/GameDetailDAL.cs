@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using Fate.Common.Data;
+using MySql.Data.MySqlClient;
 
 namespace Fate.DB.DAL
 {
@@ -11,54 +13,36 @@ namespace Fate.DB.DAL
         {
             using (frsDb db = frsDb.Create())
             {
-                //EF Produces monsterous query on this
-                //Perhaps in the future, we need to conver it into raw SQL
-                var gameDetailQueryData = (
-                    from gameplayerdetail in db.gameplayerdetail
-                    join game in db.game on gameplayerdetail.FK_GameID equals game.GameID
-                    join heroType in db.herotype on gameplayerdetail.FK_HeroTypeID equals heroType.HeroTypeID
-                    join player in db.player on gameplayerdetail.FK_PlayerID equals player.PlayerID
-                    join godshelpuse in db.godshelpuse on gameplayerdetail.GamePlayerDetailID equals godshelpuse.FK_GamePlayerDetailID into a
-                    from ghUseL in a.DefaultIfEmpty() 
-                    join godshelpinfo in db.godshelpinfo on ghUseL.FK_GodsHelpInfoID equals godshelpinfo.GodsHelpInfoID into b
-                    from ghInfoL in b.DefaultIfEmpty() //Left outer join in EF... seriously?
-                    where (gameplayerdetail.FK_GameID == gameId)
-                    group new { game = gameplayerdetail, heroType, player, ghUseL, ghInfoL} 
-                    by new
-                    {
-                        game.GameID,
-                        game.TeamOneWinCount,
-                        game.TeamTwoWinCount,
-                        gameplayerdetail.GamePlayerDetailID,
-                        gameplayerdetail.Kills,
-                        gameplayerdetail.Assists,
-                        gameplayerdetail.Deaths,
-                        gameplayerdetail.Team,
-                        gameplayerdetail.GoldSpent,
-                        gameplayerdetail.DamageDealt,
-                        gameplayerdetail.DamageTaken,
-                        gameplayerdetail.HeroLevel,
-                        player.PlayerName,
-                        heroType.HeroUnitTypeID,
-                    } into g
-                    select new GamePlayerDetailData()
-                    {
-                        GameID = g.Key.GameID,
-                        TeamOneWinCount = g.Key.TeamOneWinCount,
-                        TeamTwoWinCount = g.Key.TeamTwoWinCount,
-                        PlayerName = g.Key.PlayerName,
-                        HeroUnitTypeID = g.Key.HeroUnitTypeID,
-                        Kills = g.Key.Kills,
-                        Assists = g.Key.Assists,
-                        Deaths = g.Key.Deaths,
-                        Team = g.Key.Team,
-                        Level = g.Key.HeroLevel,
-                        GoldSpent = g.Key.GoldSpent,
-                        DamageDealt = g.Key.DamageDealt,
-                        DamageTaken = g.Key.DamageTaken,
-                        GodsHelpAbilIDList = g.Select(x=>x.ghInfoL.GodsHelpAbilID).ToList()
-                    });
-                return gameDetailQueryData.ToList();
+                const string sql = @"SELECT A.GameID, 
+	                                   A.TeamOneWinCount, 
+                                       A.TeamTwoWinCount, 
+                                       D.PlayerName, 
+                                       B.Kills, 
+                                       B.Deaths, 
+                                       B.Assists, 
+                                       B.HeroLevel AS Level, 
+                                       B.Team,
+                                       B.DamageDealt,
+                                       B.DamageTaken,
+                                       B.GoldSpent,
+                                       C.HeroUnitTypeID, 
+                                       group_concat(F.GodsHelpAbilID separator ',') AS GodsHelpAbilIDConcat
+                                FROM Game A
+                                JOIN GamePlayerDetail B
+	                                ON A.GameID = B.FK_GameID
+                                JOIN HeroType C
+	                                ON B.FK_HeroTypeID = C.HeroTypeID
+                                JOIN Player D
+	                                ON B.FK_PlayerID = D.PlayerID
+                                LEFT OUTER JOIN GodsHelpUse E
+	                                ON B.GamePlayerDetailID = E.FK_GamePlayerDetailID
+                                LEFT OUTER JOIN GodsHelpInfo F
+	                                ON E.FK_GodsHelpInfoID = F.GodsHelpInfoID
+                                WHERE A.GameID = @GameID
+                                GROUP BY A.GameID, A.TeamOneWinCount, A.TeamTwoWinCount, D.PlayerName, B.Kills, B.Deaths, B.Assists, B.HeroLevel, C.HeroUnitTypeID;";
+
+                List<GamePlayerDetailData> gamePlayerDetailData = db.Database.SqlQuery<GamePlayerDetailData>(sql, new MySqlParameter("GameID",gameId)).ToList();
+                return gamePlayerDetailData;
             }
         }
 

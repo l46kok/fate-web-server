@@ -19,6 +19,7 @@ namespace Fate.Common.Data
         public int GoldSpent { get; set; }
         public double DamageDealt { get; set; }
         public double DamageTaken { get; set; }
+        public string GodsHelpAbilIDConcat { get; set; }
         public List<string> GodsHelpAbilIDList { get; set; } 
         public string Team { get; set; }
     }
