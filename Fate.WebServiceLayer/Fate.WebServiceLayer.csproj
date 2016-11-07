@@ -58,6 +58,7 @@
     <Compile Include="ViewModels\PlayerGameSummaryViewModel.cs" />
     <Compile Include="ViewModels\PlayerHeroStatsViewModel.cs" />
     <Compile Include="ViewModels\PlayerGameBuildViewModel.cs" />
+    <Compile Include="ViewModels\PlayerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\PlayerStatsPageViewModel.cs" />
     <Compile Include="ViewModels\ServantStatisticsViewModel.cs" />
   </ItemGroup>

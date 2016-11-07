@@ -9,7 +9,7 @@
         public string WinRatio { get; set; }
         public int PlayCount { get; set; }
         public string AvgKDA { get; set; }
-        public string KDAColor { get; set; }
+        public string ProgressBarColor { get; set; }
         public string AvgGoldSpent { get; set; }
         public string AvgDamageDealt { get; set; }
         public string AvgDamageTaken { get; set; }

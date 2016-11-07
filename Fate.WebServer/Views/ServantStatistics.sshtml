@@ -25,7 +25,7 @@
 	<tr> 
 		<td><img src="@Current.HeroImageURL" height=48 width=48></td>
 		<td><div><b>@Current.HeroName</b></div><div>@Current.HeroTitle</div></td> 
-		<td class="leftText"><div class="@Current.KDAColor" style="width: @Current.WinRatio"></div><span class="winrateval">@Current.WinRatio</span></td> 
+		<td class="leftText"><div class="@Current.ProgressBarColor" style="width: @Current.WinRatio"></div><span class="winrateval">@Current.WinRatio</span></td> 
 		<td>@Current.PlayCount</td> 
 		<td><b>@Current.AvgKDA</b></td> 
 		<td>@Current.AvgDamageDealt</td> 
