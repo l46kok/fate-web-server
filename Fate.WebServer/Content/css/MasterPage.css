@@ -34,3 +34,7 @@ body {
   bottom: 0;
   width: 100%;
 }
+
+.navbar-width {
+	min-width: 1080px !important;
+}

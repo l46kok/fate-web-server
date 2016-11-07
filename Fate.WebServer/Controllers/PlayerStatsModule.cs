@@ -15,6 +15,13 @@ namespace FateWebServer.Controllers
                 List<PlayerGameSummaryViewModel> gameSummaryData = _playerStatsSl.GetPlayerGameSummary(param.PlayerName, param.server, param.gameId);
                 return Response.AsJson(gameSummaryData);
             };
+
+            Get["/PlayerStatsAjax/Statistics/{type}/{time}"] = param =>
+            {
+                //List<PlayerGameSummaryViewModel> gameSummaryData = _playerStatsSl.GetPlayerGameSummary(param.PlayerName, param.server, param.gameId);
+                //return Response.AsJson(gameSummaryData);
+                return null;
+            };
         }
     }
 }
