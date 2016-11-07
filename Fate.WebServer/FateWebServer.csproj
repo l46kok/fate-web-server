@@ -260,6 +260,7 @@
     <EmbeddedResource Include="Content\css\ServantStatistics.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Content\css\LeaderBoards.css" />
     <Content Include="Content\css\tblColAsc.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -695,6 +696,7 @@
     <Content Include="Content\images\AboutCarousel5.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\scripts\LeaderBoards.js" />
     <Content Include="Content\scripts\ServantStatistics.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,17 +1,38 @@
 ﻿@Master['MasterPage']
 
 @Section['Content']
-<link href="./Content/css/ServantStatistics.css" rel="stylesheet">
+<link href="./Content/css/LeaderBoards.css" rel="stylesheet">
 <!-- Begin page content -->
 <div class="container">
 	<div class="page-header">
-		<h1>Statistics by Servants</h1>
+		<h1>Leaderboards</h1>
 	</div>
 	
-	<table id="myTable" class="tablesorter"> 
+	<div class="statsBox">
+		<div class="searchCriteriaHeader">
+			Filter Type
+		</div>
+		<div class="searchCriteriaBody" id="searchCriteriaType">
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType" checked="checked">Win Rate</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType">KDA</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType">Damage Dealt</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaType">Damage Taken</label>
+		</div>
+		<div class="searchCriteriaHeader">
+			Time
+		</div>
+		<div class="searchCriteriaBody" id="searchCriteriaTime">
+			<label class="radio-inline"><input type="radio" name="radioCriteriaTime" checked="checked">Last 7 Days</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaTime">Last 30 Days</label>
+			<label class="radio-inline"><input type="radio" name="radioCriteriaTime">All Time</label>
+		</div>
+	</div>
+	
+	<table id="leaderBoardsTable" class="tablesorter"> 
 	<thead> 
 	<tr> 
-		<th colspan="2">Servant</th> 
+		<th>Player</th> 
+		<th colspan="2">Most Played Servant</th> 
 		<th class="winrateheader">Win Rate</th> 
 		<th>Games Played</th> 
 		<th>KDA</th> 
@@ -21,7 +42,7 @@
 	</tr> 
 	</thead> 
 	<tbody class="centerText"> 
-	@Each.Model
+<!-- 	@Each.Model
 	<tr> 
 		<td><img src="@Current.HeroImageURL" height=48 width=48></td>
 		<td><div><b>@Current.HeroName</b></div><div>@Current.HeroTitle</div></td> 
@@ -32,11 +53,11 @@
 		<td>@Current.AvgDamageTaken</td> 
 		<td>@Current.AvgGoldSpent</td> 
 	</tr> 
-	@EndEach
+	@EndEach -->
 	</tbody> 
 	</table> 
 </div>
 
 <script language="JavaScript" src="/Content/scripts/jquery.tablesorter.js"></script>
-<script language="JavaScript" src="/Content/scripts/ServantStatistics.js"></script>
+<script language="JavaScript" src="/Content/scripts/LeaderBoards.js"></script>
 @EndSection
