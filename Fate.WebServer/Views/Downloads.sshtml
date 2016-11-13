@@ -1,0 +1,12 @@
+﻿@Master['MasterPage']
+
+@Section['Content']
+<link href="./Content/css/Downloads.css" rel="stylesheet">
+<div class="container">
+	<div class="page-header">
+		<h1>Downloads</h1>
+	</div>
+	
+	<p class="lead">Warcraft III 8MB Bypass Patcher<a href="/download/Fate8MBPatcher" class="noExpand"><img class="downloadPic" src="/Content/icons/Download.png" alt="Download" width=32 height=32></a></p>
+</div>
+@EndSection
