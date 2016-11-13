@@ -19,7 +19,7 @@
 			<label class="radio-inline"><input type="radio" name="radioCriteriaType" value="4">Damage Taken</label>
 		</div>
 		<div class="searchCriteriaHeader">
-			Time
+			Time (Minimum 5 games)
 		</div>
 		<div class="searchCriteriaBody" id="searchCriteriaTime">
 			<label class="radio-inline"><input type="radio" name="radioCriteriaTime" checked="checked" value="1">Last 7 Days</label>

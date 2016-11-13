@@ -49,7 +49,6 @@ table.tablesorter thead tr .header {
 	cursor: pointer;
 }
 table.tablesorter tbody td {
-	color: #3D3D3D;
 	padding: 4px;
 	background-color: #FFF;
 	vertical-align: middle;
@@ -97,3 +96,25 @@ table.tablesorter .winrateheader {
 .leftText {
 	text-align: left !important;
 }
+
+
+.kdagreen {
+    color: #2fa01c;
+}
+
+.kdablue {
+    color: #1f8ecd;
+}
+
+.kdagold {
+    color: #e19205
+}
+
+.kdanormal {
+    color: #000000
+}
+
+.kdalow {
+    color: #879292
+}
+
