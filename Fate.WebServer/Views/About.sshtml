@@ -42,26 +42,78 @@
 		<span class="sr-only">Next</span>
 	  </a>
 	</div>
+	
+	<ul class="nav nav-pills nav-justified" role="tablist" id="myPill">
+		<li role="presentation"  class="active"><a href="#about" aria-controls="profile" role="tab" data-toggle="tab">What is UFWFATE.NET?</a></li>
+		<li role="presentation" aria-controls="profile" role="tab" data-toggle="tab"><a href="#howtoplay" aria-controls="profile" role="tab" data-toggle="tab">How to Play</a></li>
+	</ul>
+	
 	<div class="jumbotron">
-		<h2>What is UFWFATE.NET?</h2>
-		<br/>
-		<p class="lead">UFWFATE.NET is a statistics site for a Warcraft III custom game known as Fate / Another III.</p>
-		<p class="lead">Game data is collected on a real time basis to provide users with:</p>
-		<ul>
-		<li>Match Results</li>
-		<li>Servant Analytics</li>
-		<li>Player Statistics</li>
-		<li>Replays</li>
-		<li>and more...</li>
-		</ul>
-		<br/>
-		<p class="lead text-center">Visit channel Clan UFW at USEast server to play Fate / Another III</p>
-		<br/>
-		<p class="text-center"><a class="btn btn-lg btn-success" href="http://fateanother.wikia.com/wiki/New_Player_Guide" role="button">Learn more about the game</a></p>
-		<br/>
-		<br/>
-		<br/>
-		Brought to you by Sokwhan Huh (l46kok@USEast). All copyrights reserved.</p>
+		<!-- Centered Tabs -->		
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="about">
+				<h2>What is UFWFATE.NET?</h2>
+				<br/>
+				<p class="lead">UFWFATE.NET is a statistics site for a Warcraft III custom game known as Fate / Another III.</p>
+				<p class="lead">Game data is collected on a real time basis to provide users with:</p>
+				<ul>
+				<li>Match Results</li> 
+				<li>Servant Analytics</li>
+				<li>Player Statistics</li>
+				<li>Replays</li>
+				<li>and more...</li>
+				</ul>
+				<br/>
+				<p class="lead text-center">Visit channel Clan UFW at USEast server to play Fate / Another III</p>
+				<br/>
+				<p class="text-center"><a class="btn btn-lg btn-success" href="http://fateanother.wikia.com/wiki/New_Player_Guide" role="button">Learn more about the game</a></p>
+				<br/>
+				<br/>
+				<br/>
+				Brought to you by Sokwhan Huh (l46kok@USEast). All copyrights reserved.</p>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="howtoplay">
+				<h2>How to install the game</h2>
+				<h3>Step 1: Install Warcraft 3 Reign of Chaos & The Frozen Throne</h3>
+				<br/>
+				<p>Warcraft III Reign of Chaos Installer Download: <a href="https://www.battle.net/download/getLegacy?product=WAR3&locale=en-US&os=WIN" class="noExpand"><img src="/Content/icons/Download.png" width=32 height=32></a></p>
+				<p>Warcraft III The Frozen Throne Installer Download: <a href="https://www.battle.net/download/getLegacy?product=W3XP&locale=en-US&os=WIN" class="noExpand"><img src="/Content/icons/Download.png" width=32 height=32></a></p>
+				<br/>
+				<h3>Step 2 (Optional): Install Eurobattle.net</h3>
+				<p>This step is only necessary if you do not have a CDKEY for Warcraft 3</p>
+				<p>Please visit the following link to get instructions on how to install Eurobattle.net</p>
+				<p><a href="http://eurobattle.net/">http://eurobattle.net/</a></p>
+				<br/>
+				*Please do not ask us how to get a valid CDKEY for Battle.net
+				<br/>
+				<h3>Step 3: Install 8MB Bypass Patch</h3>
+				<p>Download this patcher, run it, then press patch <a href="/download/Fate8MBPatcher" class="noExpand"><img src="/Content/icons/Download.png" width=32 height=32></a></p></p>
+				<img src="/Content/images/InstructionsPatching.png">
+				<br/>
+				<br/>
+				<h2>How to join UFW games</h2>
+				<p>If you can connect to Battle.Net, come to channel Clan UFW at USEast</p>
+				<img src="/Content/images/InstructionsServer.png"> 
+				<img src="/Content/images/InstructionsChannel.png">
+				<br/>
+				<br/>
+				<p>Type !getgames in channel to get a listing of currently hosted games</p>
+				<img src="/Content/images/InstructionsGetGames.png" width=900>
+				<br/>
+				<br/>
+				<p>Click on custom games located on top menu, type in the game name, then press enter</p>
+				<img src="/Content/images/InstructionsGameName.png">
+				<br/>
+				<br/>
+				<p>If you are connecting from EuroBattle.net, click on Game List located on top of this website</p>
+				<img src="/Content/images/InstructionsGameList.png" width=900>
+				<br/>
+				<br/>
+				<p>Copy the hosted game name, then join our game from custom games as shown above</p>
+				<img src="/Content/images/InstructionsGameLobby.png" width=900>
+				<p>And now you are ready to play!</p>
+			</div>
+		</div>
 	</div>
 </div>
 @EndSection

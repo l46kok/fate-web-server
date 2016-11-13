@@ -29,9 +29,9 @@ namespace FateWebServer.Controllers
 
             Get["/download/Fate8MBPatcher"] = param =>
             {
-                string patcherPath = Path.Combine(Directory.GetCurrentDirectory(), @"content\download\Fate8MBPatcher.exe");
+                string patcherPath = Path.Combine(Directory.GetCurrentDirectory(), @"content\download\Fate8MBPatcher.zip");
                 var file = new FileStream(patcherPath, FileMode.Open);
-                string fileName = "Fate8MBPatcher.exe";
+                string fileName = "Fate8MBPatcher.zip";
                 var response = new StreamResponse(() => file, MimeTypes.GetMimeType(fileName));
                 return response.AsAttachment(fileName);
             };
