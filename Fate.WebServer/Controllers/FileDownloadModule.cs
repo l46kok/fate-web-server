@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using Fate.Common.Data;
@@ -22,6 +23,15 @@ namespace FateWebServer.Controllers
                 var file = new FileStream(replayData.ReplayPath, FileMode.Open);
                 string fileName = "Fate Another Replay " + replayData.PlayedDateTime.ToString(CultureInfo.InvariantCulture) + ".w3g";
 
+                var response = new StreamResponse(() => file, MimeTypes.GetMimeType(fileName));
+                return response.AsAttachment(fileName);
+            };
+
+            Get["/download/Fate8MBPatcher"] = param =>
+            {
+                string patcherPath = Path.Combine(Directory.GetCurrentDirectory(), @"content\download\Fate8MBPatcher.exe");
+                var file = new FileStream(patcherPath, FileMode.Open);
+                string fileName = "Fate8MBPatcher.exe";
                 var response = new StreamResponse(() => file, MimeTypes.GetMimeType(fileName));
                 return response.AsAttachment(fileName);
             };
