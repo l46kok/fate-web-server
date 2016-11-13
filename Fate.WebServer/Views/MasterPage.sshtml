@@ -23,7 +23,7 @@
 					<li><a href="/GameList">Game List</a></li>
 					<li><a href="/LeaderBoards">Leaderboards</a></li>
 					<li><a href="/ServantStatistics">Servant Statistics</a></li>
-					<li><a href="/ServantStatistics">Downloads</a></li>
+					<li><a href="/Downloads">Downloads</a></li>
 					<li><a href="http://clanufw.darkbb.com/">Forum</a></li>
 				</ul>
 				 <form class="navbar-form navbar-right" action="/Search" method="post">
