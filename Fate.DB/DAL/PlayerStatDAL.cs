@@ -151,7 +151,7 @@ namespace Fate.DB.DAL
                         TeamTwoWinCount = game.TeamTwoWinCount,
                         DamageDealt = gameDetail.DamageDealt,
                         DamageTaken = gameDetail.DamageTaken
-                    }).Take(4).ToList();
+                    }).Take(8).ToList();
 
                 foreach (PlayerGameSummaryData data in gameSummaryData)
                 {
