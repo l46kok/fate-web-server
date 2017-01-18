@@ -13,6 +13,7 @@ namespace Fate.WebServiceLayer
     public class PlayerStatSL
     {
         private static readonly PlayerStatDAL _playerStatDal = new PlayerStatDAL();
+        private static readonly ServantSearchDAL _servantSearchDal = new ServantSearchDAL();
         private static readonly PlayerStatSL _instance = new PlayerStatSL();
         public static PlayerStatSL Instance => _instance;
 
@@ -80,26 +81,32 @@ namespace Fate.WebServiceLayer
             }
 
             vm.PlayerHeroStatSummaryData = vmHeroStats;
-            vm.PlayerGameSummaryData = GetPlayerGameSummary(summaryData.PlayerId,lastGameId);
+            vm.PlayerGameSummaryData = GetPlayerGameSummary(summaryData.PlayerId,lastGameId, "");
             vm.LastGameID = vm.PlayerGameSummaryData.Min(x => x.GameID);
+
+            vm.SearchableServantData = _servantSearchDal.GetSearchableServants();
             return vm;
         }
 
-        public List<PlayerGameSummaryViewModel> GetPlayerGameSummary(string playerName, string serverName, int lastGameId)
+        public List<PlayerGameSummaryViewModel> GetPlayerGameSummary(string playerName, string serverName, int lastGameId, string heroUnitTypeId)
         {
+            if (heroUnitTypeId == "NONE")
+            {
+                heroUnitTypeId = "";
+            }
             //Get player total summary first
             PlayerStatSummaryData summaryData = _playerStatDal.GetPlayerSummary(playerName, serverName);
             if (summaryData == null)
             {
                 return null;
             }
-            return GetPlayerGameSummary(summaryData.PlayerId, lastGameId);
+            return GetPlayerGameSummary(summaryData.PlayerId, lastGameId, heroUnitTypeId);
         }
 
-        private List<PlayerGameSummaryViewModel> GetPlayerGameSummary(int playerId, int lastGameId)
+        private List<PlayerGameSummaryViewModel> GetPlayerGameSummary(int playerId, int lastGameId, string heroUnitTypeId)
         {
             //Get player game summary
-            List<PlayerGameSummaryData> playerGameSummaryData = _playerStatDal.GetPlayerGameSummaryData(playerId, lastGameId);
+            List<PlayerGameSummaryData> playerGameSummaryData = _playerStatDal.GetPlayerGameSummaryData(playerId, lastGameId, heroUnitTypeId);
             List<PlayerGameSummaryViewModel> vmGameSummary = new List<PlayerGameSummaryViewModel>();
             foreach (PlayerGameSummaryData gameSummary in playerGameSummaryData)
             {

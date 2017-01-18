@@ -69,6 +69,7 @@
     <Compile Include="commandsealuse.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\ServantSearchDAL.cs" />
     <Compile Include="DAL\StatisticsDAL.cs" />
     <Compile Include="frsContext.cs" />
     <Compile Include="DAL\GameDAL.cs" />

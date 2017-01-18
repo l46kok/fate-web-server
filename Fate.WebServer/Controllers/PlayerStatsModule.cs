@@ -11,9 +11,9 @@ namespace FateWebServer.Controllers
         private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
         public PlayerStatsModule()
         {
-            Get["/PlayerStatsAjax/{server}/{playerName}/{gameId}"] = param =>
+            Get["/PlayerStatsAjax/{server}/{playerName}/{gameId}/{heroUnitTypeId}"] = param =>
             {
-                List<PlayerGameSummaryViewModel> gameSummaryData = _playerStatsSl.GetPlayerGameSummary(param.PlayerName, param.server, param.gameId);
+                List<PlayerGameSummaryViewModel> gameSummaryData = _playerStatsSl.GetPlayerGameSummary(param.PlayerName, param.server, param.gameId, param.heroUnitTypeId);
                 return Response.AsJson(gameSummaryData);
             };
 
