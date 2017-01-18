@@ -125,7 +125,7 @@ namespace Fate.DB.DAL
             }
         }
 
-        public List<PlayerGameSummaryData> GetPlayerGameSummaryData(int playerId, int gameId)
+        public List<PlayerGameSummaryData> GetPlayerGameSummaryData(int playerId, int gameId, string heroUnitTypeId)
         {
             using (frsDb db = frsDb.Create())
             {
@@ -133,7 +133,7 @@ namespace Fate.DB.DAL
                     from game in db.game
                     join gameDetail in db.gameplayerdetail on game.GameID equals gameDetail.FK_GameID
                     join heroType in db.herotype on gameDetail.FK_HeroTypeID equals heroType.HeroTypeID
-                    where gameDetail.FK_PlayerID == playerId && game.GameID < gameId
+                    where gameDetail.FK_PlayerID == playerId && game.GameID < gameId && heroType.HeroUnitTypeID.Contains(heroUnitTypeId)
                     orderby game.GameID descending
                     select new PlayerGameSummaryData
                     {

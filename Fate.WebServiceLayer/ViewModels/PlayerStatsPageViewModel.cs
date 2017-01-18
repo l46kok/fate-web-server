@@ -20,5 +20,6 @@ namespace Fate.WebServiceLayer.ViewModels
         public int LastGameID { get; set; }
         public List<PlayerHeroStatsViewModel> PlayerHeroStatSummaryData { get; set; }
         public List<PlayerGameSummaryViewModel> PlayerGameSummaryData { get; set; }
+        public List<SearchableServantData> SearchableServantData { get; set; }
     }
 }

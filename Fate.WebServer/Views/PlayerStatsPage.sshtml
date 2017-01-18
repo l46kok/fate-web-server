@@ -3,6 +3,8 @@
 @Section['Content']
 
 <link href="/Content/css/PlayerStatsPage.css?ver=1" rel="stylesheet">
+<link href="/Content/css/selectize.bootstrap3.css" rel="stylesheet">
+<script language="JavaScript" src="/Content/scripts/selectize.min.js"></script>
 <!-- Begin page content -->
 <div class="container">
 	@IfNot.HasFoundUser
@@ -59,8 +61,28 @@
 			</div>
 		</div>
 		<div id="collapsibleTable" class="text-center col-md-8 noPaddingRight">
+			<div class="control-group">
+				<select id="select-servant-search" class="demo-default" placeholder="Search a Servant">
+					<option value="">Search a Servant</option>
+					<option value="">None</option>
+					@Each.Model.SearchableServantData
+					<option value="@Current.HeroUnitTypeID">@Current.HeroNameTitle</option>
+					@EndEach 
+				</select>
+			</div>
+			<script>  
+			$('#select-servant-search').selectize({
+				create: true,
+				sortField: {
+					field: 'text',
+					direction: 'asc'
+				},
+				dropdownParent: 'body'
+			});
+			</script>
+			
 			@Each.Model.PlayerGameSummaryData
-			<div class="statsBox">
+			<div class="statsBox gameFullList">
 				<div class="gameStatsBox hoverDiv" data-toggle="collapse" data-target="#collapsible@Current.GameID">
 					<div class="gameTableCell centerText gameResultInfo">
 						<div class="@Current.GameResult GameResult">@Current.GameResult (@Current.TeamOneWinCount - @Current.TeamTwoWinCount)</div>
@@ -103,7 +125,7 @@
 			@EndEach
 			<div id="showMoreBox" class="statsBox hoverDiv" data-lastGameId="@Model.LastGameID" data-userName="@Model.UserName" data-server="@Model.Server">
 				Show More
-			</div>
+			</div> 
 		</div>
 	</div>
 	@EndIf
