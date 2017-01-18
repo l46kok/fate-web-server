@@ -2,7 +2,7 @@
 
 @Section['Content']
 
-<link href="/Content/css/PlayerStatsPage.css?ver=1" rel="stylesheet">
+<link href="/Content/css/PlayerStatsPage.css?ver=2" rel="stylesheet">
 <link href="/Content/css/selectize.bootstrap3.css" rel="stylesheet">
 <script language="JavaScript" src="/Content/scripts/selectize.min.js"></script>
 <!-- Begin page content -->
@@ -141,5 +141,5 @@
 </div>
 
 <script language="JavaScript" src="/Content/scripts/MainPage.js"></script>
-<script language="JavaScript" src="/Content/scripts/PlayerStatsPage.js?ver=1"></script>
+<script language="JavaScript" src="/Content/scripts/PlayerStatsPage.js?ver=2"></script>
 @EndSection
