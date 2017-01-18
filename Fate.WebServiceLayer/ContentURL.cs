@@ -41,6 +41,7 @@ namespace Fate.WebServiceLayer
             _heroIconDic.Add("H01Q", @"/Content/icons/heroes/BTNYeopo.jpg");
             _heroIconDic.Add("H04D", @"/Content/icons/heroes/BTNZeroLancer.jpg");
             _heroIconDic.Add("H01A", @"/Content/icons/heroes/BTNLi.jpg");
+            _heroIconDic.Add("H02W", @"/Content/icons/heroes/BTNElizabeth.png");
             _ghIconDic.Add("A04B", @"/Content/icons/GHGold.jpg");
             _ghIconDic.Add("A04F", @"/Content/icons/GHLevelUp.jpg");
             _ghIconDic.Add("A0DD", @"/Content/icons/GHStats.jpg");
@@ -112,6 +113,7 @@ namespace Fate.WebServiceLayer
             _attributeDic.Add("A09O", @"/Content/icons/attributes/MonohoshiZao.png");
             _attributeDic.Add("A075", @"/Content/icons/attributes/EyeoftheMind.png");
             _attributeDic.Add("A06C", @"/Content/icons/attributes/Nightmare.png");
+            _attributeDic.Add("A069", @"/Content/icons/attributes/CurseofBlood.png");
             _attributeDic.Add("A060", @"/Content/icons/attributes/CurseofBlood2.png");
             _attributeDic.Add("A0BQ", @"/Content/icons/attributes/AvengerofBlood.png");
             _attributeDic.Add("A066", @"/Content/icons/attributes/TawrichandZarich.png");
@@ -159,6 +161,11 @@ namespace Fate.WebServiceLayer
             _attributeDic.Add("A0JP", @"/Content/icons/attributes/UncrownedArmsMastership.png");
             _attributeDic.Add("A0AD", @"/Content/icons/attributes/Mind'sEye(True).png");
             _attributeDic.Add("A076", @"/Content/icons/attributes/ImprovedPresenceConcealment.png");
+            _attributeDic.Add("A0LD", @"/Content/icons/attributes/BTNAspectOfDragon.png");
+            _attributeDic.Add("A0LF", @"/Content/icons/attributes/BTNDoubleClassEliz.png");
+            _attributeDic.Add("A0LE", @"/Content/icons/attributes/BTNInnocentMonsterEliz.png");
+            _attributeDic.Add("A0LC", @"/Content/icons/attributes/BTNSadisticCharisma.png");
+            _attributeDic.Add("A0LK", @"/Content/icons/attributes/BTNTortureTechniques.png");
         }
 
         public static string GetAttributeIconURL(string attributeAbilId)
