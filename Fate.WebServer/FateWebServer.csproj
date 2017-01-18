@@ -494,6 +494,9 @@
     <Content Include="Content\icons\attributes\LordofExecution.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\icons\attributes\LoveSpotOfSeduction.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\icons\attributes\MadEnhancement.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

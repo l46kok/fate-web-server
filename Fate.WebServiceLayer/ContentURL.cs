@@ -82,6 +82,7 @@ namespace Fate.WebServiceLayer
             _attributeDic.Add("A0BV", @"/Content/icons/attributes/ImprovedFerocity.png");
             _attributeDic.Add("A0AC", @"/Content/icons/attributes/BloomingofYellow-RedRose.png");
             _attributeDic.Add("A0AE", @"/Content/icons/attributes/DoubleSpear.png");
+            _attributeDic.Add("A08P", @"/Content/icons/attributes/LoveSpotOfSeduction.png");
             _attributeDic.Add("A073", @"/Content/icons/attributes/ImprovedExcalibur.png");
             _attributeDic.Add("A0FZ", @"/Content/icons/attributes/StrikeAir.png");
             _attributeDic.Add("A07D", @"/Content/icons/attributes/ImprovedInstincts.png");
