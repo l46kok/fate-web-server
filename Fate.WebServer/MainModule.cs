@@ -60,7 +60,7 @@ namespace FateWebServer
 
             Get["/Log"] = x =>
             {
-                string gameLog = Regex.Replace(_gameSl.GetGameLog(Request.Query.gameId), @"\r\n?|\n", "<br />"); 
+                string gameLog = _gameSl.GetGameLog(Request.Query.gameId);
                 return View["Views/Log.sshtml",gameLog];
             };
             Get["/PlayerStats/{server}/{playerName}"] = param =>
