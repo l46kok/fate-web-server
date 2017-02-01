@@ -115,7 +115,7 @@
 						</div>
 					</div>
 					<div class="gameTableCell gameDownloadReplay">
-						<a href="/download/replay/9" class="noExpand"><img class="gameDownloadReplayImg" src="/Content/icons/SaveReplay.png" width="32" height="32" alt="Download Replay"></a> 
+						<a href="/download/replay/@Current.GameID" class="noExpand"><img class="gameDownloadReplayImg" src="/Content/icons/SaveReplay.png" width="32" height="32" alt="Download Replay"></a> 
 					</div>
 				</div>
 				<div class="accordian-body collapse" data-gameId="@Current.GameID" id="collapsible@Current.GameID"> 
