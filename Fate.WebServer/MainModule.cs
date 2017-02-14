@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Fate.Common.Data;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
+using FateWebServer.Caching;
 using Nancy;
 using Nancy.Linker;
 
@@ -32,6 +33,7 @@ namespace FateWebServer
 
             Get["/GameList"] = param =>
             {
+                Context.EnableOutputCache(5);
                 return View["Views/GameList.sshtml", _gameListSl.GetGameList()];
             };
 
@@ -39,11 +41,13 @@ namespace FateWebServer
 
             Get["/ServantStatistics"] = Param =>
             {
+                Context.EnableOutputCache(30);
                 return View["Views/ServantStatistics.sshtml", _statisticsSl.GetServantStatistics()];
             };
 
             Get["/LeaderBoards"] = Param =>
             {
+                Context.EnableOutputCache(30);
                 return View["Views/LeaderBoards.sshtml"];
             };
 

@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    // $('#discordLink').modal('show');
     $('body').on('hidden.bs.modal', '.modal', function () {
         $(this).find(".modal-content").html('<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">')
         $(this).removeData('bs.modal');

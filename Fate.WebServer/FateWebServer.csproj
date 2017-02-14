@@ -76,6 +76,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\CachedResponse.cs" />
+    <Compile Include="Caching\ContextExtensions.cs" />
     <Compile Include="Controllers\FileDownloadModule.cs" />
     <Compile Include="Controllers\GameDetailModule.cs" />
     <Compile Include="CustomRootPathProvider.cs" />
@@ -735,6 +737,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\AboutCarousel5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\DiscordImage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\InstructionsChannel.png">
