@@ -21,6 +21,7 @@ namespace FateWebServer
         {
             Get["/"] = _ =>
             {
+                Context.EnableOutputCache(15);
                 MainPageViewModel mpVm = new MainPageViewModel
                 {
                     CurrentBotTime = DateTime.Now,
@@ -33,7 +34,7 @@ namespace FateWebServer
 
             Get["/GameList"] = param =>
             {
-                Context.EnableOutputCache(5);
+                Context.EnableOutputCache(10);
                 return View["Views/GameList.sshtml", _gameListSl.GetGameList()];
             };
 
@@ -71,6 +72,11 @@ namespace FateWebServer
             {
                 PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server, int.MaxValue);
                 return View["Views/PlayerStatsPage.sshtml", summaryData];
+            };
+
+            Get["/Maintenance"] = param =>
+            {
+                return View["Views/Maintenance.sshtml"];
             };
         }
     }
