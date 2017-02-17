@@ -9,6 +9,7 @@ namespace FateWebServer
     {
         private const ushort WEB_SERVER_PORT = 64402;
         private const string TERMINATE_STRING = "/Terminate";
+        private const string MAINTENANCE_STRING = "/Maintenance";
         private const string DEFAULT_CONFIG_FILE_PATH = "config.cfg";
 
         static void Main()
@@ -38,14 +39,35 @@ namespace FateWebServer
             var host = new NancyHost(config, uri);
             #endregion
             #region NancyFX hosting loop
+
             try
             {
                 host.Start();
 
                 Console.Write("Fate/Another III Ranking System Web Server\n" +
-                    "\t\"" + uri + "\"\n" +
-                    "To quit, input \"" + TERMINATE_STRING + "\".\n\n");
-                do Console.Write("> "); while (Console.ReadLine() != TERMINATE_STRING) ;
+                              "\t\"" + uri + "\"\n" +
+                              "To quit, input \"" + TERMINATE_STRING + "\".\n\n" +
+                              "To set maintenance mode, input \"" + MAINTENANCE_STRING + "\".\n\n");
+                bool terminateServer = false;
+                while (!terminateServer)
+                {
+                    Console.Write("> ");
+                    string cmd = Console.ReadLine();
+                    switch (cmd)
+                    {
+                        case TERMINATE_STRING:
+                            terminateServer = true;
+                            break;
+                        case MAINTENANCE_STRING:
+                            MainBootstrapper.IsMaintenanceMode = !MainBootstrapper.IsMaintenanceMode;
+                            if (MainBootstrapper.IsMaintenanceMode)
+                                Console.WriteLine("Starting maintenance mode");
+                            else
+                                Console.WriteLine("Resuming web service");
+                            break;
+
+                    }
+                }
             }
             catch (Exception e)
             {

@@ -11,6 +11,8 @@ namespace FateWebServer
 {
     public class MainBootstrapper : DefaultNancyBootstrapper
     {
+        public static bool IsMaintenanceMode { get; set; } = false;
+
         private readonly Dictionary<string, Tuple<DateTime, Response, int>> cachedResponses = new Dictionary<string, Tuple<DateTime, Response, int>>();
         private byte[] favicon;
 
@@ -18,7 +20,7 @@ namespace FateWebServer
         {
             base.ApplicationStartup(container, pipelines);
 
-            pipelines.BeforeRequest += CheckCache;
+            pipelines.BeforeRequest += BeforeRequestHandler;
             pipelines.AfterRequest += SetCache;
         }
 
@@ -28,8 +30,13 @@ namespace FateWebServer
         /// </summary>
         /// <param name="context">Current context</param>
         /// <returns>Request or null</returns>
-        private Response CheckCache(NancyContext context)
+        private Response BeforeRequestHandler(NancyContext context)
         {
+            if (IsMaintenanceMode)
+            {
+                Response maintenanceResponse = new Response {StatusCode = HttpStatusCode.ServiceUnavailable};
+                return maintenanceResponse;
+            }
             Tuple<DateTime, Response, int> cacheEntry;
 
             if (this.cachedResponses.TryGetValue(context.Request.Path, out cacheEntry))

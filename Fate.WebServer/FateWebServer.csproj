@@ -81,6 +81,7 @@
     <Compile Include="Controllers\FileDownloadModule.cs" />
     <Compile Include="Controllers\GameDetailModule.cs" />
     <Compile Include="CustomRootPathProvider.cs" />
+    <Compile Include="HttpStatusHandler.cs" />
     <Compile Include="MainBootstrapper.cs" />
     <Compile Include="MainModule.cs" />
     <Compile Include="Controllers\PlayerStatsModule.cs" />
@@ -109,6 +110,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Views\LeaderBoards.sshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\Maintenance.sshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Views\ServantStatistics.sshtml">
@@ -761,6 +765,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\InstructionsServer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\MaintenanceScreen.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\scripts\LeaderBoards.js">

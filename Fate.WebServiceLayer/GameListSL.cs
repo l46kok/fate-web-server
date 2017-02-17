@@ -12,10 +12,13 @@ namespace Fate.WebServiceLayer
     public class GameListSL
     {
         private const int GHOST_FRS_PORT = 6302;
+        private const int GHOST_FRS_PORT2 = 6303;
         private const string GHOST_CONNECT_IP = "54.210.38.182";
         private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
-        private const string GHOST_CONNECT_IP_ASIA = "13.112.0.165";
+        private const string GHOST_CONNECT_IP_ASIA = "13.112.46.237";
+        private const string GHOST_CONNECT_IP_ASIA2 = "13.112.46.237";
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
+        private const int POLL_DURATION = 2 * 1000 * 1000;
         private const string GET_GAMES_COMMAND = "GetGames";
         private static readonly GameListSL _instance = new GameListSL();
         private List<SocketData> _socketList = new List<SocketData>();
@@ -32,20 +35,26 @@ namespace Fate.WebServiceLayer
         private GameListSL()
         {
 #if (!DEBUG)
-            ConnectAllSockets();
+            
             _reconnectTimer = new Timer { Interval = RECONNECT_TIMER_INTERVAL };
             _reconnectTimer.Elapsed += Timer_Elapsed;
             _reconnectTimer.Enabled = true;
             _reconnectTimer.Start();
 #endif
-
+            ConnectAllSockets();
         }
 
         private void ConnectAllSockets()
         {
+            _socketList.Clear();
+#if (!DEBUG)
             ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
             ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
             ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
+            ConnectSocket(GHOST_CONNECT_IP_ASIA2, GHOST_FRS_PORT2, "Asia2");
+#else
+            ConnectSocket("127.0.0.1", GHOST_FRS_PORT, "Test");
+#endif
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -62,8 +71,7 @@ namespace Fate.WebServiceLayer
                     Console.WriteLine("FRS GHost socket close error\n" + ex);
                 }
             }
-            _socketList.Clear();
-
+            
             ConnectAllSockets();
         }
 
@@ -114,22 +122,32 @@ namespace Fate.WebServiceLayer
 
                     socketData.Socket.Send(msg);
 
-                    int bytesRec = socketData.Socket.Receive(bytes);
-                    string receivedStr = Encoding.ASCII.GetString(bytes, 0, bytesRec);
-
-                    GameListData gameListData = JsonConvert.DeserializeObject<GameListData>(receivedStr);
-                    gameListData.Server = socketData.Server;
-                    if (gameListData.ProgressList == null)
+                    if (socketData.Socket.Poll(POLL_DURATION, SelectMode.SelectRead))
                     {
-                        //Add dummy list otherwise nancyfx SSVE can't render page correctly
-                        gameListData.ProgressList = new List<GameProgressData>();
+                        int bytesRec = socketData.Socket.Receive(bytes);
+                        string receivedStr = Encoding.ASCII.GetString(bytes, 0, bytesRec);
+
+                        GameListData gameListData = JsonConvert.DeserializeObject<GameListData>(receivedStr);
+                        gameListData.Server = socketData.Server;
+                        if (gameListData.ProgressList == null)
+                        {
+                            //Add dummy list otherwise nancyfx SSVE can't render page correctly
+                            gameListData.ProgressList = new List<GameProgressData>();
+                        }
+                        else
+                        {
+                            //Likewise, SSVE doesn't have a way to nest iterators or get parent's property, so we set the server again here
+                            gameListData.ProgressList.ForEach(x => x.Server = socketData.Server);
+                        }
+                        gameListDataList.Add(gameListData);
                     }
                     else
                     {
-                        //Likewise, SSVE doesn't have a way to nest iterators or get parent's property, so we set the server again here
-                        gameListData.ProgressList.ForEach(x=>x.Server = socketData.Server);
+                        // Polled failed
+                        reconnectSockets = true;
+                        Console.WriteLine("[FRS] Poll failed for server: " + socketData.Server);
                     }
-                    gameListDataList.Add(gameListData);
+                    
                 }
                 catch (Exception ex)
                 {
