@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ContentURL.cs" />
     <Compile Include="CSSColorizer.cs" />
+    <Compile Include="Extension\ArrayExtension.cs" />
     <Compile Include="Extension\DictionaryExtension.cs" />
     <Compile Include="GameDetailSL.cs" />
     <Compile Include="GameListSL.cs" />

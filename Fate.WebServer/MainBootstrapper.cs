@@ -37,6 +37,10 @@ namespace FateWebServer
                 Response maintenanceResponse = new Response {StatusCode = HttpStatusCode.ServiceUnavailable};
                 return maintenanceResponse;
             }
+#if DEBUG
+            return null;
+#endif
+
             Tuple<DateTime, Response, int> cacheEntry;
 
             if (this.cachedResponses.TryGetValue(context.Request.Path, out cacheEntry))
@@ -77,7 +81,7 @@ namespace FateWebServer
 
             var cachedResponse = new CachedResponse(context.Response);
 
-            this.cachedResponses[context.Request.Path] = new Tuple<DateTime, Response, int>(DateTime.Now, cachedResponse, cacheSeconds);
+            cachedResponses[context.Request.Path] = new Tuple<DateTime, Response, int>(DateTime.Now, cachedResponse, cacheSeconds);
 
             context.Response = cachedResponse;
         }
@@ -96,7 +100,7 @@ namespace FateWebServer
 
         protected override byte[] FavIcon
         {
-            get { return this.favicon ?? (this.favicon = null); }
+            get { return favicon ?? (favicon = null); }
         }
 
         private byte[] LoadFavIcon()
