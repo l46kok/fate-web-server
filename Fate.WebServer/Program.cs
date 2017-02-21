@@ -23,18 +23,17 @@ namespace FateWebServer
 
         private static void LoadConfig()
         {
-            ConfigHandler configHandler = new ConfigHandler(DEFAULT_CONFIG_FILE_PATH);
-            if (!configHandler.IsConfigFileValid())
+            ConfigHandler.LoadConfig(DEFAULT_CONFIG_FILE_PATH);
+            if (!ConfigHandler.IsConfigFileValid())
                 _logger.Error("Error loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
             else
             {
                 _logger.Info("Loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
-                configHandler.LoadConfig();
-                frsDb.InitDatabaseConnection(configHandler.DatabaseServer,
-                                             configHandler.DatabasePort,
-                                             configHandler.DatabaseUserName,
-                                             configHandler.DatabasePassword,
-                                             configHandler.DatabaseName);
+                frsDb.InitDatabaseConnection(ConfigHandler.DatabaseServer,
+                                             ConfigHandler.DatabasePort,
+                                             ConfigHandler.DatabaseUserName,
+                                             ConfigHandler.DatabasePassword,
+                                             ConfigHandler.DatabaseName);
             }
         }
 

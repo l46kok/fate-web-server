@@ -4,6 +4,7 @@ using Fate.Common.Data;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
 using FateWebServer.Caching;
+using FateWebServer.Utility;
 using Nancy;
 using Nancy.Linker;
 
@@ -54,7 +55,7 @@ namespace FateWebServer
 
             Get["/Downloads"] = Param =>
             {
-                return View["Views/Downloads.sshtml"];
+                return View["Views/Downloads.sshtml", ConfigHandler.MapName];
             };
 
             Get["/PlayerGameBuildDetail/{GameID}/{PlayerName}"] = param =>

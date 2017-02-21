@@ -27,14 +27,17 @@ namespace FateWebServer.Controllers
                 return response.AsAttachment(fileName);
             };
 
-            Get["/download/Fate8MBPatcher"] = param =>
-            {
-                string patcherPath = Path.Combine(Directory.GetCurrentDirectory(), @"content\download\Fate8MBPatcher.zip");
-                var file = new FileStream(patcherPath, FileMode.Open);
-                string fileName = "Fate8MBPatcher.zip";
-                var response = new StreamResponse(() => file, MimeTypes.GetMimeType(fileName));
-                return response.AsAttachment(fileName);
-            };
+            Get["/download/{fileName}"] = param => SendAttachmentResponse(param.fileName);
+            Get["/download/map"] = param => SendAttachmentResponse(ConfigHandler.MapName);
+        }
+
+        private Response SendAttachmentResponse(string fileName)
+        {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(),
+                    $@"content\download\{fileName}");
+            var file = new FileStream(filePath, FileMode.Open);
+            var response = new StreamResponse(() => file, MimeTypes.GetMimeType(fileName));
+            return response.AsAttachment(fileName);
         }
     }
 }
