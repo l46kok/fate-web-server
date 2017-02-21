@@ -2,6 +2,7 @@
 using Fate.DB;
 using FateWebServer.Utility;
 using Nancy.Hosting.Self;
+using NLog;
 
 namespace FateWebServer
 {
@@ -10,16 +11,24 @@ namespace FateWebServer
         private const ushort WEB_SERVER_PORT = 64402;
         private const string TERMINATE_STRING = "/Terminate";
         private const string MAINTENANCE_STRING = "/Maintenance";
+        private const string RELOAD_CONFIG_STRING = "/ReloadConfig";
         private const string DEFAULT_CONFIG_FILE_PATH = "config.cfg";
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         static void Main()
         {
+            LoadConfig();
+            RunServer();
+        }
+
+        private static void LoadConfig()
+        {
             ConfigHandler configHandler = new ConfigHandler(DEFAULT_CONFIG_FILE_PATH);
             if (!configHandler.IsConfigFileValid())
-                Console.WriteLine("Error loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
+                _logger.Error("Error loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
             else
             {
-                Console.WriteLine("Loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
+                _logger.Info("Loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
                 configHandler.LoadConfig();
                 frsDb.InitDatabaseConnection(configHandler.DatabaseServer,
                                              configHandler.DatabasePort,
@@ -27,18 +36,18 @@ namespace FateWebServer
                                              configHandler.DatabasePassword,
                                              configHandler.DatabaseName);
             }
+        }
 
-            #region Making new instance of NancyHost
+        private static void RunServer()
+        {
             var uri = new Uri("http://localhost:" + WEB_SERVER_PORT + "/");
             var config = new HostConfiguration
             {
-                UrlReservations = {CreateAutomatically = true},
+                UrlReservations = { CreateAutomatically = true },
                 AllowChunkedEncoding = false
             };
 
             var host = new NancyHost(config, uri);
-            #endregion
-            #region NancyFX hosting loop
 
             try
             {
@@ -60,10 +69,12 @@ namespace FateWebServer
                             break;
                         case MAINTENANCE_STRING:
                             MainBootstrapper.IsMaintenanceMode = !MainBootstrapper.IsMaintenanceMode;
-                            if (MainBootstrapper.IsMaintenanceMode)
-                                Console.WriteLine("Starting maintenance mode");
-                            else
-                                Console.WriteLine("Resuming web service");
+                            _logger.Info(MainBootstrapper.IsMaintenanceMode
+                                ? "Starting maintenance mode"
+                                : "Resuming web service");
+                            break;
+                        case RELOAD_CONFIG_STRING:
+                            LoadConfig();
                             break;
 
                     }
@@ -72,8 +83,7 @@ namespace FateWebServer
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unhandled exception has been occured!\n"
-                    + e.Message);
+                _logger.Error(e);
                 Console.ReadKey(true);
             }
             finally
@@ -82,7 +92,6 @@ namespace FateWebServer
             }
 
             Console.WriteLine("Goodbye");
-            #endregion
         }
     }
 }
