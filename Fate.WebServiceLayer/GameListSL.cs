@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Timers;
+using Fate.Common;
 using Fate.Common.Data;
 using Fate.WebServiceLayer.Extension;
 using Newtonsoft.Json;
@@ -27,7 +28,7 @@ namespace Fate.WebServiceLayer
         private static readonly GameListSL _instance = new GameListSL();
         private readonly List<SocketData> _socketList = new List<SocketData>();
         private static Timer _reconnectTimer;
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger _logger;
 
         public static GameListSL Instance => _instance;
 
@@ -41,8 +42,9 @@ namespace Fate.WebServiceLayer
 
         private GameListSL()
         {
+            _logger = LogManager.GetCurrentClassLogger();
 #if (!DEBUG)
-            
+
             _reconnectTimer = new Timer { Interval = RECONNECT_TIMER_INTERVAL };
             _reconnectTimer.Elapsed += Timer_Elapsed;
             _reconnectTimer.Enabled = true;
