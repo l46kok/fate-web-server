@@ -6,32 +6,31 @@ using System.Linq;
 
 namespace FateWebServer.Utility
 {
-    public class ConfigHandler
+    public static class ConfigHandler
     {
-        public string DatabaseServer { get; private set; }
-        public uint DatabasePort { get; private set; }
-        public string DatabaseUserName { get; private set; }
-        public string DatabasePassword { get; private set; }
-        public string DatabaseName { get; private set; }
+        public static string DatabaseServer { get; private set; }
+        public static uint DatabasePort { get; private set; }
+        public static string DatabaseUserName { get; private set; }
+        public static string DatabasePassword { get; private set; }
+        public static string DatabaseName { get; private set; }
+        public static string MapName { get; set; }
 
-        private string _configFilePath;
-        private readonly List<string> _fileContent = new List<string>();
-        public ConfigHandler(string configFilePath)
+        private static string _configFilePath;
+        private static List<string> _fileContent = new List<string>();
+
+        public static bool IsConfigFileValid()
+        {
+            return _fileContent.Any();
+        }
+
+        public static void LoadConfig(string configFilePath)
         {
             _configFilePath = configFilePath;
             if (File.Exists(configFilePath))
             {
                 _fileContent = new List<string>(File.ReadAllLines(configFilePath));
             }
-        }
 
-        public bool IsConfigFileValid()
-        {
-            return _fileContent.Any();
-        }
-
-        public void LoadConfig()
-        {
             uint parsedInt;
             DatabaseServer = GetConfigString("databaseserver");
             if (uint.TryParse(GetConfigString("databaseport"), out parsedInt))
@@ -41,9 +40,10 @@ namespace FateWebServer.Utility
             DatabaseUserName = GetConfigString("databaseusername");
             DatabasePassword = GetConfigString("databasepassword");
             DatabaseName = GetConfigString("databasename");
+            MapName = GetConfigString("mapname");
         }
 
-        private string GetConfigString(string key)
+        private static string GetConfigString(string key)
         {
             foreach (string line in _fileContent)
             {
