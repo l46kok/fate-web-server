@@ -52,10 +52,13 @@ namespace FateWebServer
             {
                 host.Start();
 
+                Console.Write("Fate / Another III Stats Page");
+
                 Console.Write("Fate/Another III Ranking System Web Server\n" +
                               "\t\"" + uri + "\"\n" +
-                              "To quit, input \"" + TERMINATE_STRING + "\".\n\n" +
-                              "To set maintenance mode, input \"" + MAINTENANCE_STRING + "\".\n\n");
+                              $"To quit, input {TERMINATE_STRING}\n" +
+                              $"To set maintenance mode, input {MAINTENANCE_STRING}\n" +
+                              $"To set reload configuration, input {RELOAD_CONFIG_STRING}\n");
                 bool terminateServer = false;
                 while (!terminateServer)
                 {

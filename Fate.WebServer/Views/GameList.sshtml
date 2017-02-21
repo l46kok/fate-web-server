@@ -1,7 +1,7 @@
 ﻿@Master['MasterPage']
 
 @Section['Content']
-<link href="./Content/css/GameList.css" rel="stylesheet">
+<link href="./Content/css/GameList.css?ver=3" rel="stylesheet">
 
 <!-- Begin page content -->
 <div class="container">
