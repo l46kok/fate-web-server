@@ -9,6 +9,7 @@ using System.Timers;
 using Fate.Common.Data;
 using Fate.WebServiceLayer.Extension;
 using Newtonsoft.Json;
+using NLog;
 using Timer = System.Timers.Timer;
 
 namespace Fate.WebServiceLayer
@@ -26,6 +27,7 @@ namespace Fate.WebServiceLayer
         private static readonly GameListSL _instance = new GameListSL();
         private readonly List<SocketData> _socketList = new List<SocketData>();
         private static Timer _reconnectTimer;
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public static GameListSL Instance => _instance;
 
@@ -39,20 +41,20 @@ namespace Fate.WebServiceLayer
 
         private GameListSL()
         {
-#if (DEBUG)
+#if (!DEBUG)
             
             _reconnectTimer = new Timer { Interval = RECONNECT_TIMER_INTERVAL };
             _reconnectTimer.Elapsed += Timer_Elapsed;
             _reconnectTimer.Enabled = true;
             _reconnectTimer.Start();
-#endif
             ConnectAllSockets();
+#endif
         }
 
         private void ConnectAllSockets()
         {
             _socketList.Clear();
-#if (DEBUG)
+#if (!DEBUG)
             ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
             ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
             ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
@@ -63,7 +65,7 @@ namespace Fate.WebServiceLayer
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Console.WriteLine("[FRS]: Reconnecting all sockets...");
+            _logger.Info("[FRS]: Reconnecting all sockets...");
             foreach (SocketData sd in _socketList)
             {
                 try
@@ -72,7 +74,7 @@ namespace Fate.WebServiceLayer
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("FRS GHost socket close error\n" + ex);
+                    _logger.Error(ex, "[FRS] GHost socket close error");
                 }
             }
             
@@ -105,11 +107,11 @@ namespace Fate.WebServiceLayer
                     Server = server
                 };
                 _socketList.Add(socketData);
-                Console.WriteLine("Successfully Connected to FRS Socket: " + server);
+                _logger.Info("Successfully Connected to FRS Socket: " + server);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("FRS GHost socket connection error\n" + ex);
+                _logger.Error(ex,"[FRS] GHost socket connection error");
             }
         }
 
@@ -231,8 +233,7 @@ namespace Fate.WebServiceLayer
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("[GameListSL] Failed serialization on server " + socketData.Server);
-                            Console.WriteLine("[GameListSL] Stack Trace: " + ex);
+                            _logger.Error(ex, "[FRS] Failed serialization on server " + socketData.Server);
                             continue;
                         }
 
@@ -261,20 +262,20 @@ namespace Fate.WebServiceLayer
                     {
                         // Polled failed
                         reconnectSockets = true;
-                        Console.WriteLine("[FRS] Poll failed for server: " + socketData.Server);
+                        _logger.Error("[FRS] Poll failed for server: " + socketData.Server);
                     }
                     
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("GetGameList Comm Error: " + ex);
+                    _logger.Error(ex, "[FRS] GetGameList Comm Error");
                     reconnectSockets = true;
                 }
             }
 
             if (reconnectSockets)
             {
-                Console.WriteLine("Reconnecting FRS sockets after error");
+                _logger.Error("Reconnecting FRS sockets after error");
                 ConnectAllSockets();
                 return null;
             }
