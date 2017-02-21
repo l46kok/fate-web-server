@@ -1,0 +1,9 @@
+﻿@Each
+<tr>
+    <td class="centerText inner-table-td-no-border">
+        <b><a href="/PlayerStats/USEast/@Current.PlayerName">@Current.PlayerName</a></b>
+    </td>
+    <td class="centerText inner-table-td-no-border">@Current.Server</td>
+    <td class="centerText inner-table-td-no-border">@Current.Ping ms</td>
+</tr>
+@EndEach

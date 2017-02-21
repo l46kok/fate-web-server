@@ -23,8 +23,9 @@
 				<h1 class="text-center">Server under maintenance</h1>
 				<img class="center-block" src="/Content/images/MaintenanceScreen.jpg">
 				<br/>
-				<p>:( We know, it sucks to have the site down but we occasionally need to do maintenance on the site
-				to add new features or fix any known issues.</p>
+                <br />
+				<p>:( We know, it sucks to have the site down but we occasionally need to perform maintenance on the site
+				to do things like adding new features or fixing bugs.</p>
 				<p>We're working hard to bring more imba into both Fate / Another III and ufwfate.net. In the meanwhile, you can watch this GAR video 
 				to satisfy your personal needs.</p>
 				<iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/b5B4jA8kcOo" frameborder="0" allowfullscreen></iframe>

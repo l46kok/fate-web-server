@@ -1,0 +1,23 @@
+﻿@Each
+<tr class="team-row-@Current.TeamNumber">
+    <td class="leftText inner-table-td-no-border">
+        <img class="heroicon" height="32" width="32" src="@Current.HeroIconURL">
+        <b><a href="/PlayerStats/USEast/@Current.PlayerName">@Current.PlayerName</a></b>
+
+    <td class="centerText inner-table-td-no-border">@Current.Kills</td>
+    <td class="centerText inner-table-td-no-border">@Current.Deaths</td>
+    <td class="centerText inner-table-td-no-border">@Current.Assists</td>
+    <td class="centerText inner-table-td-no-border">@Current.Server</td>
+    <td class="centerText inner-table-td-no-border">@Current.Ping ms</td>
+    @If.IsConnected
+    <td class="centerText inner-table-td-no-border status-connected">
+        <b>In Game</b>
+    </td>
+    @EndIf
+    @IfNot.IsConnected
+    <td class="centerText inner-table-td-no-border status-disconnected">
+        <b>Disconnected</b>
+    </td>
+    @EndIf
+</tr>
+@EndEach
