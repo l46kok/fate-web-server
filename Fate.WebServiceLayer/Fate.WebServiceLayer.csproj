@@ -56,6 +56,7 @@
     <Compile Include="GameDetailSL.cs" />
     <Compile Include="GameListSL.cs" />
     <Compile Include="GameSL.cs" />
+    <Compile Include="LoginSL.cs" />
     <Compile Include="PlayerStatSL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticsSL.cs" />

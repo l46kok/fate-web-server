@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
-using Fate.Common.Data;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
 using FateWebServer.Caching;
@@ -17,6 +15,7 @@ namespace FateWebServer
         private static readonly GameListSL _gameListSl = GameListSL.Instance;
         private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
         private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
+        private static readonly LoginSL _loginSl = LoginSL.Instance;
 
         public MainModule(IResourceLinker linker)
         {
@@ -53,10 +52,7 @@ namespace FateWebServer
                 return View["Views/LeaderBoards.sshtml"];
             };
 
-            Get["/Downloads"] = Param =>
-            {
-                return View["Views/Downloads.sshtml", ConfigHandler.MapName];
-            };
+            Get["/Downloads"] = Param => View["Views/Downloads.sshtml", ConfigHandler.MapName];
 
             Get["/PlayerGameBuildDetail/{GameID}/{PlayerName}"] = param =>
             {
@@ -75,10 +71,9 @@ namespace FateWebServer
                 return View["Views/PlayerStatsPage.sshtml", summaryData];
             };
 
-            Get["/Maintenance"] = param =>
-            {
-                return View["Views/Maintenance.sshtml"];
-            };
+            Get["/Maintenance"] = param => View["Views/Maintenance.sshtml"];
+
+            Get["/Login"] = param => View["Views/Login.sshtml"];
         }
     }
 }

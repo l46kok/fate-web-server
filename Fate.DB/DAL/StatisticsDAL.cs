@@ -28,7 +28,7 @@ namespace Fate.DB.DAL
                         JOIN HEROTYPENAME C
 	                        ON C.FK_HeroTypeID = B.HeroTypeID
                         GROUP BY A.FK_HeroTypeID;";
-            using (var db = frsDb.Create())
+            using (var db = frsDatabase.Create())
             {
                 List<ServantStatisticsData> servantStatistics = db.Database.SqlQuery<ServantStatisticsData>(sql).ToList();
                 return servantStatistics;
@@ -111,7 +111,7 @@ namespace Fate.DB.DAL
                         ) Result
                         {orderByClause}";
 
-            using (var db = frsDb.Create())
+            using (var db = frsDatabase.Create())
             {
                 List<PlayerStatisticsData> playerStatistics = db.Database.SqlQuery<PlayerStatisticsData>(sql).ToList();
                 return playerStatistics;

@@ -84,6 +84,7 @@
     <Compile Include="Caching\ContextExtensions.cs" />
     <Compile Include="Controllers\FileDownloadModule.cs" />
     <Compile Include="Controllers\GameDetailModule.cs" />
+    <Compile Include="Controllers\LoginModule.cs" />
     <Compile Include="CustomRootPathProvider.cs" />
     <Compile Include="HttpStatusHandler.cs" />
     <Compile Include="MainBootstrapper.cs" />
@@ -101,6 +102,9 @@
     <None Include="Content\download\Fate8MBPatcher.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\css\Login.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\InstructionsGProxy4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -122,6 +126,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Login.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\Downloads.sshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -793,6 +800,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\scripts\LeaderBoards.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\scripts\Login.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\scripts\selectize.min.js">

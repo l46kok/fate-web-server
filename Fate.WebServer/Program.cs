@@ -29,7 +29,7 @@ namespace FateWebServer
             else
             {
                 _logger.Info("Loading default config file: {0}", DEFAULT_CONFIG_FILE_PATH);
-                frsDb.InitDatabaseConnection(ConfigHandler.DatabaseServer,
+                frsDatabase.InitDatabaseConnection(ConfigHandler.DatabaseServer,
                                              ConfigHandler.DatabasePort,
                                              ConfigHandler.DatabaseUserName,
                                              ConfigHandler.DatabasePassword,

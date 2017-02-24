@@ -11,7 +11,7 @@ namespace Fate.DB.DAL
     {
         public List<GamePlayerDetailData> GetGameDetails(int gameId)
         {
-            using (frsDb db = frsDb.Create())
+            using (frsDatabase db = frsDatabase.Create())
             {
                 const string sql = @"SELECT A.GameID, 
 	                                   A.TeamOneWinCount, 
@@ -48,7 +48,7 @@ namespace Fate.DB.DAL
 
         public PlayerGameBuildData GetPlayerGameBuildDetail(string playerName, int gameId)
         {
-            using (frsDb db = frsDb.Create())
+            using (frsDatabase db = frsDatabase.Create())
             {
                 //Find gamePlayerDetailId first
                 int gamePlayerDetailId = (
