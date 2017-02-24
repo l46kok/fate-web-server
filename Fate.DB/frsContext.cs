@@ -3,11 +3,11 @@ using MySql.Data.MySqlClient;
 
 namespace Fate.DB
 {
-    public partial class frsDb
+    public partial class frsDatabase
     {
         private static EntityConnectionStringBuilder _entityBuilder;
 
-        private frsDb(string connectionString)
+        private frsDatabase(string connectionString)
         : base(connectionString)
         {
         }
@@ -47,9 +47,9 @@ namespace Fate.DB
         /// </summary>
         /// <param name="providerConnectionString">Provider connection string to use. Usually a standart ADO.NET connection string.</param>
         /// <returns></returns>
-        public static frsDb Create()
+        public static frsDatabase Create()
         {
-            return new frsDb(_entityBuilder.ConnectionString);
+            return new frsDatabase(_entityBuilder.ConnectionString);
         }
     }
 }

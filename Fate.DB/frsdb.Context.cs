@@ -13,10 +13,10 @@ namespace Fate.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class frsDb : DbContext
+    public partial class frsDatabase : DbContext
     {
-        public frsDb()
-            : base("name=frsDb")
+        public frsDatabase()
+            : base("name=frsDatabase")
         {
         }
     
@@ -27,6 +27,7 @@ namespace Fate.DB
     
         public virtual DbSet<attributeinfo> attributeinfo { get; set; }
         public virtual DbSet<attributelearn> attributelearn { get; set; }
+        public virtual DbSet<commandsealuse> commandsealuse { get; set; }
         public virtual DbSet<game> game { get; set; }
         public virtual DbSet<gameitempurchase> gameitempurchase { get; set; }
         public virtual DbSet<gameplayerdetail> gameplayerdetail { get; set; }
@@ -42,6 +43,6 @@ namespace Fate.DB
         public virtual DbSet<playerstat> playerstat { get; set; }
         public virtual DbSet<ranking> ranking { get; set; }
         public virtual DbSet<server> server { get; set; }
-        public virtual DbSet<commandsealuse> commandsealuse { get; set; }
+        public virtual DbSet<webusers> webusers { get; set; }
     }
 }

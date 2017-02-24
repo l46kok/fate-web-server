@@ -73,6 +73,7 @@
     <Compile Include="commandsealuse.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\ServantSearchDAL.cs" />
     <Compile Include="DAL\StatisticsDAL.cs" />
     <Compile Include="frsContext.cs" />
@@ -140,6 +141,9 @@
     <Compile Include="server.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="webusers.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -169,13 +173,13 @@
       <DependentUpon>frsdb.edmx</DependentUpon>
       <LastGenOutput>frsdb.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="frsdb.edmx.sql" />
     <Content Include="frsdb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>frsdb.edmx</DependentUpon>
       <LastGenOutput>frsdb.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

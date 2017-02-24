@@ -11,7 +11,7 @@ namespace Fate.DB.DAL
     {
         public List<SearchableServantData> GetSearchableServants()
         {
-            using (frsDb db = frsDb.Create())
+            using (frsDatabase db = frsDatabase.Create())
             {
                 return (
                         from heroType in db.herotype

@@ -17,7 +17,7 @@ namespace Fate.DB.DAL
         public IEnumerable<GameData> GetRecentGameDataList(int count)
         {
             var gameDataList = new List<GameData>();
-            using (var db = frsDb.Create())
+            using (var db = frsDatabase.Create())
             {
                 var recentGameQueryData = (
                     from game in db.game
@@ -75,7 +75,7 @@ namespace Fate.DB.DAL
         /// <returns>Log (string)</returns>
         public string GetGameLog(int gameId)
         {
-            using (var db = frsDb.Create())
+            using (var db = frsDatabase.Create())
             {
                 return db.game.FirstOrDefault(x => x.GameID == gameId)?.Log;
             }
@@ -83,7 +83,7 @@ namespace Fate.DB.DAL
 
         public GameReplayData GetReplayData(int gameId)
         {
-            using (var db = frsDb.Create())
+            using (var db = frsDatabase.Create())
             {
                 GameReplayData data = new GameReplayData();
                 game game = db.game.FirstOrDefault(x => x.GameID == gameId);
