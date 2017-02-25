@@ -23,7 +23,7 @@ namespace Fate.DB.DAL
             }
         }
 
-        public void CreateAccount(string accountName, string hashedPassword, string salt)
+        public void CreateAccount(string accountName, string hashedPassword, string salt, string emailAddress)
         {
             using (var db = frsDatabase.Create())
             {
@@ -34,7 +34,8 @@ namespace Fate.DB.DAL
                     ModifiedOn = DateTime.Now,
                     IsAdmin = false,
                     Password = hashedPassword,
-                    Salt = salt
+                    Salt = salt,
+                    EmailAddress = emailAddress
                 };
                 db.webusers.Add(newUser);
                 db.SaveChanges();

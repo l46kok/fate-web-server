@@ -73,13 +73,13 @@
     <Compile Include="commandsealuse.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="DAL\LoginDAL.cs" />
-    <Compile Include="DAL\ServantSearchDAL.cs" />
-    <Compile Include="DAL\StatisticsDAL.cs" />
+    <Compile Include="DAL\FRS\LoginDAL.cs" />
+    <Compile Include="DAL\FRS\ServantSearchDAL.cs" />
+    <Compile Include="DAL\FRS\StatisticsDAL.cs" />
     <Compile Include="frsContext.cs" />
-    <Compile Include="DAL\GameDAL.cs" />
-    <Compile Include="DAL\GameDetailDAL.cs" />
-    <Compile Include="DAL\PlayerStatDAL.cs" />
+    <Compile Include="DAL\FRS\GameDAL.cs" />
+    <Compile Include="DAL\FRS\GameDetailDAL.cs" />
+    <Compile Include="DAL\FRS\PlayerStatDAL.cs" />
     <Compile Include="frsdb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

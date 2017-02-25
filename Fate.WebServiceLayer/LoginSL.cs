@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Fate.Common.Data;
 using Fate.DB.DAL;
 
 namespace Fate.WebServiceLayer
@@ -48,10 +49,10 @@ namespace Fate.WebServiceLayer
             return _loginDal.IsAccountNameRegistered(accountName);
         }
 
-        public void CreateNewAccount(string accountName, string password)
+        public void CreateNewAccount(LoginData data)
         {
             string salt = GenerateSalt();
-            _loginDal.CreateAccount(accountName, GetSHA512HashValue(password + salt), salt);
+            _loginDal.CreateAccount(data.UserName, GetSHA512HashValue(data.Password + salt), salt, data.Email);
         }
     }
 }
