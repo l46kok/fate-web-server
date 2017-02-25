@@ -60,6 +60,7 @@
     <Compile Include="PlayerStatSL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticsSL.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PlayerGameSummaryViewModel.cs" />
     <Compile Include="ViewModels\PlayerHeroStatsViewModel.cs" />

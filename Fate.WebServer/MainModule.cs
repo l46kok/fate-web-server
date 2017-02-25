@@ -73,7 +73,7 @@ namespace FateWebServer
 
             Get["/Maintenance"] = param => View["Views/Maintenance.sshtml"];
 
-            Get["/Login"] = param => View["Views/Login.sshtml"];
+            Get["/Login"] = param => View["Views/Login.sshtml", new LoginViewModel()];
         }
     }
 }

@@ -38,6 +38,7 @@ namespace Fate.WebServiceLayer
             public string Server { get; set; }
             public int DataLength { get; set; }
             public int RemainingData { get; set; }
+            public GameListData CachedGameListData { get; set; }
         }
 
         private GameListSL()
@@ -205,11 +206,10 @@ namespace Fate.WebServiceLayer
                     if (socketData.Socket.Poll(POLL_DURATION, SelectMode.SelectRead))
                     {
                         GameListData gameListData = null;
-                        int socketReadAttempt = 20;
+                        int socketReadAttempt = 1000;
                         string receivedStr = "";
                         while (socketData.RemainingData > 0 && socketReadAttempt > 0)
                         {
-                            Thread.Sleep(1);
                             int bytesRec = socketData.Socket.Receive(bytes);
                             if (socketData.DataLength <= 0)
                             {
@@ -236,10 +236,16 @@ namespace Fate.WebServiceLayer
                         catch (Exception ex)
                         {
                             _logger.Error(ex, "[FRS] Failed serialization on server " + socketData.Server);
+                            _logger.Error("Serialized Message: " + Environment.NewLine + receivedStr);
+                            reconnectSockets = true;
+                            if (socketData.CachedGameListData != null)
+                            {
+                                gameListDataList.Add(socketData.CachedGameListData);
+                            }
                             continue;
                         }
 
-
+                        socketData.CachedGameListData = gameListData;
                         gameListData.Server = socketData.Server;
                         if (gameListData.Lobby.IsAvailable && gameListData.Lobby.PlayerDataList == null)
                         {

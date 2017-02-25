@@ -4,6 +4,7 @@
         $("#register-form").fadeOut(100);
         $('#register-form-link').removeClass('active');
         $(this).addClass('active');
+        $("#login-error").remove();
         e.preventDefault();
     });
     $('#register-form-link').click(function (e) {
@@ -11,6 +12,7 @@
         $("#login-form").fadeOut(100);
         $('#login-form-link').removeClass('active');
         $(this).addClass('active');
+        $("#login-error").remove();
         e.preventDefault();
     });
 

@@ -22,6 +22,15 @@
                     <hr>
                 </div>
                 <div class="panel-body">
+                    @If.HasError
+                    <div id="login-error" class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger">
+                                @Model.ErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                    @EndIf
                     <div class="row">
                         <div class="col-lg-12">
                             <form id="login-form" action="/Login" method="post" role="form" style="display: block;">
