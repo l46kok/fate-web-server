@@ -30,8 +30,6 @@ namespace Fate.DB
         public virtual DbSet<dotagames> dotagames { get; set; }
         public virtual DbSet<dotaplayers> dotaplayers { get; set; }
         public virtual DbSet<downloads> downloads { get; set; }
-        public virtual DbSet<gameplayers> gameplayers { get; set; }
-        public virtual DbSet<games> games { get; set; }
         public virtual DbSet<kicks> kicks { get; set; }
         public virtual DbSet<phrases> phrases { get; set; }
         public virtual DbSet<plugindb> plugindb { get; set; }
@@ -39,5 +37,7 @@ namespace Fate.DB
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<w3mmdplayers> w3mmdplayers { get; set; }
         public virtual DbSet<w3mmdvars> w3mmdvars { get; set; }
+        public virtual DbSet<gameplayers> gameplayers { get; set; }
+        public virtual DbSet<games> games { get; set; }
     }
 }

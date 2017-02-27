@@ -10,8 +10,6 @@
         <EntityTypeShape EntityType="ghostModel.dotagames" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.dotaplayers" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.downloads" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ghostModel.gameplayers" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ghostModel.games" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.kicks" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.phrases" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.plugindb" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
@@ -19,6 +17,8 @@
         <EntityTypeShape EntityType="ghostModel.users" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.w3mmdplayers" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ghostModel.w3mmdvars" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ghostModel.gameplayers" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ghostModel.games" Width="1.5" PointX="9.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

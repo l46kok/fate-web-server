@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 02/24/2017 00:25:54
+-- Date Created: 02/27/2017 03:10:35
 
 -- Generated from EDMX file: D:\SourceCodes\Personal\fate-web-server\Fate.DB\frsdb.edmx
 -- Target version: 3.0.0.0

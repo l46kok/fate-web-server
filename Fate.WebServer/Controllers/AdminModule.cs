@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Fate.DB;
+using Fate.WebServiceLayer;
+using FateWebServer.Utility;
 using Nancy;
-using Nancy.Authentication.Forms;
-using Nancy.Responses;
 using Nancy.Security;
-using Nancy.TinyIoc;
 
 namespace FateWebServer.Controllers
 {
     public class AdminModule : NancyModule
     {
+        private readonly AdminSearchPlayerDataSL _adminSearchPlayerDataSl = AdminSearchPlayerDataSL.Instance;
         public AdminModule()
         {
-
-            // Before += ctx => (Context.CurrentUser == null) ? new HtmlResponse(HttpStatusCode.Unauthorized) : null;
+#if DEBUG
             this.RequiresAuthentication();
-            
-            Get["/Admin"] = param => View["Views/AdminConsole.sshtml"];
+#endif
+
+            Get["/Admin"] = param => View["Views/Admin/AdminConsole.sshtml"];
+            Get["/Admin/PlayerSearch"] = param => View["Views/Admin/AdminSearch.sshtml"];
+            Get["/Admin/PlayerSearch/{playerName}"] = param =>
+            {
+                string playerName = param.playerName;
+                //TODO: Currently only handles one database (ASIA)
+                ghostEntities.InitDatabaseConnection(ConfigHandler.GhostDatabaseList.First());
+                return Response.AsJson(_adminSearchPlayerDataSl.GetPlayerSearchData(playerName));
+            };
+            Get["/AdminBan"] = param => View["Views/Admin/AdminBan.sshtml"];
         }
     }
 }

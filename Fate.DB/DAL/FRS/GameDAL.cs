@@ -2,7 +2,7 @@
 using System.Linq;
 using Fate.Common.Data;
 
-namespace Fate.DB.DAL
+namespace Fate.DB.DAL.FRS
 {
     /// <summary>
     ///     Data access layer for Game table

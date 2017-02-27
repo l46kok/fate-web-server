@@ -82,6 +82,7 @@
     <Compile Include="DAL\FRS\LoginDAL.cs" />
     <Compile Include="DAL\FRS\ServantSearchDAL.cs" />
     <Compile Include="DAL\FRS\StatisticsDAL.cs" />
+    <Compile Include="DAL\GHost\GHostPlayerDataDAL.cs" />
     <Compile Include="dotagames.cs">
       <DependentUpon>ghostAsia.tt</DependentUpon>
     </Compile>
@@ -140,6 +141,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ghostAsia.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ghostContext.cs" />
     <Compile Include="godshelpinfo.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
@@ -248,15 +250,14 @@
       <DependentUpon>ghostAsia.edmx</DependentUpon>
       <LastGenOutput>ghostAsia.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="ghostAsia.edmx.sql" />
     <Content Include="ghostAsia.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ghostAsia.edmx</DependentUpon>
       <LastGenOutput>ghostAsia.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\GHost\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

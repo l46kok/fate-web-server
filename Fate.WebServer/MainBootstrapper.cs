@@ -49,7 +49,7 @@ namespace FateWebServer
                 var formsAuthConfiguration =
                     new FormsAuthenticationConfiguration()
                     {
-                        RedirectUrl = "~/Admin",
+                        RedirectUrl = "/Login",
                         UserMapper = requestContainer.Resolve<LoginSL>(),
                     };
 
@@ -61,7 +61,7 @@ namespace FateWebServer
                 var formsAuthConfiguration =
                     new FormsAuthenticationConfiguration()
                     {
-                        RedirectUrl = "~Login",
+                        RedirectUrl = "/Login",
                         UserMapper = requestContainer.Resolve<LoginSL>(),
                     };
 

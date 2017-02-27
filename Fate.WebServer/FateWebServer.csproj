@@ -98,6 +98,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Utility\ConfigHandler.cs" />
     <Compile Include="Utility\NancyExtensions.cs" />
+    <None Include="Views\Admin\AdminBan.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\Admin\AdminSearch.sshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -107,6 +113,7 @@
     <None Include="Content\download\Fate8MBPatcher.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\css\AdminSearch.css" />
     <Content Include="Content\css\Login.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -131,7 +138,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\AdminConsole.sshtml">
+    <None Include="Views\Admin\AdminConsole.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\Login.sshtml">
@@ -807,6 +814,7 @@
     <Content Include="Content\images\MaintenanceScreen.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\scripts\AdminSearch.js" />
     <Content Include="Content\scripts\LeaderBoards.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
