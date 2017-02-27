@@ -5,6 +5,9 @@ namespace Fate.DB.DAL
 {
     public class LoginDAL
     {
+        private static readonly LoginDAL _instance = new LoginDAL();
+        public static LoginDAL Instance => _instance;
+
         public bool IsAccountNameRegistered(string accountName)
         {
             using (var db = frsDatabase.Create())
@@ -39,6 +42,16 @@ namespace Fate.DB.DAL
                 };
                 db.webusers.Add(newUser);
                 db.SaveChanges();
+            }
+        }
+
+        public bool IsUserAdmin(string accountName)
+        {
+            using (var db = frsDatabase.Create())
+            {
+                return
+                    db.webusers.Single(x => x.UserName.Equals(accountName, StringComparison.InvariantCultureIgnoreCase))
+                        .IsAdmin;
             }
         }
 

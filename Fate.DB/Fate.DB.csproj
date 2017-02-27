@@ -64,11 +64,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admins.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
     <Compile Include="attributeinfo.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
     <Compile Include="attributelearn.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bans.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
     </Compile>
     <Compile Include="commandsealuse.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
@@ -76,6 +82,15 @@
     <Compile Include="DAL\FRS\LoginDAL.cs" />
     <Compile Include="DAL\FRS\ServantSearchDAL.cs" />
     <Compile Include="DAL\FRS\StatisticsDAL.cs" />
+    <Compile Include="dotagames.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dotaplayers.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="downloads.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
     <Compile Include="frsContext.cs" />
     <Compile Include="DAL\FRS\GameDAL.cs" />
     <Compile Include="DAL\FRS\GameDetailDAL.cs" />
@@ -104,6 +119,27 @@
     <Compile Include="gameplayerdetail.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="gameplayers.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="games.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ghostAsia.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ghostAsia.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ghostAsia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ghostAsia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+    </Compile>
     <Compile Include="godshelpinfo.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
@@ -125,6 +161,12 @@
     <Compile Include="iteminfo.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="kicks.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="phrases.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
     <Compile Include="player.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
@@ -134,12 +176,27 @@
     <Compile Include="playerstat.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="plugindb.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ranking.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="scores.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
     <Compile Include="server.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="users.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="w3mmdplayers.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="w3mmdvars.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
     </Compile>
     <Compile Include="webusers.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
@@ -155,6 +212,13 @@
     </EntityDeploy>
     <None Include="frsdb.edmx.diagram">
       <DependentUpon>frsdb.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="ghostAsia.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ghostAsia.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ghostAsia.edmx.diagram">
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -179,6 +243,19 @@
       <DependentUpon>frsdb.edmx</DependentUpon>
       <LastGenOutput>frsdb.cs</LastGenOutput>
     </Content>
+    <Content Include="ghostAsia.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+      <LastGenOutput>ghostAsia.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ghostAsia.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+      <LastGenOutput>ghostAsia.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAL\GHost\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

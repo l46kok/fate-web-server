@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Fate.Common.Data;
+using Fate.WebServiceLayer;
 using FateWebServer.Caching;
+using FateWebServer.Controllers;
 using Nancy;
+using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.TinyIoc;
@@ -22,6 +26,47 @@ namespace FateWebServer
 
             pipelines.BeforeRequest += BeforeRequestHandler;
             pipelines.AfterRequest += SetCache;
+        }
+
+        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+        {
+            // We don't call "base" here to prevent auto-discovery of
+            // types/dependencies
+        }
+
+        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
+        {
+            base.ConfigureRequestContainer(container, context);
+            container.Register<IUserMapper, LoginSL>();
+        }
+
+        protected override void RequestStartup(TinyIoCContainer requestContainer, IPipelines pipelines, NancyContext context)
+        {
+            base.RequestStartup(requestContainer, pipelines, context);
+
+            if (context.Request.Url.Path.StartsWith("/Login"))
+            {
+                var formsAuthConfiguration =
+                    new FormsAuthenticationConfiguration()
+                    {
+                        RedirectUrl = "~/Admin",
+                        UserMapper = requestContainer.Resolve<LoginSL>(),
+                    };
+
+                FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
+            }
+
+            if (context.Request.Url.Path.StartsWith("/Admin"))
+            {
+                var formsAuthConfiguration =
+                    new FormsAuthenticationConfiguration()
+                    {
+                        RedirectUrl = "~Login",
+                        UserMapper = requestContainer.Resolve<LoginSL>(),
+                    };
+
+                FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
+            }
         }
 
         /// <summary>

@@ -1,0 +1,5 @@
+﻿@Master['MasterPage']
+
+@Section['Content']
+
+@EndSection
