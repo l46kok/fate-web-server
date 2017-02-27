@@ -9,7 +9,8 @@ namespace FateWebServer
         public string GetRootPath()
         {
 #if DEBUG
-            return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            DirectoryInfo debugDir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+            return debugDir.Parent.Parent.FullName;
 #else
         return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 #endif

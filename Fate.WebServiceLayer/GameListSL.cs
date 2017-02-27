@@ -18,10 +18,11 @@ namespace Fate.WebServiceLayer
     public class GameListSL
     {
         private const int GHOST_FRS_PORT = 6302;
-        private const string GHOST_CONNECT_TEST_IP = "54.210.38.182";
+        private const string GHOST_CONNECT_TEST_IP = "182.18.22.91";
         private const string GHOST_CONNECT_IP = "54.210.38.182";
         private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
         private const string GHOST_CONNECT_IP_ASIA = "13.112.46.237";
+        private const string GHOST_CONNECT_IP_CN = "182.18.22.91";
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
         private const int POLL_DURATION = 2 * 1000 * 1000;
         private const string GET_GAMES_COMMAND = "GetGames";
@@ -50,8 +51,8 @@ namespace Fate.WebServiceLayer
             _reconnectTimer.Elapsed += Timer_Elapsed;
             _reconnectTimer.Enabled = true;
             _reconnectTimer.Start();
-            ConnectAllSockets();
 #endif
+            // ConnectAllSockets();
         }
 
         private void ConnectAllSockets()
@@ -61,8 +62,9 @@ namespace Fate.WebServiceLayer
             ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
             ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
             ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
+            ConnectSocket(GHOST_CONNECT_IP_CN, GHOST_FRS_PORT, "China");
 #else
-            ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "Test");
+            ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "China");
 #endif
         }
 
@@ -91,16 +93,17 @@ namespace Fate.WebServiceLayer
                 //TO DO: For now, client socket uses blocking appraoch
                 //Change it to Async approach later if we experience performance issue
                 //Also, we're keeping the socket alive at all times for performance reason 
-                IPHostEntry ipHostInfo = Dns.GetHostEntry(remoteIpAddr);
-                IPAddress ipAddress = null;
-                foreach (IPAddress ipAddr in ipHostInfo.AddressList)
-                {
-                    if (ipAddr.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        ipAddress = ipAddr;
-                        break;
-                    }
-                }
+                //IPHostEntry ipHostInfo = Dns.GetHostEntry(remoteIpAddr);
+                //IPAddress ipAddress = null;
+                //foreach (IPAddress ipAddr in ipHostInfo.AddressList)
+                //{
+                //    if (ipAddr.AddressFamily == AddressFamily.InterNetwork)
+                //    {
+                //        ipAddress = ipAddr;
+                //        break;
+                //    }
+                //}
+                IPAddress ipAddress = IPAddress.Parse(remoteIpAddr);
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 socket.Connect(remoteEP);
@@ -285,7 +288,6 @@ namespace Fate.WebServiceLayer
             {
                 _logger.Error("Reconnecting FRS sockets after error");
                 ConnectAllSockets();
-                return null;
             }
             return gameListDataList;
         }
