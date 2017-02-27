@@ -20,11 +20,6 @@ namespace Fate.WebServiceLayer
         public static LoginSL Instance => _instance;
         private static readonly Dictionary<Guid, WebUserData> _userGuids = new Dictionary<Guid, WebUserData>();
 
-        public LoginSL()
-        {
-            Console.WriteLine("Login Created");
-        }
-
         private string GetSHA512HashValue(string val)
         {
             using (SHA512 shaM = new SHA512Managed())

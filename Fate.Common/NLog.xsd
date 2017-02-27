@@ -745,7 +745,7 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="useTransactions" minOccurs="0" maxOccurs="1" type="xs:boolean" />
-          <xs:element name="dbUserName" minOccurs="0" maxOccurs="1" type="Layout" />
+          <xs:element name="dbPlayerName" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="dbProvider" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="dbPassword" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="keepConnection" minOccurs="0" maxOccurs="1" type="xs:boolean" />
@@ -771,7 +771,7 @@
             <xs:documentation>Obsolete - value will be ignored! The logging code always runs outside of transaction. Gets or sets a value indicating whether to use database transactions. Some data providers require this.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="dbUserName" type="SimpleLayoutAttribute">
+        <xs:attribute name="dbPlayerName" type="SimpleLayoutAttribute">
           <xs:annotation>
             <xs:documentation>Database user name. If the ConnectionString is not provided this value will be used to construct the "User ID=" part of the connection string.</xs:documentation>
           </xs:annotation>
@@ -803,7 +803,7 @@
         </xs:attribute>
         <xs:attribute name="connectionString" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Connection string. When provided, it overrides the values specified in DBHost, DBUserName, DBPassword, DBDatabase.</xs:documentation>
+            <xs:documentation>Connection string. When provided, it overrides the values specified in DBHost, DBPlayerName, DBPassword, DBDatabase.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="dbHost" type="SimpleLayoutAttribute">
@@ -1601,7 +1601,7 @@
           <xs:element name="optimizeBufferReuse" minOccurs="0" maxOccurs="1" type="xs:boolean" />
           <xs:element name="smtpServer" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="smtpAuthentication" minOccurs="0" maxOccurs="1" type="NLog.Targets.SmtpAuthenticationMode" />
-          <xs:element name="smtpUserName" minOccurs="0" maxOccurs="1" type="Layout" />
+          <xs:element name="smtpPlayerName" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="smtpPassword" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="enableSsl" minOccurs="0" maxOccurs="1" type="xs:boolean" />
           <xs:element name="smtpPort" minOccurs="0" maxOccurs="1" type="xs:integer" />
@@ -1704,7 +1704,7 @@
             <xs:documentation>SMTP Authentication mode.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="smtpUserName" type="SimpleLayoutAttribute">
+        <xs:attribute name="smtpPlayerName" type="SimpleLayoutAttribute">
           <xs:annotation>
             <xs:documentation>Username used to connect to SMTP server (used when SmtpAuthentication is set to "basic").</xs:documentation>
           </xs:annotation>

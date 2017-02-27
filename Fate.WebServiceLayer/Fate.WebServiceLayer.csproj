@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSearchPlayerDataSL.cs" />
     <Compile Include="ContentURL.cs" />
     <Compile Include="CSSColorizer.cs" />
     <Compile Include="Extension\ArrayExtension.cs" />

@@ -4,216 +4,215 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ghostModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="admins">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="server" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="bans">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="server" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="ip" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="gamename" Type="varchar" MaxLength="31" Nullable="false" />
-          <Property Name="admin" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="reason" Type="varchar" MaxLength="255" Nullable="false" />
-        </EntityType>
-        <EntityType Name="dotagames">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="gameid" Type="int" Nullable="false" />
-          <Property Name="winner" Type="int" Nullable="false" />
-          <Property Name="min" Type="int" Nullable="false" />
-          <Property Name="sec" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="dotaplayers">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="gameid" Type="int" Nullable="false" />
-          <Property Name="colour" Type="int" Nullable="false" />
-          <Property Name="kills" Type="int" Nullable="false" />
-          <Property Name="deaths" Type="int" Nullable="false" />
-          <Property Name="creepkills" Type="int" Nullable="false" />
-          <Property Name="creepdenies" Type="int" Nullable="false" />
-          <Property Name="assists" Type="int" Nullable="false" />
-          <Property Name="gold" Type="int" Nullable="false" />
-          <Property Name="neutralkills" Type="int" Nullable="false" />
-          <Property Name="item1" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="item2" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="item3" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="item4" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="item5" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="item6" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="hero" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="newcolour" Type="int" Nullable="false" />
-          <Property Name="towerkills" Type="int" Nullable="false" />
-          <Property Name="raxkills" Type="int" Nullable="false" />
-          <Property Name="courierkills" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="downloads">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="map" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="mapsize" Type="int" Nullable="false" />
-          <Property Name="datetime" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="ip" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="spoofed" Type="int" Nullable="false" />
-          <Property Name="spoofedrealm" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="downloadtime" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="gameplayers">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="gameid" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="ip" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="spoofed" Type="int" Nullable="false" />
-          <Property Name="reserved" Type="int" Nullable="false" />
-          <Property Name="loadingtime" Type="int" Nullable="false" />
-          <Property Name="left" Type="int" Nullable="false" />
-          <Property Name="leftreason" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="team" Type="int" Nullable="false" />
-          <Property Name="colour" Type="int" Nullable="false" />
-          <Property Name="spoofedrealm" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="games">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="server" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="map" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="datetime" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="gamename" Type="varchar" MaxLength="31" Nullable="false" />
-          <Property Name="ownername" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="duration" Type="int" Nullable="false" />
-          <Property Name="gamestate" Type="int" Nullable="false" />
-          <Property Name="creatorname" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="creatorserver" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="kicks">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="server" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="ip" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="admin" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="reason" Type="varchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <EntityType Name="phrases">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="phrase" Type="varchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <EntityType Name="plugindb">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="plugin" Type="varchar" MaxLength="16" />
-          <Property Name="k" Type="varchar" MaxLength="128" />
-          <Property Name="val" Type="varchar" MaxLength="128" />
-        </EntityType>
-        <EntityType Name="scores">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="category" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="server" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="score" Type="double" Nullable="false" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="properusername" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="uid" Type="int" Nullable="false" />
-          <Property Name="rank" Type="int" Nullable="false" />
-          <Property Name="ipaddress" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="lastseen" Type="varchar" MaxLength="31" Nullable="false" />
-          <Property Name="promotedby" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="unbannedby" Type="varchar" MaxLength="15" Nullable="false" />
-        </EntityType>
-        <EntityType Name="w3mmdplayers">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="category" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="gameid" Type="int" Nullable="false" />
-          <Property Name="pid" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="flag" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="leaver" Type="int" Nullable="false" />
-          <Property Name="practicing" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="w3mmdvars">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="botid" Type="int" Nullable="false" />
-          <Property Name="gameid" Type="int" Nullable="false" />
-          <Property Name="pid" Type="int" Nullable="false" />
-          <Property Name="varname" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="value_int" Type="int" />
-          <Property Name="value_real" Type="double" />
-          <Property Name="value_string" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityContainer Name="ghostModelStoreContainer">
-          <EntitySet Name="admins" EntityType="Self.admins" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="bans" EntityType="Self.bans" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="dotagames" EntityType="Self.dotagames" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="dotaplayers" EntityType="Self.dotaplayers" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="downloads" EntityType="Self.downloads" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="gameplayers" EntityType="Self.gameplayers" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="games" EntityType="Self.games" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="kicks" EntityType="Self.kicks" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="phrases" EntityType="Self.phrases" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="plugindb" EntityType="Self.plugindb" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="scores" EntityType="Self.scores" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="users" EntityType="Self.users" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="w3mmdplayers" EntityType="Self.w3mmdplayers" Schema="ghost" store:Type="Tables" />
-          <EntitySet Name="w3mmdvars" EntityType="Self.w3mmdvars" Schema="ghost" store:Type="Tables" />
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="ghostModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ghostModelStoreContainer">
+    <EntitySet Name="admins" EntityType="ghostModel.Store.admins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bans" EntityType="ghostModel.Store.bans" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="dotagames" EntityType="ghostModel.Store.dotagames" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="dotaplayers" EntityType="ghostModel.Store.dotaplayers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="downloads" EntityType="ghostModel.Store.downloads" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kicks" EntityType="ghostModel.Store.kicks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="phrases" EntityType="ghostModel.Store.phrases" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="plugindb" EntityType="ghostModel.Store.plugindb" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="scores" EntityType="ghostModel.Store.scores" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="ghostModel.Store.users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="w3mmdplayers" EntityType="ghostModel.Store.w3mmdplayers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="w3mmdvars" EntityType="ghostModel.Store.w3mmdvars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gameplayers" EntityType="ghostModel.Store.gameplayers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="games" EntityType="ghostModel.Store.games" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="admins">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="server" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="bans">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="server" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="ip" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="gamename" Type="varchar" Nullable="false" MaxLength="31" />
+    <Property Name="admin" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="reason" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="dotagames">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="gameid" Type="int" Nullable="false" />
+    <Property Name="winner" Type="int" Nullable="false" />
+    <Property Name="min" Type="int" Nullable="false" />
+    <Property Name="sec" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dotaplayers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="gameid" Type="int" Nullable="false" />
+    <Property Name="colour" Type="int" Nullable="false" />
+    <Property Name="kills" Type="int" Nullable="false" />
+    <Property Name="deaths" Type="int" Nullable="false" />
+    <Property Name="creepkills" Type="int" Nullable="false" />
+    <Property Name="creepdenies" Type="int" Nullable="false" />
+    <Property Name="assists" Type="int" Nullable="false" />
+    <Property Name="gold" Type="int" Nullable="false" />
+    <Property Name="neutralkills" Type="int" Nullable="false" />
+    <Property Name="item1" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="item2" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="item3" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="item4" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="item5" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="item6" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="hero" Type="varchar" Nullable="false" MaxLength="4" />
+    <Property Name="newcolour" Type="int" Nullable="false" />
+    <Property Name="towerkills" Type="int" Nullable="false" />
+    <Property Name="raxkills" Type="int" Nullable="false" />
+    <Property Name="courierkills" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="downloads">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="map" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="mapsize" Type="int" Nullable="false" />
+    <Property Name="datetime" Type="datetime" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="ip" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="spoofed" Type="int" Nullable="false" />
+    <Property Name="spoofedrealm" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="downloadtime" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kicks">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="server" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="ip" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="admin" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="reason" Type="varchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="phrases">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="phrase" Type="varchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="plugindb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="plugin" Type="varchar" Nullable="true" MaxLength="16" />
+    <Property Name="k" Type="varchar" Nullable="true" MaxLength="128" />
+    <Property Name="val" Type="varchar" Nullable="true" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="scores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="server" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="score" Type="double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="properusername" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="uid" Type="int" Nullable="false" />
+    <Property Name="rank" Type="int" Nullable="false" />
+    <Property Name="ipaddress" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="lastseen" Type="varchar" Nullable="false" MaxLength="31" />
+    <Property Name="promotedby" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="unbannedby" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="w3mmdplayers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="category" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="gameid" Type="int" Nullable="false" />
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="flag" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="leaver" Type="int" Nullable="false" />
+    <Property Name="practicing" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w3mmdvars">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="gameid" Type="int" Nullable="false" />
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="varname" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="value_int" Type="int" Nullable="true" />
+    <Property Name="value_real" Type="double" Nullable="true" />
+    <Property Name="value_string" Type="varchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="gameplayers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="gameid" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="ip" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="spoofed" Type="int" Nullable="false" />
+    <Property Name="reserved" Type="int" Nullable="false" />
+    <Property Name="loadingtime" Type="int" Nullable="false" />
+    <Property Name="left" Type="int" Nullable="false" />
+    <Property Name="leftreason" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="team" Type="int" Nullable="false" />
+    <Property Name="colour" Type="int" Nullable="false" />
+    <Property Name="spoofedrealm" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="games">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="botid" Type="int" Nullable="false" />
+    <Property Name="server" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="map" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="datetime" Type="datetime" Nullable="false" />
+    <Property Name="gamename" Type="varchar" Nullable="false" MaxLength="31" />
+    <Property Name="ownername" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="duration" Type="int" Nullable="false" />
+    <Property Name="gamestate" Type="int" Nullable="false" />
+    <Property Name="creatorname" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="creatorserver" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ghostModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -292,40 +291,6 @@
           <Property Name="spoofed" Type="Int32" Nullable="false" />
           <Property Name="spoofedrealm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="downloadtime" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="gameplayers">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="botid" Type="Int32" Nullable="false" />
-          <Property Name="gameid" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="spoofed" Type="Int32" Nullable="false" />
-          <Property Name="reserved" Type="Int32" Nullable="false" />
-          <Property Name="loadingtime" Type="Int32" Nullable="false" />
-          <Property Name="left" Type="Int32" Nullable="false" />
-          <Property Name="leftreason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="team" Type="Int32" Nullable="false" />
-          <Property Name="colour" Type="Int32" Nullable="false" />
-          <Property Name="spoofedrealm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="games">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="botid" Type="Int32" Nullable="false" />
-          <Property Name="server" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="map" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="datetime" Type="DateTime" Nullable="false" />
-          <Property Name="gamename" Type="String" MaxLength="31" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ownername" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="duration" Type="Int32" Nullable="false" />
-          <Property Name="gamestate" Type="Int32" Nullable="false" />
-          <Property Name="creatorname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="creatorserver" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="kicks">
           <Key>
@@ -414,8 +379,6 @@
           <EntitySet Name="dotagames" EntityType="Self.dotagames" />
           <EntitySet Name="dotaplayers" EntityType="Self.dotaplayers" />
           <EntitySet Name="downloads" EntityType="Self.downloads" />
-          <EntitySet Name="gameplayers" EntityType="Self.gameplayers" />
-          <EntitySet Name="games" EntityType="Self.games" />
           <EntitySet Name="kicks" EntityType="Self.kicks" />
           <EntitySet Name="phrases" EntityType="Self.phrases" />
           <EntitySet Name="plugindb" EntityType="Self.plugindb" />
@@ -423,221 +386,256 @@
           <EntitySet Name="users" EntityType="Self.users" />
           <EntitySet Name="w3mmdplayers" EntityType="Self.w3mmdplayers" />
           <EntitySet Name="w3mmdvars" EntityType="Self.w3mmdvars" />
+          <EntitySet Name="gameplayers" EntityType="ghostModel.gameplayers" />
+          <EntitySet Name="games" EntityType="ghostModel.games" />
         </EntityContainer>
+        <EntityType Name="gameplayers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="botid" Type="Int32" Nullable="false" />
+          <Property Name="gameid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="spoofed" Type="Int32" Nullable="false" />
+          <Property Name="reserved" Type="Int32" Nullable="false" />
+          <Property Name="loadingtime" Type="Int32" Nullable="false" />
+          <Property Name="left" Type="Int32" Nullable="false" />
+          <Property Name="leftreason" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="team" Type="Int32" Nullable="false" />
+          <Property Name="colour" Type="Int32" Nullable="false" />
+          <Property Name="spoofedrealm" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="games">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="botid" Type="Int32" Nullable="false" />
+          <Property Name="server" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="map" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" />
+          <Property Name="gamename" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="ownername" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="gamestate" Type="Int32" Nullable="false" />
+          <Property Name="creatorname" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="creatorserver" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ghostModelStoreContainer" CdmEntityContainer="ghostEntities">
-          <EntitySetMapping Name="admins">
-            <EntityTypeMapping TypeName="ghostModel.admins">
-              <MappingFragment StoreEntitySet="admins">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="server" ColumnName="server" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="bans">
-            <EntityTypeMapping TypeName="ghostModel.bans">
-              <MappingFragment StoreEntitySet="bans">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="server" ColumnName="server" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="gamename" ColumnName="gamename" />
-                <ScalarProperty Name="admin" ColumnName="admin" />
-                <ScalarProperty Name="reason" ColumnName="reason" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="dotagames">
-            <EntityTypeMapping TypeName="ghostModel.dotagames">
-              <MappingFragment StoreEntitySet="dotagames">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="gameid" ColumnName="gameid" />
-                <ScalarProperty Name="winner" ColumnName="winner" />
-                <ScalarProperty Name="min" ColumnName="min" />
-                <ScalarProperty Name="sec" ColumnName="sec" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="dotaplayers">
-            <EntityTypeMapping TypeName="ghostModel.dotaplayers">
-              <MappingFragment StoreEntitySet="dotaplayers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="gameid" ColumnName="gameid" />
-                <ScalarProperty Name="colour" ColumnName="colour" />
-                <ScalarProperty Name="kills" ColumnName="kills" />
-                <ScalarProperty Name="deaths" ColumnName="deaths" />
-                <ScalarProperty Name="creepkills" ColumnName="creepkills" />
-                <ScalarProperty Name="creepdenies" ColumnName="creepdenies" />
-                <ScalarProperty Name="assists" ColumnName="assists" />
-                <ScalarProperty Name="gold" ColumnName="gold" />
-                <ScalarProperty Name="neutralkills" ColumnName="neutralkills" />
-                <ScalarProperty Name="item1" ColumnName="item1" />
-                <ScalarProperty Name="item2" ColumnName="item2" />
-                <ScalarProperty Name="item3" ColumnName="item3" />
-                <ScalarProperty Name="item4" ColumnName="item4" />
-                <ScalarProperty Name="item5" ColumnName="item5" />
-                <ScalarProperty Name="item6" ColumnName="item6" />
-                <ScalarProperty Name="hero" ColumnName="hero" />
-                <ScalarProperty Name="newcolour" ColumnName="newcolour" />
-                <ScalarProperty Name="towerkills" ColumnName="towerkills" />
-                <ScalarProperty Name="raxkills" ColumnName="raxkills" />
-                <ScalarProperty Name="courierkills" ColumnName="courierkills" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="downloads">
-            <EntityTypeMapping TypeName="ghostModel.downloads">
-              <MappingFragment StoreEntitySet="downloads">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="map" ColumnName="map" />
-                <ScalarProperty Name="mapsize" ColumnName="mapsize" />
-                <ScalarProperty Name="datetime" ColumnName="datetime" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="spoofed" ColumnName="spoofed" />
-                <ScalarProperty Name="spoofedrealm" ColumnName="spoofedrealm" />
-                <ScalarProperty Name="downloadtime" ColumnName="downloadtime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="gameplayers">
-            <EntityTypeMapping TypeName="ghostModel.gameplayers">
-              <MappingFragment StoreEntitySet="gameplayers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="gameid" ColumnName="gameid" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="spoofed" ColumnName="spoofed" />
-                <ScalarProperty Name="reserved" ColumnName="reserved" />
-                <ScalarProperty Name="loadingtime" ColumnName="loadingtime" />
-                <ScalarProperty Name="left" ColumnName="left" />
-                <ScalarProperty Name="leftreason" ColumnName="leftreason" />
-                <ScalarProperty Name="team" ColumnName="team" />
-                <ScalarProperty Name="colour" ColumnName="colour" />
-                <ScalarProperty Name="spoofedrealm" ColumnName="spoofedrealm" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="games">
-            <EntityTypeMapping TypeName="ghostModel.games">
-              <MappingFragment StoreEntitySet="games">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="server" ColumnName="server" />
-                <ScalarProperty Name="map" ColumnName="map" />
-                <ScalarProperty Name="datetime" ColumnName="datetime" />
-                <ScalarProperty Name="gamename" ColumnName="gamename" />
-                <ScalarProperty Name="ownername" ColumnName="ownername" />
-                <ScalarProperty Name="duration" ColumnName="duration" />
-                <ScalarProperty Name="gamestate" ColumnName="gamestate" />
-                <ScalarProperty Name="creatorname" ColumnName="creatorname" />
-                <ScalarProperty Name="creatorserver" ColumnName="creatorserver" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="kicks">
-            <EntityTypeMapping TypeName="ghostModel.kicks">
-              <MappingFragment StoreEntitySet="kicks">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="server" ColumnName="server" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="admin" ColumnName="admin" />
-                <ScalarProperty Name="reason" ColumnName="reason" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="phrases">
-            <EntityTypeMapping TypeName="ghostModel.phrases">
-              <MappingFragment StoreEntitySet="phrases">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="phrase" ColumnName="phrase" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="plugindb">
-            <EntityTypeMapping TypeName="ghostModel.plugindb">
-              <MappingFragment StoreEntitySet="plugindb">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="plugin" ColumnName="plugin" />
-                <ScalarProperty Name="k" ColumnName="k" />
-                <ScalarProperty Name="val" ColumnName="val" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="scores">
-            <EntityTypeMapping TypeName="ghostModel.scores">
-              <MappingFragment StoreEntitySet="scores">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="category" ColumnName="category" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="server" ColumnName="server" />
-                <ScalarProperty Name="score" ColumnName="score" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="ghostModel.users">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="properusername" ColumnName="properusername" />
-                <ScalarProperty Name="uid" ColumnName="uid" />
-                <ScalarProperty Name="rank" ColumnName="rank" />
-                <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
-                <ScalarProperty Name="lastseen" ColumnName="lastseen" />
-                <ScalarProperty Name="promotedby" ColumnName="promotedby" />
-                <ScalarProperty Name="unbannedby" ColumnName="unbannedby" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="w3mmdplayers">
-            <EntityTypeMapping TypeName="ghostModel.w3mmdplayers">
-              <MappingFragment StoreEntitySet="w3mmdplayers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="category" ColumnName="category" />
-                <ScalarProperty Name="gameid" ColumnName="gameid" />
-                <ScalarProperty Name="pid" ColumnName="pid" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="flag" ColumnName="flag" />
-                <ScalarProperty Name="leaver" ColumnName="leaver" />
-                <ScalarProperty Name="practicing" ColumnName="practicing" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="w3mmdvars">
-            <EntityTypeMapping TypeName="ghostModel.w3mmdvars">
-              <MappingFragment StoreEntitySet="w3mmdvars">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="botid" ColumnName="botid" />
-                <ScalarProperty Name="gameid" ColumnName="gameid" />
-                <ScalarProperty Name="pid" ColumnName="pid" />
-                <ScalarProperty Name="varname" ColumnName="varname" />
-                <ScalarProperty Name="value_int" ColumnName="value_int" />
-                <ScalarProperty Name="value_real" ColumnName="value_real" />
-                <ScalarProperty Name="value_string" ColumnName="value_string" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ghostModelStoreContainer" CdmEntityContainer="ghostEntities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.admins)">
+        <MappingFragment StoreEntitySet="admins">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="server" ColumnName="server" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bans">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.bans)">
+        <MappingFragment StoreEntitySet="bans">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="server" ColumnName="server" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="gamename" ColumnName="gamename" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dotagames">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.dotagames)">
+        <MappingFragment StoreEntitySet="dotagames">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="gameid" ColumnName="gameid" />
+          <ScalarProperty Name="winner" ColumnName="winner" />
+          <ScalarProperty Name="min" ColumnName="min" />
+          <ScalarProperty Name="sec" ColumnName="sec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dotaplayers">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.dotaplayers)">
+        <MappingFragment StoreEntitySet="dotaplayers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="gameid" ColumnName="gameid" />
+          <ScalarProperty Name="colour" ColumnName="colour" />
+          <ScalarProperty Name="kills" ColumnName="kills" />
+          <ScalarProperty Name="deaths" ColumnName="deaths" />
+          <ScalarProperty Name="creepkills" ColumnName="creepkills" />
+          <ScalarProperty Name="creepdenies" ColumnName="creepdenies" />
+          <ScalarProperty Name="assists" ColumnName="assists" />
+          <ScalarProperty Name="gold" ColumnName="gold" />
+          <ScalarProperty Name="neutralkills" ColumnName="neutralkills" />
+          <ScalarProperty Name="item1" ColumnName="item1" />
+          <ScalarProperty Name="item2" ColumnName="item2" />
+          <ScalarProperty Name="item3" ColumnName="item3" />
+          <ScalarProperty Name="item4" ColumnName="item4" />
+          <ScalarProperty Name="item5" ColumnName="item5" />
+          <ScalarProperty Name="item6" ColumnName="item6" />
+          <ScalarProperty Name="hero" ColumnName="hero" />
+          <ScalarProperty Name="newcolour" ColumnName="newcolour" />
+          <ScalarProperty Name="towerkills" ColumnName="towerkills" />
+          <ScalarProperty Name="raxkills" ColumnName="raxkills" />
+          <ScalarProperty Name="courierkills" ColumnName="courierkills" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="downloads">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.downloads)">
+        <MappingFragment StoreEntitySet="downloads">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="map" ColumnName="map" />
+          <ScalarProperty Name="mapsize" ColumnName="mapsize" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="spoofed" ColumnName="spoofed" />
+          <ScalarProperty Name="spoofedrealm" ColumnName="spoofedrealm" />
+          <ScalarProperty Name="downloadtime" ColumnName="downloadtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kicks">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.kicks)">
+        <MappingFragment StoreEntitySet="kicks">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="server" ColumnName="server" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phrases">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.phrases)">
+        <MappingFragment StoreEntitySet="phrases">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="phrase" ColumnName="phrase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plugindb">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.plugindb)">
+        <MappingFragment StoreEntitySet="plugindb">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="plugin" ColumnName="plugin" />
+          <ScalarProperty Name="k" ColumnName="k" />
+          <ScalarProperty Name="val" ColumnName="val" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scores">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.scores)">
+        <MappingFragment StoreEntitySet="scores">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="server" ColumnName="server" />
+          <ScalarProperty Name="score" ColumnName="score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.users)">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="properusername" ColumnName="properusername" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="rank" ColumnName="rank" />
+          <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+          <ScalarProperty Name="lastseen" ColumnName="lastseen" />
+          <ScalarProperty Name="promotedby" ColumnName="promotedby" />
+          <ScalarProperty Name="unbannedby" ColumnName="unbannedby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="w3mmdplayers">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.w3mmdplayers)">
+        <MappingFragment StoreEntitySet="w3mmdplayers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="gameid" ColumnName="gameid" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="flag" ColumnName="flag" />
+          <ScalarProperty Name="leaver" ColumnName="leaver" />
+          <ScalarProperty Name="practicing" ColumnName="practicing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="w3mmdvars">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.w3mmdvars)">
+        <MappingFragment StoreEntitySet="w3mmdvars">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="gameid" ColumnName="gameid" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="varname" ColumnName="varname" />
+          <ScalarProperty Name="value_int" ColumnName="value_int" />
+          <ScalarProperty Name="value_real" ColumnName="value_real" />
+          <ScalarProperty Name="value_string" ColumnName="value_string" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gameplayers">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.gameplayers)">
+        <MappingFragment StoreEntitySet="gameplayers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="gameid" ColumnName="gameid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="spoofed" ColumnName="spoofed" />
+          <ScalarProperty Name="reserved" ColumnName="reserved" />
+          <ScalarProperty Name="loadingtime" ColumnName="loadingtime" />
+          <ScalarProperty Name="left" ColumnName="left" />
+          <ScalarProperty Name="leftreason" ColumnName="leftreason" />
+          <ScalarProperty Name="team" ColumnName="team" />
+          <ScalarProperty Name="colour" ColumnName="colour" />
+          <ScalarProperty Name="spoofedrealm" ColumnName="spoofedrealm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="games">
+      <EntityTypeMapping TypeName="IsTypeOf(ghostModel.games)">
+        <MappingFragment StoreEntitySet="games">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="botid" ColumnName="botid" />
+          <ScalarProperty Name="server" ColumnName="server" />
+          <ScalarProperty Name="map" ColumnName="map" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="gamename" ColumnName="gamename" />
+          <ScalarProperty Name="ownername" ColumnName="ownername" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="gamestate" ColumnName="gamestate" />
+          <ScalarProperty Name="creatorname" ColumnName="creatorname" />
+          <ScalarProperty Name="creatorserver" ColumnName="creatorserver" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -651,8 +649,9 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

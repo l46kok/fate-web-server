@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Fate.Common.Data;
 using Fate.DB.DAL;
+using Fate.DB.DAL.FRS;
 
 namespace Fate.WebServiceLayer
 {
