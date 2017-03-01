@@ -44,11 +44,13 @@ namespace Fate.WebServiceLayer
             {
                 return "Player name cannot be empty";
             }
-            //if (banData.PlayerName.Equals("l46kok", StringComparison.InvariantCultureIgnoreCase) ||
-            //    banData.IpAddresses.Any(x=>x.StartsWith("104.181.20")))
-            //{
-            //    return "You cannot ban that is holy and sacred.";
-            //}
+
+            if (banData.PlayerName.Equals("l46kok", StringComparison.InvariantCultureIgnoreCase) ||
+                banData.IpAddresses.Any(x => x.StartsWith("104.181.20")))
+            {
+                return "You cannot ban that is holy and sacred.";
+            }
+
             if (banData.IpAddresses.Contains("127.0.0.1"))
             {
                 return "127.0.0.1 is not a bannable IP.";
