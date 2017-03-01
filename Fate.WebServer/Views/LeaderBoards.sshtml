@@ -2,6 +2,7 @@
 
 @Section['Content']
 <link href="./Content/css/LeaderBoards.css" rel="stylesheet">
+<link href="./Content/css/tablesorter.css" rel="stylesheet">
 <!-- Begin page content -->
 <div class="container">
 	<div class="page-header">

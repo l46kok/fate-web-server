@@ -35,6 +35,9 @@ body {
   width: 100%;
 }
 
-.navbar-width {
-	min-width: 1160px !important;
+@media only screen and (min-width: 1160px) {
+    .navbar-width {
+      min-width: 1160px !important;
+  }
 }
+

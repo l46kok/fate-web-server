@@ -15,7 +15,6 @@ namespace FateWebServer
         private static readonly GameListSL _gameListSl = GameListSL.Instance;
         private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
         private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
-        private static readonly LoginSL _loginSl = LoginSL.Instance;
 
         public MainModule(IResourceLinker linker)
         {
@@ -74,6 +73,8 @@ namespace FateWebServer
             Get["/Maintenance"] = param => View["Views/Maintenance.sshtml"];
 
             Get["/Login"] = param => View["Views/Login.sshtml", new LoginViewModel()];
+
+            Get["/BanList"] = param => View["Views/BanList.sshtml"];
         }
     }
 }
