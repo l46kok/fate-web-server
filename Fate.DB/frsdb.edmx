@@ -25,6 +25,7 @@
     <EntitySet Name="ranking" EntityType="frsModel.Store.ranking" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="server" EntityType="frsModel.Store.server" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="webusers" EntityType="frsModel.Store.webusers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ban" EntityType="frsModel.Store.ban" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="fk_Game_Server" Association="frsModel.Store.fk_Game_Server">
       <End Role="server" EntitySet="server" />
       <End Role="game" EntitySet="game" />
@@ -284,6 +285,20 @@
     <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
     <Property Name="Salt" Type="varchar" Nullable="false" MaxLength="128" />
     <Property Name="EmailAddress" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ban">
+    <Key>
+      <PropertyRef Name="BanID" />
+    </Key>
+    <Property Name="BanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerName" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Reason" Type="varchar" Nullable="false" MaxLength="65535" />
+    <Property Name="BannedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="Admin" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="BannedUntil" Type="datetime" Nullable="true" />
+    <Property Name="IsPermanentBan" Type="bool" Nullable="false" />
+    <Property Name="IsCurrentlyBanned" Type="bool" Nullable="false" />
+    <Property Name="IpAddresses" Type="varchar" Nullable="false" MaxLength="65535" />
   </EntityType>
   <Association Name="fk_Game_Server">
     <End Role="server" Type="frsModel.Store.server" Multiplicity="1" />
@@ -841,6 +856,7 @@
             <End Role="ranking" EntitySet="ranking" />
           </AssociationSet>
           <EntitySet Name="webusers" EntityType="frsModel.webusers" />
+          <EntitySet Name="ban" EntityType="frsModel.ban" />
         </EntityContainer>
         <EntityType Name="webusers">
           <Key>
@@ -854,6 +870,20 @@
           <Property Name="ModifiedOn" Type="DateTime" Nullable="false" />
           <Property Name="Salt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ban">
+          <Key>
+            <PropertyRef Name="BanID" />
+          </Key>
+          <Property Name="BanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerName" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="BannedDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Admin" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="BannedUntil" Type="DateTime" />
+          <Property Name="IsPermanentBan" Type="Boolean" Nullable="false" />
+          <Property Name="IsCurrentlyBanned" Type="Boolean" Nullable="false" />
+          <Property Name="IpAddresses" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1079,6 +1109,21 @@
           <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
           <ScalarProperty Name="Salt" ColumnName="Salt" />
           <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ban">
+      <EntityTypeMapping TypeName="IsTypeOf(frsModel.ban)">
+        <MappingFragment StoreEntitySet="ban">
+          <ScalarProperty Name="BanID" ColumnName="BanID" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="BannedDateTime" ColumnName="BannedDateTime" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="BannedUntil" ColumnName="BannedUntil" />
+          <ScalarProperty Name="IsPermanentBan" ColumnName="IsPermanentBan" />
+          <ScalarProperty Name="IsCurrentlyBanned" ColumnName="IsCurrentlyBanned" />
+          <ScalarProperty Name="IpAddresses" ColumnName="IpAddresses" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

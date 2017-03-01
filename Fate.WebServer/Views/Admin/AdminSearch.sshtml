@@ -2,6 +2,7 @@
 
 @Section['Content']
 <link href="/Content/css/AdminSearch.css" rel="stylesheet">
+<link href="/Content/css/tablesorter.css" rel="stylesheet">
 <div class="container">
     <div class="page-header">
         <h1>Search Player Data</h1>
@@ -14,19 +15,19 @@
                 <div class="col-md-2">
                     <label class="search-filter-label">Filter Type</label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="dropdown search-filter">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter By
+                        <button id="filterType" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Filter Type
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Player Name</a></li>
-                            <li><a href="#">IP Address</a></li>
-                            <li><a href="#">Player under Multi-IP</a></li>
+                            <li><a data-value="1" href="#">Player Name</a></li>
+                            <li><a data-value="2" href="#">IP Address</a></li>
+                            <!--<li><a data-sel="3" href="#">Players under Multi-IP</a></li>-->
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="filterInput">
+                <div class="col-md-7">
+                    <input type="text" class="form-control filterInput" id="filterTypeInput">
                 </div>
             </div>
 		</div>
@@ -35,26 +36,47 @@
                 <div class="col-md-2">
                     <label class="search-filter-label">Search Range</label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="dropdown search-filter">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter By
+                        <button id="filterRange" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Range
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">All Games</a></li>
-                            <li><a href="#">Games Played Before</a></li>
-                            <li><a href="#">Games Played After</a></li>
+                            <li><a data-value="1" href="#">All Games</a></li>
+                            <li><a data-value="2" href="#">Games Played Before</a></li>
+                            <li><a data-value="3" href="#">Games Played After</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" id="rangeInput">
+                <div class="col-md-7">
+                    <input type="text" class="form-control filterInput" id="filterRangeInput">
                 </div>
             </div>
 		</div>
         <div class="searchCriteriaHeader">
-            <button class="btn btn-info btn-lg" type="button">Search
+            <button id="searchBtn" class="btn btn-info btn-lg" type="button">Search
         </div>
 	</div>
+
+    <div id="loadingDiv">
+        <img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">
+    </div>
+    <table id="searchTable" class="tablesorter"> 
+        <thead> 
+        <tr> 
+            <th>Player Name</th> 
+            <th>IP Address</th> 
+            <th>Game Name</th> 
+            <th>Date Time</th> 
+            <th>Duration</th>
+            <th>Left Reason</th>
+            <th>Realm (Checked)</th>
+        </tr> 
+        </thead> 
+        <tbody class="centerText"> 
+        </tbody> 
+	</table> 
 </div>
+<script language="JavaScript" src="/Content/scripts/moment.min.js"></script>
+<script language="JavaScript" src="/Content/scripts/jquery.tablesorter.js"></script>
 <script language="JavaScript" src="/Content/scripts/AdminSearch.js"></script>
 @EndSection

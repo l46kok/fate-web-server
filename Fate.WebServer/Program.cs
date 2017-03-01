@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Fate.DB;
 using FateWebServer.Utility;
 using Nancy.Hosting.Self;
@@ -8,10 +9,11 @@ namespace FateWebServer
 {
     static class Program
     {
-        private const ushort WEB_SERVER_PORT = 64402;
-        private const string TERMINATE_STRING = "/Terminate";
-        private const string MAINTENANCE_STRING = "/Maintenance";
-        private const string RELOAD_CONFIG_STRING = "/ReloadConfig";
+        private const ushort WEB_SERVER_PORT = 80;
+        private const string CMD_TERMINATE = "/Terminate";
+        private const string CMD_MAINTENANCE = "/Maintenance";
+        private const string CMD_RELOAD_CONFIG = "/ReloadConfig";
+        private const string CMD_RESTART = "/Restart";
         private const string DEFAULT_CONFIG_FILE_PATH = "config.cfg";
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -47,6 +49,7 @@ namespace FateWebServer
             };
 
             var host = new NancyHost(config, uri);
+            bool isRestart = false;
 
             try
             {
@@ -54,31 +57,36 @@ namespace FateWebServer
 
                 Console.Write("Fate / Another III Stats Page");
 
-                Console.Write("Fate/Another III Ranking System Web Server\n" +
+                Console.Write("\n" +
                               "\t\"" + uri + "\"\n" +
-                              $"To quit, input {TERMINATE_STRING}\n" +
-                              $"To set maintenance mode, input {MAINTENANCE_STRING}\n" +
-                              $"To set reload configuration, input {RELOAD_CONFIG_STRING}\n");
+                              $"To quit, input {CMD_TERMINATE}\n" +
+                              $"To set maintenance mode, input {CMD_MAINTENANCE}\n" +
+                              $"To reload configuration, input {CMD_RELOAD_CONFIG}\n" +
+                              $"To restart server, input {CMD_RESTART}\n");
                 bool terminateServer = false;
+                
                 while (!terminateServer)
                 {
                     Console.Write("> ");
                     string cmd = Console.ReadLine();
                     switch (cmd)
                     {
-                        case TERMINATE_STRING:
+                        case CMD_TERMINATE:
                             terminateServer = true;
                             break;
-                        case MAINTENANCE_STRING:
+                        case CMD_MAINTENANCE:
                             MainBootstrapper.IsMaintenanceMode = !MainBootstrapper.IsMaintenanceMode;
                             _logger.Info(MainBootstrapper.IsMaintenanceMode
                                 ? "Starting maintenance mode"
                                 : "Resuming web service");
                             break;
-                        case RELOAD_CONFIG_STRING:
+                        case CMD_RELOAD_CONFIG:
                             LoadConfig();
                             break;
-
+                        case CMD_RESTART:
+                            isRestart = true;
+                            terminateServer = true;
+                            break;
                     }
                 }
 
@@ -93,7 +101,20 @@ namespace FateWebServer
                 host.Stop();
             }
 
-            Console.WriteLine("Goodbye");
+            if (isRestart)
+            {
+                Console.WriteLine("Restarting Server");
+                // Starts a new instance of the program itself
+                var fileName = Assembly.GetExecutingAssembly().Location;
+                System.Diagnostics.Process.Start(fileName);
+
+                // Closes the current process
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Goodbye");
+            }
         }
     }
 }

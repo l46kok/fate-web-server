@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 02/27/2017 03:10:35
+-- Date Created: 02/27/2017 07:26:28
 
 -- Generated from EDMX file: D:\SourceCodes\Personal\fate-web-server\Fate.DB\frsdb.edmx
 -- Target version: 3.0.0.0
@@ -69,7 +69,7 @@ USE `frs`;
 -- --------------------------------------------------
 SET foreign_key_checks = 0;
 
-    DROP TABLE IF EXISTS `webusers`;
+    DROP TABLE IF EXISTS `ban`;
 
 SET foreign_key_checks = 1;
 
@@ -332,6 +332,23 @@ CREATE TABLE `webusers`(
 	`EmailAddress` varchar (100) NOT NULL);
 
 ALTER TABLE `webusers` ADD PRIMARY KEY (WebUserID);
+
+
+
+
+
+CREATE TABLE `ban`(
+	`BanID` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`PlayerName` varchar (15) NOT NULL, 
+	`Reason` varchar (65535) NOT NULL, 
+	`BannedDateTime` datetime NOT NULL, 
+	`Admin` varchar (45) NOT NULL, 
+	`BannedUntil` datetime, 
+	`IsPermanentBan` bool NOT NULL, 
+	`IsCurrentlyBanned` bool NOT NULL, 
+	`IpAddresses` varchar (65535) NOT NULL);
+
+ALTER TABLE `ban` ADD PRIMARY KEY (BanID);
 
 
 

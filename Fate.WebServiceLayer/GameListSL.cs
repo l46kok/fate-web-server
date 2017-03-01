@@ -18,7 +18,7 @@ namespace Fate.WebServiceLayer
     public class GameListSL
     {
         private const int GHOST_FRS_PORT = 6302;
-        private const string GHOST_CONNECT_TEST_IP = "182.18.22.91";
+        private const string GHOST_CONNECT_TEST_IP = "127.0.0.1";
         private const string GHOST_CONNECT_IP = "54.210.38.182";
         private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
         private const string GHOST_CONNECT_IP_ASIA = "13.112.46.237";
@@ -26,6 +26,7 @@ namespace Fate.WebServiceLayer
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
         private const int POLL_DURATION = 2 * 1000 * 1000;
         private const string GET_GAMES_COMMAND = "GetGames";
+        private const string REFRESH_BAN_LIST = "RefreshBanList";
         private static readonly GameListSL _instance = new GameListSL();
         private readonly List<SocketData> _socketList = new List<SocketData>();
         private static Timer _reconnectTimer;
@@ -52,7 +53,7 @@ namespace Fate.WebServiceLayer
             _reconnectTimer.Enabled = true;
             _reconnectTimer.Start();
 #endif
-            // ConnectAllSockets();
+            ConnectAllSockets();
         }
 
         private void ConnectAllSockets()
@@ -62,9 +63,9 @@ namespace Fate.WebServiceLayer
             ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
             ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
             ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
-            ConnectSocket(GHOST_CONNECT_IP_CN, GHOST_FRS_PORT, "China");
+            // ConnectSocket(GHOST_CONNECT_IP_CN, GHOST_FRS_PORT, "China");
 #else
-            ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "China");
+            ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "Test");
 #endif
         }
 
@@ -191,6 +192,22 @@ namespace Fate.WebServiceLayer
             gameProgressData.Team2Wins = roundVictories.Count(x => x.Contains("T2"));
         }
 
+        public void RefreshBanList()
+        {
+            foreach (SocketData socketData in _socketList)
+            {
+                try
+                {
+                    byte[] cmd = Encoding.ASCII.GetBytes(REFRESH_BAN_LIST);
+                    socketData.Socket.Send(cmd);
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, "[FRS] RefreshBanList Error on " + socketData.Server);
+                }
+            }
+        }
+
         public List<GameListData> GetGameList()
         {
             List<GameListData> gameListDataList = new List<GameListData>();
@@ -279,7 +296,7 @@ namespace Fate.WebServiceLayer
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(ex, "[FRS] GetGameList Comm Error");
+                    _logger.Error(ex, "[FRS] GetGameList Comm Error for server: " + socketData.Server);
                     reconnectSockets = true;
                 }
             }

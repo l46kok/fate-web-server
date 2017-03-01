@@ -73,12 +73,16 @@
     <Compile Include="attributelearn.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="ban.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="bans.cs">
       <DependentUpon>ghostAsia.tt</DependentUpon>
     </Compile>
     <Compile Include="commandsealuse.cs">
       <DependentUpon>frsdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\FRS\BanDAL.cs" />
     <Compile Include="DAL\FRS\LoginDAL.cs" />
     <Compile Include="DAL\FRS\ServantSearchDAL.cs" />
     <Compile Include="DAL\FRS\StatisticsDAL.cs" />
