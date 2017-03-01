@@ -87,6 +87,13 @@ namespace Fate.WebServiceLayer
             ConnectAllSockets();
         }
 
+        private bool IsSocketConnected(Socket s)
+        {
+            bool pollResult = s.Poll(1000, SelectMode.SelectRead);
+            bool socketAvailable = (s.Available == 0);
+            return !pollResult || !socketAvailable;
+        }
+
         private void ConnectSocket(string remoteIpAddr, int port, string server)
         {
             try
@@ -194,6 +201,21 @@ namespace Fate.WebServiceLayer
 
         public void RefreshBanList()
         {
+            bool reconnectSockets = false;
+            foreach (SocketData socketData in _socketList)
+            {
+                if (!IsSocketConnected(socketData.Socket))
+                {
+                    reconnectSockets = true;
+                    break;
+                }
+            }
+
+            if (reconnectSockets)
+            {
+                ConnectAllSockets();
+            }
+
             foreach (SocketData socketData in _socketList)
             {
                 try
