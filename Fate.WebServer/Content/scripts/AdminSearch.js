@@ -1,7 +1,7 @@
 ﻿function searchData() {
     var filterType = $("#filterType").val();
     var filterTypeInput = $("#filterTypeInput").val();
-    if (!filterTypeInput || filterTypeInput === "") {
+    if (!filterTypeInput) {
         return;
     }
     var filterRange = $("#filterRange").val();
@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
 
     $('.filterInput').on("keypress", function (e) {            
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             // Cancel the default action on keypress event
             e.preventDefault(); 
 
@@ -55,5 +55,5 @@ $(document).ready(function () {
 
     $("#searchBtn").click(function() {
         searchData();     
-    })
+    });
 });

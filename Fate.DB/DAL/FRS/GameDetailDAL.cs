@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using Fate.Common.Data;
 using MySql.Data.MySqlClient;
 
-namespace Fate.DB.DAL
+namespace Fate.DB.DAL.FRS
 {
     public class GameDetailDAL
     {
@@ -68,8 +67,7 @@ namespace Fate.DB.DAL
                     where gameDetail.GamePlayerDetailID == gamePlayerDetailId
                     select herotype.HeroUnitTypeID).First();
 
-                PlayerGameBuildData buildData = new PlayerGameBuildData();
-                buildData.HeroUnitTypeId = heroTypeUnitId;
+                PlayerGameBuildData buildData = new PlayerGameBuildData {HeroUnitTypeId = heroTypeUnitId};
 
                 //Find stat learn information
                 var heroStatLearnQuery = (
@@ -108,7 +106,7 @@ namespace Fate.DB.DAL
                 }
 
                 //Find Ward/Familiar Information
-                var itemKeys = new string[] { "I003", "I00N", "SWAR", "I002", "I005" };
+                var itemKeys = new[] { "I003", "I00N", "SWAR", "I002", "I005" };
                 
                 var wardFamiliarQuery = (
                     from iteminfo in db.iteminfo
@@ -127,7 +125,7 @@ namespace Fate.DB.DAL
                 }
 
                 //Find CommandSeal Info
-                var commandSealKeys = new string[] { "A05Q", "A094", "A043", "A044"};
+                var commandSealKeys = new[] { "A05Q", "A094", "A043", "A044"};
 
                 var commandSealQuery = (
                     from commandseal in db.commandsealuse

@@ -85,19 +85,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caching\CachedResponse.cs" />
-    <Compile Include="Caching\ContextExtensions.cs" />
-    <Compile Include="Controllers\AdminModule.cs" />
-    <Compile Include="Controllers\FileDownloadModule.cs" />
-    <Compile Include="Controllers\GameDetailModule.cs" />
-    <Compile Include="Controllers\LoginModule.cs" />
+    <Compile Include="Modules\AdminModule.cs" />
+    <Compile Include="Modules\FileDownloadModule.cs" />
+    <Compile Include="Modules\GameDetailModule.cs" />
+    <Compile Include="Modules\LoginModule.cs" />
     <Compile Include="CustomRootPathProvider.cs" />
     <Compile Include="HttpStatusHandler.cs" />
     <Compile Include="MainBootstrapper.cs" />
-    <Compile Include="MainModule.cs" />
-    <Compile Include="Controllers\PlayerStatsModule.cs" />
+    <Compile Include="Modules\MainModule.cs" />
+    <Compile Include="Modules\PlayerStatsModule.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Utility\ConfigHandler.cs" />
-    <Compile Include="Utility\NancyExtensions.cs" />
     <None Include="Views\Admin\AdminBan.sshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

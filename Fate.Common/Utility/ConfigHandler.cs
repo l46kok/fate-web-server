@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Fate.Common.Data.GHost;
 
-namespace FateWebServer.Utility
+namespace Fate.Common.Utility
 {
     public static class ConfigHandler
     {
@@ -13,11 +13,13 @@ namespace FateWebServer.Utility
         public static string DatabaseUserName { get; private set; }
         public static string DatabasePassword { get; private set; }
         public static string DatabaseName { get; private set; }
-        public static string MapName { get; set; }
+        public static string MapName { get; private set; }
 
         public static List<GHostDatabaseInfo> GhostDatabaseList { get; } = new List<GHostDatabaseInfo>();
 
+        // ReSharper disable NotAccessedField.Local
         private static string _configFilePath;
+        // ReSharper restore NotAccessedField.Local
         private static List<string> _fileContent = new List<string>();
 
         public static bool IsConfigFileValid()

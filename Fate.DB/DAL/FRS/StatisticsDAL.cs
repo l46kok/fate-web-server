@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Fate.Common.Data;
 
-namespace Fate.DB.DAL
+namespace Fate.DB.DAL.FRS
 {
     public class StatisticsDAL
     {

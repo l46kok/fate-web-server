@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Security.Principal;
 using System.Text;
 using Fate.Common.Data;
-using Fate.DB.DAL;
+using Fate.DB.DAL.FRS;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Security;
@@ -15,9 +13,9 @@ namespace Fate.WebServiceLayer
 {
     public class LoginSL : IUserMapper
     {
-        private static readonly LoginSL _instance = new LoginSL();
         private static readonly LoginDAL _loginDal = LoginDAL.Instance;
-        public static LoginSL Instance => _instance;
+        public static LoginSL Instance { get; } = new LoginSL();
+
         private static readonly Dictionary<Guid, WebUserData> _userGuids = new Dictionary<Guid, WebUserData>();
 
         private string GetSHA512HashValue(string val)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Fate.Common.Data;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
@@ -8,8 +9,11 @@ using Nancy.Authentication.Forms;
 using Nancy.Linker;
 using Nancy.ModelBinding;
 
-namespace FateWebServer.Controllers
+namespace FateWebServer.Modules
 {
+
+    [SuppressMessage("ReSharper", "UnusedParameter.Local")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class LoginModule : NancyModule
     {
         private static readonly LoginSL loginSl = LoginSL.Instance;

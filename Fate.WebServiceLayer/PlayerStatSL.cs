@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Fate.Common.Data;
-using Fate.DB.DAL;
+using Fate.DB.DAL.FRS;
 using Fate.WebServiceLayer.ViewModels;
-using FateWebServer.Utility;
 
 namespace Fate.WebServiceLayer
 {
@@ -14,8 +10,7 @@ namespace Fate.WebServiceLayer
     {
         private static readonly PlayerStatDAL _playerStatDal = new PlayerStatDAL();
         private static readonly ServantSearchDAL _servantSearchDal = new ServantSearchDAL();
-        private static readonly PlayerStatSL _instance = new PlayerStatSL();
-        public static PlayerStatSL Instance => _instance;
+        public static PlayerStatSL Instance { get; } = new PlayerStatSL();
 
         private PlayerStatSL() { }
 

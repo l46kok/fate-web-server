@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Fate.Common.Data;
-using Fate.DB.DAL;
-using Fate.WebServiceLayer.Extension;
+using Fate.Common.Extension;
+using Fate.DB.DAL.FRS;
 using Fate.WebServiceLayer.ViewModels;
 
 namespace Fate.WebServiceLayer
@@ -12,8 +11,7 @@ namespace Fate.WebServiceLayer
     public class GameDetailSL
     {
         private static readonly GameDetailDAL _detailDal = new GameDetailDAL();
-        private static readonly GameDetailSL _instance = new GameDetailSL();
-        public static GameDetailSL Instance => _instance;
+        public static GameDetailSL Instance { get; } = new GameDetailSL();
 
         private GameDetailSL() { }
 

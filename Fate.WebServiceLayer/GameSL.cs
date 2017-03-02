@@ -3,16 +3,15 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Fate.Common.Data;
-using Fate.DB.DAL;
+using Fate.Common.Utility;
 using Fate.DB.DAL.FRS;
 
 namespace Fate.WebServiceLayer
 {
     public class GameSL
     {
-        private static readonly GameSL _instance = new GameSL();
         private static readonly GameDAL _gameDal = new GameDAL();
-        public static GameSL Instance => _instance;
+        public static GameSL Instance { get; } = new GameSL();
 
         private GameSL()
         {
@@ -51,7 +50,10 @@ namespace Fate.WebServiceLayer
             GameReplayData data = _gameDal.GetReplayData(gameId);
             if (data == null)
                 return null;
-            data.ReplayPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), ContentURL.GetLocalReplayPath(data.ReplayPath));
+            string assemblyLocation = PathHandler.GetAssemblyPath();
+            if (string.IsNullOrEmpty(assemblyLocation))
+                return null;
+            data.ReplayPath = Path.Combine(assemblyLocation, ContentURL.GetLocalReplayPath(data.ReplayPath));
             return data;
         }
     }

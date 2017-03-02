@@ -16,6 +16,5 @@ namespace Fate.Common.Data
         public int PlayerCount { get; set; }
         public int TeamOneWinCount { get; set; }
         public int TeamTwoWinCount { get; set; }
-        public string GameResult { get; set; }
     }
 }

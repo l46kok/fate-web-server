@@ -1,6 +1,7 @@
-﻿using Nancy;
+﻿using System.Diagnostics.CodeAnalysis;
+using Nancy;
 
-namespace FateWebServer.Caching
+namespace Fate.Common.Extension
 {
     public static class ContextExtensions
     {
@@ -20,6 +21,7 @@ namespace FateWebServer.Caching
         /// Disable the output cache for this route
         /// </summary>
         /// <param name="context">Current context</param>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public static void DisableOutputCache(this NancyContext context)
         {
             context.Items.Remove(OUTPUT_CACHE_TIME_KEY);

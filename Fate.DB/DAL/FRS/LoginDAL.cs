@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-namespace Fate.DB.DAL
+namespace Fate.DB.DAL.FRS
 {
     public class LoginDAL
     {
-        private static readonly LoginDAL _instance = new LoginDAL();
-        public static LoginDAL Instance => _instance;
+        public static LoginDAL Instance { get; } = new LoginDAL();
 
         public bool IsAccountNameRegistered(string accountName)
         {

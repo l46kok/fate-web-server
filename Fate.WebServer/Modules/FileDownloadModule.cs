@@ -1,15 +1,17 @@
-﻿using System;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using Fate.Common.Data;
+using Fate.Common.Extension;
+using Fate.Common.Utility;
 using Fate.WebServiceLayer;
-using FateWebServer.Utility;
 using Nancy;
 using Nancy.Responses;
 
-namespace FateWebServer.Controllers
+namespace FateWebServer.Modules
 {
+    [SuppressMessage("ReSharper", "UnusedParameter.Local")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class FileDownloadModule : NancyModule
     {
         private static readonly GameSL gameSl = GameSL.Instance;

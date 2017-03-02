@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     // $('#discordLink').modal('show');
     $('body').on('hidden.bs.modal', '.modal', function () {
-        $(this).find(".modal-content").html('<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">')
+        $(this).find(".modal-content").html('<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">');
         $(this).removeData('bs.modal');
     });
     $(".noExpand").click(function (event) {
@@ -45,7 +45,7 @@
                     playerRow.append("<td class=centerText>" + elem.deaths + "</td>");
                     playerRow.append("<td class=centerText>" + elem.assists + "</td>");
                     playerRow.append("<td class=centerText>" + numberUtil.formatDecimal(elem.damageDealt) + "</td>");
-                    var godsHelpCol = $('<td class=centerText></td>')
+                    var godsHelpCol = $('<td class=centerText></td>');
                     $.each(elem.godsHelpImageURLList, function (i, url) {
                         godsHelpCol.append("<img class=heroicon height=32 width=32 src='" + url + "'>");
                     });

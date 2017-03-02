@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using System.Reflection;
+using Fate.Common.Utility;
 using Nancy;
 
 namespace FateWebServer
@@ -9,10 +9,10 @@ namespace FateWebServer
         public string GetRootPath()
         {
 #if DEBUG
-            DirectoryInfo debugDir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
-            return debugDir.Parent.Parent.FullName;
+            DirectoryInfo debugDir = new DirectoryInfo(PathHandler.GetAssemblyPath());
+            return debugDir.Parent?.Parent?.FullName;
 #else
-        return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            return PathHandler.GetAssemblyPath();
 #endif
         }
     }

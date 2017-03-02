@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Fate.Common.Data.GHost;
-using Fate.DB;
 using Fate.DB.DAL.GHost;
 
 namespace Fate.WebServiceLayer
@@ -8,8 +7,7 @@ namespace Fate.WebServiceLayer
     public class AdminSearchSL
     {
         private static readonly GHostPlayerDataDAL ghostPlayerDataDAL = new GHostPlayerDataDAL();
-        private static readonly AdminSearchSL _instance = new AdminSearchSL();
-        public static AdminSearchSL Instance => _instance;
+        public static AdminSearchSL Instance { get; } = new AdminSearchSL();
 
         public List<GHostPlayerSearchData> SearchByPlayerName(string playerName)
         {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Nancy;
 
-namespace FateWebServer.Utility
+namespace Fate.Common.Extension
 {
     public static class NancyExtensions
     {
