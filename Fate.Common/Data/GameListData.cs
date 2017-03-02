@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace Fate.Common.Data
 {
     public class GameListData
     {
         [JsonProperty(PropertyName = "Lobby")]
-        public GameLobbyData Lobby { get; set; }
+        public GameListLobbyData Lobby { get; set; }
         [JsonProperty(PropertyName = "Progress")]
-        public List<GameProgressData> ProgressList { get; set; } 
+        public List<GameListProgressData> ProgressList { get; set; } 
         public string Server { get; set; }
     }
 
-    public class GamePlayerData
+    public class GameListPlayerData
     {
         public string HeroIconURL { get; set; }
         public int SlotNumber { get; set; }
@@ -26,10 +27,10 @@ namespace Fate.Common.Data
         public int Assists { get; set; }
     }
 
-    public class GameLobbyData
+    public class GameListLobbyData
     {
         [JsonProperty(PropertyName = "LobbyPlayers")]
-        public List<GamePlayerData> PlayerDataList { get; set; }
+        public List<GameListPlayerData> PlayerDataList { get; set; }
         public bool IsAvailable { get; set; }
         public int PlayerCount { get; set; }
         public int SlotSize { get; set; }
@@ -37,7 +38,7 @@ namespace Fate.Common.Data
         public string Owner { get; set; }
     }
 
-    public class GameKDAData
+    public class GameListKDAData
     {
         public int PlayerID { get; set; }
         public int Kills { get; set; }
@@ -45,18 +46,18 @@ namespace Fate.Common.Data
         public int Assists { get; set; }
     }
 
-    public class GameProgressData
+    public class GameListProgressData
     {
         [JsonProperty(PropertyName = "ProgressPlayers")]
-        public List<GamePlayerData> PlayerDataList { get; set; }
-        public List<GamePlayerData> Team1DataList { get; set; } = new List<GamePlayerData>();
-        public List<GamePlayerData> Team2DataList { get; set; } = new List<GamePlayerData>();
+        public List<GameListPlayerData> PlayerDataList { get; set; }
+        public List<GameListPlayerData> Team1DataList { get; set; } = new List<GameListPlayerData>();
+        public List<GameListPlayerData> Team2DataList { get; set; } = new List<GameListPlayerData>();
         [JsonProperty(PropertyName = "FRSKills")]
-        public List<GameKDAData> PlayerKills { get; set; }
+        public List<GameListKDAData> PlayerKills { get; set; }
         [JsonProperty(PropertyName = "FRSDeaths")]
-        public List<GameKDAData> PlayerDeaths { get; set; }
+        public List<GameListKDAData> PlayerDeaths { get; set; }
         [JsonProperty(PropertyName = "FRSAssists")]
-        public List<GameKDAData> PlayerAssists { get; set; }
+        public List<GameListKDAData> PlayerAssists { get; set; }
         public int Team1Wins { get; set; }
         public int Team2Wins { get; set; }
         [JsonProperty(PropertyName = "FRSEvents")]

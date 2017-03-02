@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Fate.Common.Data;
+using Fate.Common.Extension;
+using Fate.Common.Utility;
 using Fate.DB;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
-using FateWebServer.Utility;
 using Nancy;
 using Nancy.Security;
 
-namespace FateWebServer.Controllers
+namespace FateWebServer.Modules
 {
+    [SuppressMessage("ReSharper", "UnusedParameter.Local")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class AdminModule : NancyModule
     {
         private readonly AdminSearchSL _adminSearchSl = AdminSearchSL.Instance;
         private readonly AdminBanSL _adminBanSl = AdminBanSL.Instance;
+
         public AdminModule()
         {
             this.RequiresAuthentication();
             this.RequiresClaims("Admin");
             
-            Get["/Admin"] = param => View["Views/Admin/AdminConsole.sshtml"];
-            Get["/Admin/PlayerSearch"] = param => View["Views/Admin/AdminSearch.sshtml"];
+            Get["/Admin"] = param => View["/Views/Admin/AdminConsole.sshtml"];
+            Get["/Admin/PlayerSearch"] = param => View["/Views/Admin/AdminSearch.sshtml"];
             Get["/Admin/Search/{filterType}/{filterInput}"] = param =>
             {
                 string filterInput = param.filterInput;
@@ -39,7 +43,7 @@ namespace FateWebServer.Controllers
                         return Response.AsError(HttpStatusCode.BadRequest, "Invalid FilterType");
                 }
             };
-            Get["/Admin/Ban"] = param => View["Views/Admin/AdminBan.sshtml"];
+            Get["/Admin/Ban"] = param => View["/Views/Admin/AdminBan.sshtml"];
             Post["/Admin/Ban"] = param =>
             {
                 int banType = Request.Form.banType;
@@ -54,7 +58,7 @@ namespace FateWebServer.Controllers
                         }
                         catch
                         {
-                            return View["Views/Admin/AdminBan.sshtml", GetBanResultViewModel(false, "You must specify a valid duration.")];
+                            return View["/Views/Admin/AdminBan.sshtml", GetBanResultViewModel(false, "You must specify a valid duration.")];
                         }
                         break;
                     case 2:

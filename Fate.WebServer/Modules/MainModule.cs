@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using Fate.Common.Extension;
+using Fate.Common.Utility;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
-using FateWebServer.Caching;
-using FateWebServer.Utility;
 using Nancy;
 using Nancy.Linker;
 
-namespace FateWebServer
+namespace FateWebServer.Modules
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class MainModule : NancyModule
     {
         private static readonly GameSL _gameSl = GameSL.Instance;
@@ -16,6 +18,7 @@ namespace FateWebServer
         private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
         private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
 
+        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         public MainModule(IResourceLinker linker)
         {
             Get["/"] = _ =>

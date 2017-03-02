@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Fate.WebServiceLayer;
 using Fate.WebServiceLayer.ViewModels;
 using Nancy;
 
-namespace FateWebServer.Controllers
+namespace FateWebServer.Modules
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class PlayerStatsModule : NancyModule
     {
         private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;

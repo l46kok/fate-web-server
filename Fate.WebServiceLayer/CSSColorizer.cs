@@ -1,4 +1,4 @@
-﻿namespace FateWebServer.Utility
+﻿namespace Fate.WebServiceLayer
 {
     public static class CSSColorizer
     {

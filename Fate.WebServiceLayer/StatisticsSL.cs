@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Fate.Common.Data;
-using Fate.DB.DAL;
+using Fate.DB.DAL.FRS;
 using Fate.WebServiceLayer.ViewModels;
-using FateWebServer.Utility;
 
 namespace Fate.WebServiceLayer
 {
     public class StatisticsSL
     {
-        private static readonly StatisticsSL _instance = new StatisticsSL();
         private static readonly StatisticsDAL _statisticsDal = new StatisticsDAL();
 
-        public static StatisticsSL Instance => _instance;
+        public static StatisticsSL Instance { get; } = new StatisticsSL();
 
         private StatisticsSL() { }
 

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fate.WebServiceLayer
 {
@@ -15,7 +11,6 @@ namespace Fate.WebServiceLayer
 
         static ContentURL()
         {
-
             _heroIconDic.Add("H028", @"/Content/icons/heroes/BTNAvenger.jpg");
             _heroIconDic.Add("H000",@"/Content/icons/heroes/BTNSaber.jpg");
             _heroIconDic.Add("H002",@"/Content/icons/heroes/BTNChulainn.jpg");

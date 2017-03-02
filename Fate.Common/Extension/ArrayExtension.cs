@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fate.WebServiceLayer.Extension
+namespace Fate.Common.Extension
 {
     public static class ArrayExtension
     {

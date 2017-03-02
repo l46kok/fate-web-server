@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fate.Common.Data
+﻿namespace Fate.Common.Data
 {
     public class SearchableServantData
     {

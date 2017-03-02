@@ -13,7 +13,7 @@
     }
     showMoreDiv.html('<img src="/Content/icons/Loading.gif" height=48 width=48 class="imageCenter">');
     $.get("/PlayerStatsAjax/" + server + "/" + userName + "/" + lastGameId + "/" + servantFilter, function (data) {
-        if (data.length == 0) {
+        if (data.length === 0) {
             showMoreDiv.attr("data-result", "false");
             showMoreDiv.html("There are no more results");
             return;
@@ -66,8 +66,8 @@
             gameTeamInfo2.append(gameTeam2);
             gameStatsBox.append(gameTeamInfo2);
 
-            var gameReplayInfo = $('<div class="gameTableCell gameDownloadReplay">')
-            var gameReplayInfoHref = $('<a href="/download/replay/' + elem.gameID + '" class="noExpand">')
+            var gameReplayInfo = $('<div class="gameTableCell gameDownloadReplay">');
+            var gameReplayInfoHref = $('<a href="/download/replay/' + elem.gameID + '" class="noExpand">');
             var gameReplayInfoImg = $('<img class="gameDownloadReplayImg" src="/Content/icons/SaveReplay.png" width="32" height="32" alt="Download Replay">');
 
             gameReplayInfoHref.append(gameReplayInfoImg);
@@ -76,7 +76,7 @@
 
             statsBox.append(gameStatsBox);
 
-            var collapsibleGame = $('<div class="accordian-body collapse" data-gameId="' + elem.gameID + '" id="collapsible' + elem.gameID + '">')
+            var collapsibleGame = $('<div class="accordian-body collapse" data-gameId="' + elem.gameID + '" id="collapsible' + elem.gameID + '">');
             collapsibleGame.append('<img src="/Content/icons/Loading.gif" height=64 width=64 class="imageCenter">');
             statsBox.append(collapsibleGame);
 

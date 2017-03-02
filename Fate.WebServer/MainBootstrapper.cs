@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using Fate.Common.Data;
+using Fate.Common.Extension;
 using Fate.WebServiceLayer;
 using FateWebServer.Caching;
-using FateWebServer.Controllers;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
@@ -13,9 +14,10 @@ using Nancy.TinyIoc;
 
 namespace FateWebServer
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class MainBootstrapper : DefaultNancyBootstrapper
     {
-        public static bool IsMaintenanceMode { get; set; } = false;
+        public static bool IsMaintenanceMode { get; set; }
 
         private readonly Dictionary<string, Tuple<DateTime, Response, int>> cachedResponses = new Dictionary<string, Tuple<DateTime, Response, int>>();
         private byte[] favicon;
@@ -77,25 +79,23 @@ namespace FateWebServer
         /// <returns>Request or null</returns>
         private Response BeforeRequestHandler(NancyContext context)
         {
+#if (!DEBUG)
             if (IsMaintenanceMode)
             {
                 Response maintenanceResponse = new Response {StatusCode = HttpStatusCode.ServiceUnavailable};
                 return maintenanceResponse;
             }
-#if DEBUG
-            return null;
-#endif
 
             Tuple<DateTime, Response, int> cacheEntry;
 
-            if (this.cachedResponses.TryGetValue(context.Request.Path, out cacheEntry))
+            if (cachedResponses.TryGetValue(context.Request.Path, out cacheEntry))
             {
                 if (cacheEntry.Item1.AddSeconds(cacheEntry.Item3) > DateTime.Now)
                 {
                     return cacheEntry.Item2;
                 }
             }
-
+#endif
             return null;
         }
 
@@ -131,10 +131,8 @@ namespace FateWebServer
             context.Response = cachedResponse;
         }
 
-        protected override IRootPathProvider RootPathProvider
-        {
-            get { return new CustomRootPathProvider(); }
-        }
+        protected override IRootPathProvider RootPathProvider => new CustomRootPathProvider();
+
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
@@ -143,16 +141,14 @@ namespace FateWebServer
             favicon = LoadFavIcon();
         }
 
-        protected override byte[] FavIcon
-        {
-            get { return favicon ?? (favicon = null); }
-        }
+        protected override byte[] FavIcon => favicon ?? (favicon = null);
 
         private byte[] LoadFavIcon()
         {
             using (var resourceStream = GetType().Assembly.GetManifestResourceStream("FateWebServer.favicon.ico"))
             {
                 var memoryStream = new MemoryStream();
+                Debug.Assert(resourceStream != null, "resourceStream != null");
                 resourceStream.CopyTo(memoryStream);
                 return memoryStream.GetBuffer();
             }

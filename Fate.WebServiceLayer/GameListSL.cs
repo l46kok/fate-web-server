@@ -1,38 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Timers;
-using Fate.Common;
 using Fate.Common.Data;
-using Fate.WebServiceLayer.Extension;
 using Newtonsoft.Json;
 using NLog;
+using System.Timers;
+using Fate.Common.Extension;
 using Timer = System.Timers.Timer;
+#pragma warning disable 169
 
 namespace Fate.WebServiceLayer
 {
     public class GameListSL
     {
         private const int GHOST_FRS_PORT = 6302;
-        private const string GHOST_CONNECT_TEST_IP = "127.0.0.1";
+#if (!DEBUG)
         private const string GHOST_CONNECT_IP = "54.210.38.182";
         private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
         private const string GHOST_CONNECT_IP_ASIA = "13.112.46.237";
         private const string GHOST_CONNECT_IP_CN = "182.18.22.91";
+#else
+        private const string GHOST_CONNECT_TEST_IP = "127.0.0.1";
+#endif
+
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
+        [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
+        private static Timer _reconnectTimer;
+
         private const int POLL_DURATION = 2 * 1000 * 1000;
         private const string GET_GAMES_COMMAND = "GetGames";
         private const string REFRESH_BAN_LIST = "RefreshBanList";
-        private static readonly GameListSL _instance = new GameListSL();
         private readonly List<SocketData> _socketList = new List<SocketData>();
-        private static Timer _reconnectTimer;
         private readonly Logger _logger;
 
-        public static GameListSL Instance => _instance;
+        public static GameListSL Instance { get; } = new GameListSL();
 
         private class SocketData
         {
@@ -65,7 +70,7 @@ namespace Fate.WebServiceLayer
             ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
             // ConnectSocket(GHOST_CONNECT_IP_CN, GHOST_FRS_PORT, "China");
 #else
-            ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "Test");
+            // ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "Test");
 #endif
         }
 
@@ -129,14 +134,14 @@ namespace Fate.WebServiceLayer
             }
         }
 
-        private void SetPlayerFateGameInfo(GameProgressData gameProgressData)
+        private void SetPlayerFateGameInfo(GameListProgressData gameProgressData)
         {
             if (gameProgressData.FRSEventList == null)
                 return;
             List<string> servantSelections = gameProgressData.FRSEventList.Where(x => x.StartsWith("SS")).ToList();
 
-            gameProgressData.Team1DataList = new List<GamePlayerData>();
-            gameProgressData.Team2DataList = new List<GamePlayerData>();
+            gameProgressData.Team1DataList = new List<GameListPlayerData>();
+            gameProgressData.Team2DataList = new List<GameListPlayerData>();
             foreach (string s in servantSelections)
             {
                 string[] splitStr = s.Split('/');
@@ -148,12 +153,12 @@ namespace Fate.WebServiceLayer
                 if (teamNum <= 0)
                     continue;
 
-                GamePlayerData gpd =
+                GameListPlayerData gpd =
                     gameProgressData.PlayerDataList.FirstOrDefault(x => string.Equals(x.PlayerName, playerName, StringComparison.InvariantCultureIgnoreCase));
 
                 if (gpd == null)
                 {
-                    gpd = new GamePlayerData
+                    gpd = new GameListPlayerData
                     {
                         PlayerName = playerName,
                         Ping = "0"
@@ -163,19 +168,19 @@ namespace Fate.WebServiceLayer
                 gpd.HeroIconURL = ContentURL.GetHeroIconURL(heroUnitTypeId);
                 gpd.TeamNumber = teamNum;
 
-                GameKDAData kdaData = gameProgressData.PlayerKills?.FirstOrDefault(x => x.PlayerID == gpd.SlotNumber);
+                GameListKDAData kdaData = gameProgressData.PlayerKills?.FirstOrDefault(x => x.PlayerID == gpd.SlotNumber);
                 if (kdaData != null)
                 {
                     gpd.Kills = kdaData.Kills;
                 }
 
-                GameKDAData deathsData = gameProgressData.PlayerDeaths?.FirstOrDefault(x => x.PlayerID == gpd.SlotNumber);
+                GameListKDAData deathsData = gameProgressData.PlayerDeaths?.FirstOrDefault(x => x.PlayerID == gpd.SlotNumber);
                 if (deathsData != null)
                 {
                     gpd.Deaths = deathsData.Deaths;
                 }
 
-                GameKDAData assistsData = gameProgressData.PlayerAssists?.FirstOrDefault(x => x.PlayerID == gpd.SlotNumber);
+                GameListKDAData assistsData = gameProgressData.PlayerAssists?.FirstOrDefault(x => x.PlayerID == gpd.SlotNumber);
                 if (assistsData != null)
                 {
                     gpd.Assists = assistsData.Assists;
@@ -247,7 +252,7 @@ namespace Fate.WebServiceLayer
 
                     if (socketData.Socket.Poll(POLL_DURATION, SelectMode.SelectRead))
                     {
-                        GameListData gameListData = null;
+                        GameListData gameListData;
                         int socketReadAttempt = 1000;
                         string receivedStr = "";
                         while (socketData.RemainingData > 0 && socketReadAttempt > 0)
@@ -291,16 +296,16 @@ namespace Fate.WebServiceLayer
                         gameListData.Server = socketData.Server;
                         if (gameListData.Lobby.IsAvailable && gameListData.Lobby.PlayerDataList == null)
                         {
-                            gameListData.Lobby.PlayerDataList = new List<GamePlayerData>();
+                            gameListData.Lobby.PlayerDataList = new List<GameListPlayerData>();
                         }
                         if (gameListData.ProgressList == null)
                         {
                             //Add dummy list otherwise nancyfx SSVE can't render page correctly
-                            gameListData.ProgressList = new List<GameProgressData>();
+                            gameListData.ProgressList = new List<GameListProgressData>();
                         }
                         else
                         {
-                            foreach (GameProgressData gpd in gameListData.ProgressList)
+                            foreach (GameListProgressData gpd in gameListData.ProgressList)
                             {
                                 gpd.Server = socketData.Server;
                                 SetPlayerFateGameInfo(gpd);

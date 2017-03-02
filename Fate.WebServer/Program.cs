@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Reflection;
+using Fate.Common.Utility;
 using Fate.DB;
-using FateWebServer.Utility;
 using Nancy.Hosting.Self;
 using NLog;
 
@@ -105,8 +104,7 @@ namespace FateWebServer
             {
                 Console.WriteLine("Restarting Server");
                 // Starts a new instance of the program itself
-                var fileName = Assembly.GetExecutingAssembly().Location;
-                System.Diagnostics.Process.Start(fileName);
+                System.Diagnostics.Process.Start(PathHandler.GetAssemblyPath());
 
                 // Closes the current process
                 Environment.Exit(0);

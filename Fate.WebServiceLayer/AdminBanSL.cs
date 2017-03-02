@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
 using Fate.Common.Data;
 using Fate.Common.Data.GHost;
 using Fate.DB;
@@ -14,9 +13,8 @@ namespace Fate.WebServiceLayer
     {
         private static readonly BanDAL _adminBanDal = new BanDAL();
         private static readonly GHostPlayerDataDAL _ghostPlayerDataDal = new GHostPlayerDataDAL();
-        private static readonly AdminBanSL _instance = new AdminBanSL();
         private static readonly GameListSL _gameListSl = GameListSL.Instance;
-        public static AdminBanSL Instance => _instance;
+        public static AdminBanSL Instance { get; } = new AdminBanSL();
 
         public bool BanPlayer(PlayerBanData playerBanData, List<GHostDatabaseInfo> ghostDatabaseList)
         {

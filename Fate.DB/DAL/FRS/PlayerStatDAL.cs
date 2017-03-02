@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fate.Common.Data;
 
-namespace Fate.DB.DAL
+namespace Fate.DB.DAL.FRS
 {
     public class PlayerStatDAL
     {

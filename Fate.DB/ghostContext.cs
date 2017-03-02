@@ -45,7 +45,6 @@ namespace Fate.DB
         /// <summary>
         /// Create a new EF6 dynamic data context using the specified provider connection string.
         /// </summary>
-        /// <param name="providerConnectionString">Provider connection string to use. Usually a standart ADO.NET connection string.</param>
         /// <returns></returns>
         public static ghostEntities Create()
         {
