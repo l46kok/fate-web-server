@@ -10,12 +10,16 @@ using Newtonsoft.Json;
 using NLog;
 using System.Timers;
 using Fate.Common.Extension;
+using Fate.Common.Utility;
+using Fate.DB.DAL.FRS;
+using Fate.DB.DAL.GHost;
 using Timer = System.Timers.Timer;
 #pragma warning disable 169
 
 namespace Fate.WebServiceLayer
 {
-    public class GameListSL
+    [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
+    public class GhostCommSL
     {
         private const int GHOST_FRS_PORT = 6302;
 #if (!DEBUG)
@@ -24,12 +28,13 @@ namespace Fate.WebServiceLayer
         private const string GHOST_CONNECT_IP_ASIA = "13.112.46.237";
         private const string GHOST_CONNECT_IP_CN = "182.18.22.91";
 #else
-        private const string GHOST_CONNECT_TEST_IP = "127.0.0.1";
+        private const string GHOST_CONNECT_TEST_IP = "54.210.38.182";
 #endif
 
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
-        [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
+        private const int TIMEBAN_TIMER_INTERVAL = 60 * 1000; // 60 seconds
         private static Timer _reconnectTimer;
+        private static Timer _timebanTimer;
 
         private const int POLL_DURATION = 2 * 1000 * 1000;
         private const string GET_GAMES_COMMAND = "GetGames";
@@ -37,7 +42,11 @@ namespace Fate.WebServiceLayer
         private readonly List<SocketData> _socketList = new List<SocketData>();
         private readonly Logger _logger;
 
-        public static GameListSL Instance { get; } = new GameListSL();
+        private static readonly BanDAL _banDal = new BanDAL();
+        private static readonly AdminBanSL _adminBanSl = new AdminBanSL();
+        //private static readonly GHostPlayerDAL _ghostPlayerDal = new GHostPlayerDAL();
+
+        public static GhostCommSL Instance { get; } = new GhostCommSL();
 
         private class SocketData
         {
@@ -48,25 +57,31 @@ namespace Fate.WebServiceLayer
             public GameListData CachedGameListData { get; set; }
         }
 
-        private GameListSL()
+        private GhostCommSL()
         {
             _logger = LogManager.GetCurrentClassLogger();
-#if (!DEBUG)
 
             _reconnectTimer = new Timer { Interval = RECONNECT_TIMER_INTERVAL };
-            _reconnectTimer.Elapsed += Timer_Elapsed;
+            _reconnectTimer.Elapsed += ReconnectTimer_Elapsed;
             _reconnectTimer.Enabled = true;
             _reconnectTimer.Start();
-#endif
+
+            _timebanTimer = new Timer { Interval = TIMEBAN_TIMER_INTERVAL };
+            _timebanTimer.Elapsed += TimebanTimer_Elapsed; ;
+            _timebanTimer.Enabled = true;
+            _timebanTimer.Start();
+
             ConnectAllSockets();
         }
+
+        
 
         private void ConnectAllSockets()
         {
             _socketList.Clear();
 #if (!DEBUG)
             ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
-            ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
+            // ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
             ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
             // ConnectSocket(GHOST_CONNECT_IP_CN, GHOST_FRS_PORT, "China");
 #else
@@ -74,7 +89,7 @@ namespace Fate.WebServiceLayer
 #endif
         }
 
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void ReconnectTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _logger.Info("[FRS]: Reconnecting all sockets...");
             foreach (SocketData sd in _socketList)
@@ -90,6 +105,39 @@ namespace Fate.WebServiceLayer
             }
             
             ConnectAllSockets();
+        }
+
+        private void TimebanTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                bool hasPlayerBeenUnbanned = false;
+                foreach (var bannedPlayer in _banDal.GetCurrentlyBannedPlayers(true))
+                {
+                    if (bannedPlayer.BannedUntil == null)
+                    {
+                        _logger.Error("Error: Expected banned until duration but is null: " + bannedPlayer.PlayerName);
+                        continue;
+                    }
+
+                    if (bannedPlayer.BannedUntil.Value < DateTime.Now)
+                    {
+                        _logger.Info("Unbanning player: " + bannedPlayer.PlayerName);
+                        _adminBanSl.UnbanPlayer(bannedPlayer.PlayerName, "Timer Unban", ConfigHandler.GhostDatabaseList);
+
+                        hasPlayerBeenUnbanned = true;
+                    }
+                }
+
+                if (hasPlayerBeenUnbanned)
+                {
+                    RefreshBanList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "[FRS] Timeban Handler Error");
+            }
         }
 
         private bool IsSocketConnected(Socket s)
@@ -204,37 +252,6 @@ namespace Fate.WebServiceLayer
             gameProgressData.Team2Wins = roundVictories.Count(x => x.Contains("T2"));
         }
 
-        public void RefreshBanList()
-        {
-            bool reconnectSockets = false;
-            foreach (SocketData socketData in _socketList)
-            {
-                if (!IsSocketConnected(socketData.Socket))
-                {
-                    reconnectSockets = true;
-                    break;
-                }
-            }
-
-            if (reconnectSockets)
-            {
-                ConnectAllSockets();
-            }
-
-            foreach (SocketData socketData in _socketList)
-            {
-                try
-                {
-                    byte[] cmd = Encoding.ASCII.GetBytes(REFRESH_BAN_LIST);
-                    socketData.Socket.Send(cmd);
-                }
-                catch (Exception ex)
-                {
-                    _logger.Error(ex, "[FRS] RefreshBanList Error on " + socketData.Server);
-                }
-            }
-        }
-
         public List<GameListData> GetGameList()
         {
             List<GameListData> gameListDataList = new List<GameListData>();
@@ -334,6 +351,37 @@ namespace Fate.WebServiceLayer
                 ConnectAllSockets();
             }
             return gameListDataList;
+        }
+
+        public void RefreshBanList()
+        {
+            bool reconnectSockets = false;
+            foreach (SocketData socketData in _socketList)
+            {
+                if (!IsSocketConnected(socketData.Socket))
+                {
+                    reconnectSockets = true;
+                    break;
+                }
+            }
+
+            if (reconnectSockets)
+            {
+                ConnectAllSockets();
+            }
+
+            foreach (SocketData socketData in _socketList)
+            {
+                try
+                {
+                    byte[] cmd = Encoding.ASCII.GetBytes(REFRESH_BAN_LIST);
+                    socketData.Socket.Send(cmd);
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, "[FRS] RefreshBanList Error on " + socketData.Server);
+                }
+            }
         }
     }
 }

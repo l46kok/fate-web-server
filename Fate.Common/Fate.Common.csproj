@@ -79,9 +79,10 @@
     <Compile Include="Data\PlayerStatSummaryData.cs" />
     <Compile Include="Data\SearchableServantData.cs" />
     <Compile Include="Data\ServantStatisticsData.cs" />
-    <Compile Include="Extension\ArrayExtension.cs" />
+    <Compile Include="Extension\ArrayExtensions.cs" />
     <Compile Include="Extension\ContextExtensions.cs" />
     <Compile Include="Extension\DictionaryExtension.cs" />
+    <Compile Include="Extension\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ConfigHandler.cs" />
     <Compile Include="Extension\NancyExtensions.cs" />

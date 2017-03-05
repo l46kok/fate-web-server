@@ -86,7 +86,7 @@
     <Compile Include="DAL\FRS\LoginDAL.cs" />
     <Compile Include="DAL\FRS\ServantSearchDAL.cs" />
     <Compile Include="DAL\FRS\StatisticsDAL.cs" />
-    <Compile Include="DAL\GHost\GHostPlayerDataDAL.cs" />
+    <Compile Include="DAL\GHost\GHostPlayerDAL.cs" />
     <Compile Include="dotagames.cs">
       <DependentUpon>ghostAsia.tt</DependentUpon>
     </Compile>

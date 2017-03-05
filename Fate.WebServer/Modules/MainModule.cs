@@ -14,7 +14,7 @@ namespace FateWebServer.Modules
     {
         private static readonly GameSL _gameSl = GameSL.Instance;
         private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;
-        private static readonly GameListSL _gameListSl = GameListSL.Instance;
+        private static readonly GhostCommSL GhostCommSl = GhostCommSL.Instance;
         private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
         private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
 
@@ -37,7 +37,7 @@ namespace FateWebServer.Modules
             Get["/GameList"] = param =>
             {
                 Context.EnableOutputCache(10);
-                return View["Views/GameList.sshtml", _gameListSl.GetGameList()];
+                return View["Views/GameList.sshtml", GhostCommSl.GetGameList()];
             };
 
             Get["/About"] = Param => View["Views/About.sshtml"];

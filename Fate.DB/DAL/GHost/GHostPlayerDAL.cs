@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Fate.Common.Data;
 using Fate.Common.Data.GHost;
+using Fate.Common.Extension;
 
 namespace Fate.DB.DAL.GHost
 {
-    public class GHostPlayerDataDAL
+    public class GHostPlayerDAL
     {
         public List<GHostPlayerSearchData> SearchByPlayerName(string playerName)
         {
@@ -53,6 +54,16 @@ namespace Fate.DB.DAL.GHost
                                        };
 
                 return playerSearchData.Take(50).ToList();
+            }
+        }
+
+        public void UnbanPlayer(string playerName)
+        {
+            using (var db = ghostEntities.Create())
+            {
+                bans banData = db.bans.Single(x => x.name.Equals(playerName, StringComparison.InvariantCultureIgnoreCase));
+                db.bans.Remove(banData);
+                db.SaveChanges();
             }
         }
 

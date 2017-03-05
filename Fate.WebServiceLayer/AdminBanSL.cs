@@ -11,28 +11,39 @@ namespace Fate.WebServiceLayer
 {
     public class AdminBanSL
     {
-        private static readonly BanDAL _adminBanDal = new BanDAL();
-        private static readonly GHostPlayerDataDAL _ghostPlayerDataDal = new GHostPlayerDataDAL();
-        private static readonly GameListSL _gameListSl = GameListSL.Instance;
+        private static readonly BanDAL _banDal = new BanDAL();
+        private static readonly GHostPlayerDAL _ghostPlayerDal = new GHostPlayerDAL();
+        private static readonly GhostCommSL _ghostCommSl = GhostCommSL.Instance;
         public static AdminBanSL Instance { get; } = new AdminBanSL();
 
         public bool BanPlayer(PlayerBanData playerBanData, List<GHostDatabaseInfo> ghostDatabaseList)
         {
-            if (_adminBanDal.IsPlayerBanned(playerBanData.PlayerName))
+            if (_banDal.IsPlayerBanned(playerBanData.PlayerName))
             {
                 return false;
             }
 
-            _adminBanDal.BanPlayer(playerBanData);
+            _banDal.BanPlayer(playerBanData);
             foreach (var ghostDbInfo in ghostDatabaseList)
             {
                 ghostEntities.InitDatabaseConnection(ghostDbInfo);
-                _ghostPlayerDataDal.BanPlayer(playerBanData);
+                _ghostPlayerDal.BanPlayer(playerBanData);
             }
 
-            _gameListSl.RefreshBanList();
+            _ghostCommSl.RefreshBanList();
 
 
+            return true;
+        }
+
+        public bool UnbanPlayer(string playerName, string adminName, List<GHostDatabaseInfo> ghostDatabaseList)
+        {
+            _banDal.UnbanPlayer(playerName, adminName);
+            foreach (var ghostDbInfo in ghostDatabaseList)
+            {
+                ghostEntities.InitDatabaseConnection(ghostDbInfo);
+                _ghostPlayerDal.UnbanPlayer(playerName);
+            }
             return true;
         }
 
