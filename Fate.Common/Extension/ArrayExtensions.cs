@@ -2,7 +2,7 @@
 
 namespace Fate.Common.Extension
 {
-    public static class ArrayExtension
+    public static class ArrayExtensions
     {
         public static T[] SubArray<T>(this T[] data, int index, int length)
         {

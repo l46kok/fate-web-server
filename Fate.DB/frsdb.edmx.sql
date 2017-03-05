@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 02/27/2017 07:26:28
+-- Date Created: 03/02/2017 01:37:51
 
 -- Generated from EDMX file: D:\SourceCodes\Personal\fate-web-server\Fate.DB\frsdb.edmx
 -- Target version: 3.0.0.0
@@ -346,7 +346,9 @@ CREATE TABLE `ban`(
 	`BannedUntil` datetime, 
 	`IsPermanentBan` bool NOT NULL, 
 	`IsCurrentlyBanned` bool NOT NULL, 
-	`IpAddresses` varchar (65535) NOT NULL);
+	`IpAddresses` varchar (65535) NOT NULL, 
+	`ModifiedDateTime` datetime, 
+	`ModifiedByAdmin` varchar (45));
 
 ALTER TABLE `ban` ADD PRIMARY KEY (BanID);
 

@@ -6,17 +6,17 @@ namespace Fate.WebServiceLayer
 {
     public class AdminSearchSL
     {
-        private static readonly GHostPlayerDataDAL ghostPlayerDataDAL = new GHostPlayerDataDAL();
+        private static readonly GHostPlayerDAL _ghostPlayerDal = new GHostPlayerDAL();
         public static AdminSearchSL Instance { get; } = new AdminSearchSL();
 
         public List<GHostPlayerSearchData> SearchByPlayerName(string playerName)
         {
-            return ghostPlayerDataDAL.SearchByPlayerName(playerName);
+            return _ghostPlayerDal.SearchByPlayerName(playerName);
         }
 
         public List<GHostPlayerSearchData> SearchByIp(string ip)
         {
-            return ghostPlayerDataDAL.SearchByIp(ip);
+            return _ghostPlayerDal.SearchByIp(ip);
         }
     }
 }

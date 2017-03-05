@@ -64,7 +64,7 @@
     <Compile Include="ContentURL.cs" />
     <Compile Include="CSSColorizer.cs" />
     <Compile Include="GameDetailSL.cs" />
-    <Compile Include="GameListSL.cs" />
+    <Compile Include="GhostCommSL.cs" />
     <Compile Include="GameSL.cs" />
     <Compile Include="LoginSL.cs" />
     <Compile Include="PlayerStatSL.cs" />

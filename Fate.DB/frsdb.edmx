@@ -299,6 +299,8 @@
     <Property Name="IsPermanentBan" Type="bool" Nullable="false" />
     <Property Name="IsCurrentlyBanned" Type="bool" Nullable="false" />
     <Property Name="IpAddresses" Type="varchar" Nullable="false" MaxLength="65535" />
+    <Property Name="ModifiedDateTime" Type="datetime" Nullable="true" />
+    <Property Name="ModifiedByAdmin" Type="varchar" Nullable="true" MaxLength="45" />
   </EntityType>
   <Association Name="fk_Game_Server">
     <End Role="server" Type="frsModel.Store.server" Multiplicity="1" />
@@ -884,6 +886,8 @@
           <Property Name="IsPermanentBan" Type="Boolean" Nullable="false" />
           <Property Name="IsCurrentlyBanned" Type="Boolean" Nullable="false" />
           <Property Name="IpAddresses" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" />
+          <Property Name="ModifiedByAdmin" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1124,6 +1128,8 @@
           <ScalarProperty Name="IsPermanentBan" ColumnName="IsPermanentBan" />
           <ScalarProperty Name="IsCurrentlyBanned" ColumnName="IsCurrentlyBanned" />
           <ScalarProperty Name="IpAddresses" ColumnName="IpAddresses" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="ModifiedByAdmin" ColumnName="ModifiedByAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -23,5 +23,7 @@ namespace Fate.DB
         public bool IsPermanentBan { get; set; }
         public bool IsCurrentlyBanned { get; set; }
         public string IpAddresses { get; set; }
+        public Nullable<System.DateTime> ModifiedDateTime { get; set; }
+        public string ModifiedByAdmin { get; set; }
     }
 }

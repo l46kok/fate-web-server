@@ -25,8 +25,8 @@ namespace FateWebServer.Modules
             this.RequiresAuthentication();
             this.RequiresClaims("Admin");
             
-            Get["/Admin"] = param => View["/Views/Admin/AdminConsole.sshtml"];
-            Get["/Admin/PlayerSearch"] = param => View["/Views/Admin/AdminSearch.sshtml"];
+            Get["/Admin"] = param => View["Views/Admin/AdminConsole.sshtml"];
+            Get["/Admin/PlayerSearch"] = param => View["Views/Admin/AdminSearch.sshtml"];
             Get["/Admin/Search/{filterType}/{filterInput}"] = param =>
             {
                 string filterInput = param.filterInput;
@@ -43,7 +43,7 @@ namespace FateWebServer.Modules
                         return Response.AsError(HttpStatusCode.BadRequest, "Invalid FilterType");
                 }
             };
-            Get["/Admin/Ban"] = param => View["/Views/Admin/AdminBan.sshtml"];
+            Get["/Admin/Ban"] = param => View["Views/Admin/AdminBan.sshtml"];
             Post["/Admin/Ban"] = param =>
             {
                 int banType = Request.Form.banType;
@@ -58,7 +58,7 @@ namespace FateWebServer.Modules
                         }
                         catch
                         {
-                            return View["/Views/Admin/AdminBan.sshtml", GetBanResultViewModel(false, "You must specify a valid duration.")];
+                            return View["Views/Admin/AdminBan.sshtml", GetBanResultViewModel(false, "You must specify a valid duration.")];
                         }
                         break;
                     case 2:
