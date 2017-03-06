@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Fate.Common.Data;
 using Fate.Common.Data.GHost;
@@ -9,12 +10,20 @@ using Fate.DB.DAL.GHost;
 
 namespace Fate.WebServiceLayer
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class AdminBanSL
     {
-        private static readonly BanDAL _banDal = new BanDAL();
-        private static readonly GHostPlayerDAL _ghostPlayerDal = new GHostPlayerDAL();
-        private static readonly GhostCommSL _ghostCommSl = GhostCommSL.Instance;
-        public static AdminBanSL Instance { get; } = new AdminBanSL();
+        // GHostCommSL is injected by Autofac
+        public GhostCommSL GHostCommSl { get; set; }
+
+        private readonly BanDAL _banDal = new BanDAL();
+        private readonly GHostPlayerDAL _ghostPlayerDal = new GHostPlayerDAL();
+
+        public AdminBanSL(BanDAL banDal, GHostPlayerDAL ghostPlayerDal)
+        {
+            _banDal = banDal;
+            _ghostPlayerDal = ghostPlayerDal;
+        }
 
         public bool BanPlayer(PlayerBanData playerBanData, List<GHostDatabaseInfo> ghostDatabaseList)
         {
@@ -30,7 +39,7 @@ namespace Fate.WebServiceLayer
                 _ghostPlayerDal.BanPlayer(playerBanData);
             }
 
-            _ghostCommSl.RefreshBanList();
+            GHostCommSl.RefreshBanList();
 
 
             return true;

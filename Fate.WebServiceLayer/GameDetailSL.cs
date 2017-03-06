@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Fate.Common.Data;
 using Fate.Common.Extension;
@@ -8,12 +9,15 @@ using Fate.WebServiceLayer.ViewModels;
 
 namespace Fate.WebServiceLayer
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GameDetailSL
     {
-        private static readonly GameDetailDAL _detailDal = new GameDetailDAL();
-        public static GameDetailSL Instance { get; } = new GameDetailSL();
+        private readonly GameDetailDAL _detailDal;
 
-        private GameDetailSL() { }
+        public GameDetailSL(GameDetailDAL detailDal)
+        {
+            _detailDal = detailDal;
+        }
 
         private void PopulateImageURL(GamePlayerDetailData data)
         {

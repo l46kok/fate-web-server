@@ -16,9 +16,7 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class LoginModule : NancyModule
     {
-        private static readonly LoginSL loginSl = LoginSL.Instance;
-
-        public LoginModule(IResourceLinker linker)
+        public LoginModule(IResourceLinker linker, LoginSL loginSl)
         {
             Post["/CreateAccount"] = param =>
             {

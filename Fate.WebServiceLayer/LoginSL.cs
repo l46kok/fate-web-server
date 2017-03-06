@@ -13,10 +13,13 @@ namespace Fate.WebServiceLayer
 {
     public class LoginSL : IUserMapper
     {
-        private static readonly LoginDAL _loginDal = LoginDAL.Instance;
-        public static LoginSL Instance { get; } = new LoginSL();
-
         private static readonly Dictionary<Guid, WebUserData> _userGuids = new Dictionary<Guid, WebUserData>();
+        private readonly LoginDAL _loginDal;
+
+        public LoginSL(LoginDAL loginDal)
+        {
+            _loginDal = loginDal;
+        }
 
         private string GetSHA512HashValue(string val)
         {

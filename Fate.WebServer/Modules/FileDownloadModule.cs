@@ -14,8 +14,7 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class FileDownloadModule : NancyModule
     {
-        private static readonly GameSL gameSl = GameSL.Instance;
-        public FileDownloadModule()
+        public FileDownloadModule(GameSL gameSl)
         {
             Get["/download/replay/{gameId}"] = param =>
             {

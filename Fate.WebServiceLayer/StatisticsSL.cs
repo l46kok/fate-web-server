@@ -9,11 +9,12 @@ namespace Fate.WebServiceLayer
 {
     public class StatisticsSL
     {
-        private static readonly StatisticsDAL _statisticsDal = new StatisticsDAL();
+        private readonly StatisticsDAL _statisticsDal;
 
-        public static StatisticsSL Instance { get; } = new StatisticsSL();
-
-        private StatisticsSL() { }
+        public StatisticsSL(StatisticsDAL statisticsDal)
+        {
+            _statisticsDal = statisticsDal;
+        }
 
         public List<ServantStatisticsViewModel> GetServantStatistics()
         {
