@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fate.Common.Data;
-using Fate.Common.Extension;
 
 namespace Fate.DB.DAL.FRS
 {
@@ -81,6 +80,7 @@ namespace Fate.DB.DAL.FRS
                     select new PlayerBanData
                     {
                         Admin = bannedPlayers.Admin,
+                        BannedDateTime = bannedPlayers.BannedDateTime,
                         BannedUntil = bannedPlayers.BannedUntil,
                         IsPermanentBan = bannedPlayers.IsPermanentBan,
                         PlayerName = bannedPlayers.PlayerName,

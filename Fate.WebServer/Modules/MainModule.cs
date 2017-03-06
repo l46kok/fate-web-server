@@ -17,6 +17,7 @@ namespace FateWebServer.Modules
         private static readonly GhostCommSL GhostCommSl = GhostCommSL.Instance;
         private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
         private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
+        private static readonly BanListSL _banListSl = BanListSL.Instance;
 
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         public MainModule(IResourceLinker linker)
@@ -77,7 +78,7 @@ namespace FateWebServer.Modules
 
             Get["/Login"] = param => View["Views/Login.sshtml", new LoginViewModel()];
 
-            Get["/BanList"] = param => View["Views/BanList.sshtml"];
+            Get["/BanList"] = param => View["Views/BanList.sshtml", _banListSl.GetBannedPlayers()];
         }
     }
 }

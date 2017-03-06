@@ -28,7 +28,8 @@ namespace Fate.DB
                     UserID = userId,
                     Password = password,
                     PersistSecurityInfo = true,
-                    Database = databaseName
+                    Database = databaseName,
+                    ConvertZeroDateTime = true
                 };
             // Set the properties for the data source.
             // Build the SqlConnection connection string.
