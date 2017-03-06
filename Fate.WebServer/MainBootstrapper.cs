@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Autofac;
 using Fate.Common.Extension;
+using Fate.DB.DAL.FRS;
+using Fate.DB.DAL.GHost;
 using Fate.WebServiceLayer;
 using FateWebServer.Caching;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.Bootstrapper;
+using Nancy.Bootstrappers.Autofac;
 using Nancy.Conventions;
-using Nancy.TinyIoc;
 
 namespace FateWebServer
 {
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-    public class MainBootstrapper : DefaultNancyBootstrapper
+    public class MainBootstrapper : AutofacNancyBootstrapper
     {
         public static bool IsMaintenanceMode { get; set; }
 
-        private readonly Dictionary<string, Tuple<DateTime, Response, int>> cachedResponses = new Dictionary<string, Tuple<DateTime, Response, int>>();
+        private readonly Dictionary<string, Tuple<DateTime, Response, int>> _cachedResponses = new Dictionary<string, Tuple<DateTime, Response, int>>();
         private byte[] favicon;
 
-        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+        protected override void ApplicationStartup(ILifetimeScope container, IPipelines pipelines)
         {
             base.ApplicationStartup(container, pipelines);
 
@@ -30,19 +33,32 @@ namespace FateWebServer
             pipelines.AfterRequest += SetCache;
         }
 
-        protected override void ConfigureApplicationContainer(TinyIoCContainer container)
+        protected override void ConfigureApplicationContainer(ILifetimeScope container)
         {
-            // We don't call "base" here to prevent auto-discovery of
-            // types/dependencies
+            // Container registrations for service layers
+            container.Update(builder => builder.RegisterType<LoginSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<GameSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<PlayerStatSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<StatisticsSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<GameDetailSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<BanListSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<AdminSearchSL>().AsSelf().SingleInstance());
+            // These two are dependant on each other, so we allow circular dependencies
+            container.Update(builder => builder.RegisterType<GhostCommSL>().AsSelf().PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies).SingleInstance());
+            container.Update(builder => builder.RegisterType<AdminBanSL>().AsSelf().PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies).SingleInstance());
+
+            // Container registrations for data access layers
+            container.Update(builder => builder.RegisterType<BanDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<GameDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<GameDetailDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<LoginDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<PlayerStatDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<ServantSearchDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<StatisticsDAL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<GHostPlayerDAL>().AsSelf().SingleInstance());
         }
 
-        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
-        {
-            base.ConfigureRequestContainer(container, context);
-            container.Register<IUserMapper, LoginSL>();
-        }
-
-        protected override void RequestStartup(TinyIoCContainer requestContainer, IPipelines pipelines, NancyContext context)
+        protected override void RequestStartup(ILifetimeScope requestContainer, IPipelines pipelines, NancyContext context)
         {
             base.RequestStartup(requestContainer, pipelines, context);
 
@@ -88,7 +104,7 @@ namespace FateWebServer
 
             Tuple<DateTime, Response, int> cacheEntry;
 
-            if (cachedResponses.TryGetValue(context.Request.Path, out cacheEntry))
+            if (_cachedResponses.TryGetValue(context.Request.Path, out cacheEntry))
             {
                 if (cacheEntry.Item1.AddSeconds(cacheEntry.Item3) > DateTime.Now)
                 {
@@ -126,7 +142,7 @@ namespace FateWebServer
 
             var cachedResponse = new CachedResponse(context.Response);
 
-            cachedResponses[context.Request.Path] = new Tuple<DateTime, Response, int>(DateTime.Now, cachedResponse, cacheSeconds);
+            _cachedResponses[context.Request.Path] = new Tuple<DateTime, Response, int>(DateTime.Now, cachedResponse, cacheSeconds);
 
             context.Response = cachedResponse;
         }

@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Fate.DB.DAL.FRS
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class LoginDAL
     {
-        public static LoginDAL Instance { get; } = new LoginDAL();
-
         public bool IsAccountNameRegistered(string accountName)
         {
             using (var db = frsDatabase.Create())

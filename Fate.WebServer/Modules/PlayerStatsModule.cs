@@ -9,19 +9,17 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class PlayerStatsModule : NancyModule
     {
-        private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;
-        private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
-        public PlayerStatsModule()
+        public PlayerStatsModule(PlayerStatSL playerStatsSl, StatisticsSL statisticsSl)
         {
             Get["/PlayerStatsAjax/{server}/{playerName}/{gameId}/{heroUnitTypeId}"] = param =>
             {
-                List<PlayerGameSummaryViewModel> gameSummaryData = _playerStatsSl.GetPlayerGameSummary(param.PlayerName, param.server, param.gameId, param.heroUnitTypeId);
+                List<PlayerGameSummaryViewModel> gameSummaryData = playerStatsSl.GetPlayerGameSummary(param.PlayerName, param.server, param.gameId, param.heroUnitTypeId);
                 return Response.AsJson(gameSummaryData);
             };
 
             Get["/PlayerStatsAjax/Statistics/{orderType}/{time}"] = param =>
             {
-                List<PlayerStatisticsViewModel> playerStatistics = _statisticsSl.GetPlayerStatistics(param.orderType,param.time);
+                List<PlayerStatisticsViewModel> playerStatistics = statisticsSl.GetPlayerStatistics(param.orderType,param.time);
                 return Response.AsJson(playerStatistics);
             };
         }

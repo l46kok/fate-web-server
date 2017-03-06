@@ -33,8 +33,8 @@ namespace Fate.WebServiceLayer
 
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
         private const int TIMEBAN_TIMER_INTERVAL = 60 * 1000; // 60 seconds
-        private static Timer _reconnectTimer;
-        private static Timer _timebanTimer;
+        private readonly Timer _reconnectTimer;
+        private readonly Timer _timebanTimer;
 
         private const int POLL_DURATION = 2 * 1000 * 1000;
         private const string GET_GAMES_COMMAND = "GetGames";
@@ -42,23 +42,14 @@ namespace Fate.WebServiceLayer
         private readonly List<SocketData> _socketList = new List<SocketData>();
         private readonly Logger _logger;
 
-        private static readonly BanDAL _banDal = new BanDAL();
-        private static readonly AdminBanSL _adminBanSl = new AdminBanSL();
-        //private static readonly GHostPlayerDAL _ghostPlayerDal = new GHostPlayerDAL();
+        private readonly BanDAL _banDal;
+        private readonly AdminBanSL _adminBanSl;
 
-        public static GhostCommSL Instance { get; } = new GhostCommSL();
-
-        private class SocketData
+        public GhostCommSL(AdminBanSL adminBanSl, BanDAL banDal)
         {
-            public Socket Socket { get; set; }
-            public string Server { get; set; }
-            public int DataLength { get; set; }
-            public int RemainingData { get; set; }
-            public GameListData CachedGameListData { get; set; }
-        }
+            _banDal = banDal;
+            _adminBanSl = adminBanSl;
 
-        private GhostCommSL()
-        {
             _logger = LogManager.GetCurrentClassLogger();
 
             _reconnectTimer = new Timer { Interval = RECONNECT_TIMER_INTERVAL };
@@ -74,7 +65,14 @@ namespace Fate.WebServiceLayer
             ConnectAllSockets();
         }
 
-        
+        private class SocketData
+        {
+            public Socket Socket { get; set; }
+            public string Server { get; set; }
+            public int DataLength { get; set; }
+            public int RemainingData { get; set; }
+            public GameListData CachedGameListData { get; set; }
+        }
 
         private void ConnectAllSockets()
         {

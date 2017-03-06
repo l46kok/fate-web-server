@@ -16,11 +16,8 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedParameter.Local")]
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class AdminModule : NancyModule
-    {
-        private readonly AdminSearchSL _adminSearchSl = AdminSearchSL.Instance;
-        private readonly AdminBanSL _adminBanSl = AdminBanSL.Instance;
-
-        public AdminModule()
+    { 
+        public AdminModule(AdminBanSL adminBanSl, AdminSearchSL adminSearchSl)
         {
             this.RequiresAuthentication();
             this.RequiresClaims("Admin");
@@ -36,9 +33,9 @@ namespace FateWebServer.Modules
                 switch (filterType)
                 {
                     case 1:
-                        return Response.AsJson(_adminSearchSl.SearchByPlayerName(filterInput));
+                        return Response.AsJson(adminSearchSl.SearchByPlayerName(filterInput));
                     case 2:
-                        return Response.AsJson(_adminSearchSl.SearchByIp(filterInput));
+                        return Response.AsJson(adminSearchSl.SearchByIp(filterInput));
                     default:
                         return Response.AsError(HttpStatusCode.BadRequest, "Invalid FilterType");
                 }
@@ -84,13 +81,13 @@ namespace FateWebServer.Modules
 
                 playerBanData.PlayerName = playerBanData.PlayerName.Trim();
 
-                string validationMessage = _adminBanSl.ValidateBanForm(playerBanData);
+                string validationMessage = adminBanSl.ValidateBanForm(playerBanData);
                 if (!String.IsNullOrEmpty(validationMessage))
                 {
                     return View["Views/Admin/AdminBan.sshtml", GetBanResultViewModel(false, validationMessage)];
                 }
 
-                if (_adminBanSl.BanPlayer(playerBanData, ConfigHandler.GhostDatabaseList))
+                if (adminBanSl.BanPlayer(playerBanData, ConfigHandler.GhostDatabaseList))
                 {
                     return View["Views/Admin/AdminBan.sshtml", GetBanResultViewModel(true, $"{playerBanData.PlayerName} has been struck down with the banhammer.")];
                 }

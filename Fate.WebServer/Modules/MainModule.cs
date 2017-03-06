@@ -12,15 +12,11 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class MainModule : NancyModule
     {
-        private static readonly GameSL _gameSl = GameSL.Instance;
-        private static readonly PlayerStatSL _playerStatsSl = PlayerStatSL.Instance;
-        private static readonly GhostCommSL GhostCommSl = GhostCommSL.Instance;
-        private static readonly GameDetailSL _gameDetailSl = GameDetailSL.Instance;
-        private static readonly StatisticsSL _statisticsSl = StatisticsSL.Instance;
-        private static readonly BanListSL _banListSl = BanListSL.Instance;
-
         [SuppressMessage("ReSharper", "UnusedParameter.Local")]
-        public MainModule(IResourceLinker linker)
+        public MainModule(IResourceLinker linker, GameSL gameSl,
+                          PlayerStatSL playerStatsSl, GhostCommSL ghostCommSl,
+                          StatisticsSL statisticsSl, GameDetailSL gameDetailSl,
+                          BanListSL banListSl)
         {
             Get["/"] = _ =>
             {
@@ -28,7 +24,7 @@ namespace FateWebServer.Modules
                 MainPageViewModel mpVm = new MainPageViewModel
                 {
                     CurrentBotTime = DateTime.Now,
-                    RecentGameDataList = _gameSl.GetRecentGames(10)
+                    RecentGameDataList = gameSl.GetRecentGames(10)
                 };
                 return View["Views/MainPage.sshtml", mpVm];
             };
@@ -38,7 +34,7 @@ namespace FateWebServer.Modules
             Get["/GameList"] = param =>
             {
                 Context.EnableOutputCache(10);
-                return View["Views/GameList.sshtml", GhostCommSl.GetGameList()];
+                return View["Views/GameList.sshtml", ghostCommSl.GetGameList()];
             };
 
             Get["/About"] = Param => View["Views/About.sshtml"];
@@ -46,7 +42,7 @@ namespace FateWebServer.Modules
             Get["/ServantStatistics"] = Param =>
             {
                 Context.EnableOutputCache(30);
-                return View["Views/ServantStatistics.sshtml", _statisticsSl.GetServantStatistics()];
+                return View["Views/ServantStatistics.sshtml", statisticsSl.GetServantStatistics()];
             };
 
             Get["/LeaderBoards"] = Param =>
@@ -59,18 +55,18 @@ namespace FateWebServer.Modules
 
             Get["/PlayerGameBuildDetail/{GameID}/{PlayerName}"] = param =>
             {
-                PlayerGameBuildViewModel vm = _gameDetailSl.GetPlayerGameBuild(param.GameID, param.PlayerName);
+                PlayerGameBuildViewModel vm = gameDetailSl.GetPlayerGameBuild(param.GameID, param.PlayerName);
                 return View["Views/PlayerGameBuildDetail.sshtml",vm];
             };
 
             Get["/Log"] = x =>
             {
-                string gameLog = _gameSl.GetGameLog(Request.Query.gameId);
+                string gameLog = gameSl.GetGameLog(Request.Query.gameId);
                 return View["Views/Log.sshtml",gameLog];
             };
             Get["/PlayerStats/{server}/{playerName}"] = param =>
             {
-                PlayerStatsPageViewModel summaryData = _playerStatsSl.GetPlayerStatSummary(param.playerName, param.server, int.MaxValue);
+                PlayerStatsPageViewModel summaryData = playerStatsSl.GetPlayerStatSummary(param.playerName, param.server, int.MaxValue);
                 return View["Views/PlayerStatsPage.sshtml", summaryData];
             };
 
@@ -78,7 +74,11 @@ namespace FateWebServer.Modules
 
             Get["/Login"] = param => View["Views/Login.sshtml", new LoginViewModel()];
 
-            Get["/BanList"] = param => View["Views/BanList.sshtml", _banListSl.GetBannedPlayers()];
+            Get["/BanList"] = param =>
+            {
+                Context.EnableOutputCache(60);
+                return View["Views/BanList.sshtml", banListSl.GetBannedPlayers()];
+            };
         }
     }
 }

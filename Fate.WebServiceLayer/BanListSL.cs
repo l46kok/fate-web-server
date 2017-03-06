@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Fate.DB.DAL.FRS;
 using Fate.WebServiceLayer.ViewModels;
 
 namespace Fate.WebServiceLayer
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class BanListSL
     {
-        private static readonly BanDAL _banDal = new BanDAL();
-        public static BanListSL Instance { get; } = new BanListSL();
+        private readonly BanDAL _banDal;
+
+        public BanListSL(BanDAL banDal)
+        {
+            _banDal = banDal;
+        }
 
         public BanListViewModel GetBannedPlayers()
         {

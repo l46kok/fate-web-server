@@ -9,8 +9,7 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class GameDetailModule : NancyModule
     {
-        private static readonly GameDetailSL gameDetailSl = GameDetailSL.Instance;
-        public GameDetailModule()
+        public GameDetailModule(GameDetailSL gameDetailSl)
         {
             Get["/gameDetail/{gameId}"] = param =>
             {

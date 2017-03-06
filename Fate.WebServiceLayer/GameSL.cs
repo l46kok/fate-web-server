@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Fate.Common.Data;
@@ -7,14 +8,14 @@ using Fate.DB.DAL.FRS;
 
 namespace Fate.WebServiceLayer
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GameSL
     {
-        private static readonly GameDAL _gameDal = new GameDAL();
-        public static GameSL Instance { get; } = new GameSL();
+        private readonly GameDAL _gameDal;
 
-        private GameSL()
+        public GameSL(GameDAL gameDal)
         {
-            
+            _gameDal = gameDal;
         }
 
         public IEnumerable<GameData> GetRecentGames(int count)

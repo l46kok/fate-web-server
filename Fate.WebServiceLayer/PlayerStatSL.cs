@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Fate.Common.Data;
 using Fate.DB.DAL.FRS;
@@ -6,13 +7,17 @@ using Fate.WebServiceLayer.ViewModels;
 
 namespace Fate.WebServiceLayer
 {
+    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class PlayerStatSL
     {
-        private static readonly PlayerStatDAL _playerStatDal = new PlayerStatDAL();
-        private static readonly ServantSearchDAL _servantSearchDal = new ServantSearchDAL();
-        public static PlayerStatSL Instance { get; } = new PlayerStatSL();
+        private static PlayerStatDAL _playerStatDal;
+        private static ServantSearchDAL _servantSearchDal;
 
-        private PlayerStatSL() { }
+        public PlayerStatSL(PlayerStatDAL playerStatDal, ServantSearchDAL servantSearchDal)
+        {
+            _playerStatDal = playerStatDal;
+            _servantSearchDal = servantSearchDal;
+        }
 
         public PlayerStatsPageViewModel GetPlayerStatSummary(string playerName, string serverName, int lastGameId)
         {
