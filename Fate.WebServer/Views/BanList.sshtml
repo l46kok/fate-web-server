@@ -1,50 +1,50 @@
 ﻿@Master['MasterPage']
 
 @Section['Content']
-<div class="container">
-    <div class="page-header">
-        <h1>Permanent Bans</h1>
-    </div>
-    <table class="table table-striped table-hover table-bordered" style="border-collapse:collapse;">
-        <thead>
-            <tr>
-                <th class="col-xs-3">Player Name</th>
-                <th class="col-xs-3">Banned Date</th>
-                <th class="col-xs-5">Reason</th>
-            </tr>
-        </thead>
-        <tbody>
-            @Each.Model.PermanentBans
-            <tr>
-                <td class="col-xs-3">@Current.PlayerName</td>
-                <td class="col-xs-3">@Current.BannedDateTime</td>
-                <td class="col-xs-5">@Current.Reason</td>
-            </tr>
-            @EndEach
-        </tbody>
-    </table>
-    <div class="page-header">
-        <h1>Time Bans</h1>
-    </div>
-    <table class="table table-striped table-hover table-bordered" style="border-collapse:collapse;">
-        <thead>
-            <tr>
-                <th class="col-xs-2">Player Name</th>
-                <th class="col-xs-2">Banned Date</th>
-                <th class="col-xs-2">Remaining Time</th>
-                <th class="col-xs-6">Reason</th>
-            </tr>
-        </thead>
-        <tbody>
-            @Each.Model.TimeBans
-            <tr>
-                <td class="col-xs-2">@Current.PlayerName</td>
-                <td class="col-xs-2">@Current.BannedDateTime</td>
-                <td class="col-xs-2">@Current.RemainingDuration minutes</td>
-                <td class="col-xs-6">@Current.Reason</td>
-            </tr>
-            @EndEach
-        </tbody>
-    </table>
+
+<div class="page-header">
+    <h1>Permanent Bans</h1>
 </div>
+<table class="table table-striped table-hover table-bordered" style="border-collapse:collapse;">
+    <thead>
+        <tr>
+            <th class="col-xs-3">Player Name</th>
+            <th class="col-xs-3">Banned Date</th>
+            <th class="col-xs-5">Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Each.Model.PermanentBans
+        <tr>
+            <td class="col-xs-3">@Current.PlayerName</td>
+            <td class="col-xs-3">@Current.BannedDateTime</td>
+            <td class="col-xs-5">@Current.Reason</td>
+        </tr>
+        @EndEach
+    </tbody>
+</table>
+<div class="page-header">
+    <h1>Time Bans</h1>
+</div>
+<table class="table table-striped table-hover table-bordered" style="border-collapse:collapse;">
+    <thead>
+        <tr>
+            <th class="col-xs-2">Player Name</th>
+            <th class="col-xs-2">Banned Date</th>
+            <th class="col-xs-2">Remaining Time</th>
+            <th class="col-xs-6">Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Each.Model.TimeBans
+        <tr>
+            <td class="col-xs-2">@Current.PlayerName</td>
+            <td class="col-xs-2">@Current.BannedDateTime</td>
+            <td class="col-xs-2">@Current.RemainingDuration minutes</td>
+            <td class="col-xs-6">@Current.Reason</td>
+        </tr>
+        @EndEach
+    </tbody>
+</table>
+
 @EndSection

@@ -111,10 +111,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\Adblock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\Banhammer.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\css\AdminBan.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\scripts\AdblockCheck.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\scripts\AdminBan.js">
