@@ -27,7 +27,7 @@ namespace Fate.WebServiceLayer
             banListViewModel.TimeBans.ToList().ForEach(x =>
             {
                 if (x.BannedUntil != null)
-                    x.RemainingDuration = x.BannedUntil.Value.Subtract(DateTime.Now).Minutes;
+                    x.RemainingDuration = (int) x.BannedUntil.Value.Subtract(DateTime.Now).TotalMinutes;
             });
             return banListViewModel;
         }
