@@ -1,0 +1,14 @@
+﻿@media (min-width: 1200px) {
+    .container{
+        max-width: 1020px;
+    }
+}
+
+.centerText { 
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.downloadPic {
+	margin-left: 10px;
+}

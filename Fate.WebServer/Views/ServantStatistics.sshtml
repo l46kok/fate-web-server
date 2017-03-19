@@ -1,0 +1,42 @@
+﻿@Master['MasterPage']
+
+@Section['Content']
+<link href="./Content/css/ServantStatistics.css" rel="stylesheet">
+<!-- Begin page content -->
+
+<div class="page-header">
+	<h1>Statistics by Servants</h1>
+</div>
+	
+<table id="myTable" class="tablesorter"> 
+<thead> 
+<tr> 
+	<th colspan="2">Servant</th> 
+	<th class="winrateheader">Win Rate</th> 
+	<th>Games Played</th> 
+	<th>KDA</th> 
+	<th>Damage Dealt</th> 
+	<th>Damage Taken</th>
+	<th>Gold Spent</th>
+</tr> 
+</thead> 
+<tbody class="centerText"> 
+@Each.Model
+<tr> 
+	<td><img src="@Current.HeroImageURL" height=48 width=48></td>
+	<td><div><b>@Current.HeroName</b></div><div>@Current.HeroTitle</div></td> 
+	<td class="leftText"><div class="@Current.ProgressBarColor" style="width: @Current.WinRatio"></div><span class="winrateval">@Current.WinRatio</span></td> 
+	<td>@Current.PlayCount</td> 
+	<td><b>@Current.AvgKDA</b></td> 
+	<td>@Current.AvgDamageDealt</td> 
+	<td>@Current.AvgDamageTaken</td> 
+	<td>@Current.AvgGoldSpent</td> 
+</tr> 
+@EndEach
+</tbody> 
+</table> 
+
+
+<script language="JavaScript" src="/Content/scripts/jquery.tablesorter.js"></script>
+<script language="JavaScript" src="/Content/scripts/ServantStatistics.js"></script>
+@EndSection

@@ -1,0 +1,80 @@
+﻿@Master['MasterPage']
+
+@Section['Content']
+<link href="/Content/css/AdminBan.css" rel="stylesheet">
+<div class="container">
+    <div class="page-header">
+        <h1>Ban Control</h1>
+    </div>
+    <div class="banBox">
+        @If.HasPostedBan
+        <div id="ban-error" class="row">
+            <div class="col-lg-12">
+                <div class="alert @Model.Alert">
+                    @Model.BanResult
+                </div>
+            </div>
+        </div>
+        @EndIf
+        <form id="ban-form" action="/Admin/Ban" method="post" role="form">
+            <div class="banHeader">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="ban-label">Ban Type</label>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dropdown ban-type">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Ban Type
+                            <span class="caret"></span></button>
+                            <input type="hidden" id="banType" name="banType" value="0">
+                            <ul class="dropdown-menu">
+                                <li><a data-value="1" href="#">Time Ban</a></li>
+                                <li><a data-value="2" href="#">Permanent Ban</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="banDurationContainer">
+                        <div class="col-md-3">
+                            <label class="ban-label">Duration (Minutes)</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control input-ban" name="banDuration" id="banDuration">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="banHeader">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="ban-label">Player Name</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control input-ban" name="banPlayerName" id="banPlayerName">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="ban-label">IP Addresses</label>
+                    </div>
+                    <div class="col-md-5">
+                        <textarea placeholder="Separate by comma [Ex: 123.12.12.12, 45.45.45.45]" class="form-control" rows="2" id="banIpAddresses" name="banIpAddresses"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="banHeader">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="ban-label">Reason</label>
+                    </div>
+                    <div class="col-md-10">
+                        <textarea name="banReason" class="form-control" rows="3" id="banReason"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="banHeader">
+                <img class="imageCenter" src="/Content/images/Banhammer.gif">
+                <input type="submit" class="btn btn-danger btn-block" id="ban-submit" name="ban-submit" value="SWING THE BAN HAMMER">
+            </div>
+        </form>
+    </div>
+</div>
+<script language="JavaScript" src="/Content/scripts/AdminBan.js"></script>
+@EndSection

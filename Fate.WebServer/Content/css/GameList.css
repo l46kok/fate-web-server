@@ -1,0 +1,55 @@
+﻿@media (min-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
+}
+
+.centerText { 
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.heroicon {
+	margin-right: 10px;
+}
+
+.status-connected {
+	color: #2fa01c;
+}
+
+.status-disconnected {
+	color: #c6443e;
+}
+
+.td-no-padding {
+    padding: 0 !important;
+}
+
+.inner-table { 
+	margin-bottom: 0 !important;
+}
+
+.inner-table-td-no-border {
+	border-top: 0 !important;
+}
+
+.team-row-1 {
+    background-color: #9fc9e6 !important;
+	height: 32px;
+}
+
+.team-row-2 {
+    background-color: #ffada7 !important;
+	height: 32px;
+}
+
+.team-win-count-row {
+    font-size: 16pt;
+    font-weight: bold;
+    text-shadow: 3px 5px 5px #989393;
+}
+
+.inner-table-grid {
+	width: 100% !important;
+	margin: 0 !important;
+}
