@@ -106,9 +106,9 @@ namespace Fate.DB.DAL.FRS
                 }
 
                 //Find Ward/Familiar Information
-                var itemKeys = new[] { "I003", "I00N", "SWAR", "I002", "I005" };
+                var itemKeys = new[] { "I003", "I00N", "SWAR", "I002", "I005", "I00R", "I00G" };
                 
-                var wardFamiliarQuery = (
+                var itemsQuery = (
                     from iteminfo in db.iteminfo
                     join itembuy in db.gameitempurchase on iteminfo.ItemID equals itembuy.FK_ItemID
                     where itembuy.FK_GamePlayerDetailID == gamePlayerDetailId && itemKeys.Contains(iteminfo.ItemTypeID)
@@ -118,10 +118,10 @@ namespace Fate.DB.DAL.FRS
                         itembuy.ItemPurchaseCount
                     });
 
-                buildData.WardFamiliarDic = new Dictionary<string, int>();
-                foreach (var item in wardFamiliarQuery)
+                buildData.PurchasedItemsDic = new Dictionary<string, int>();
+                foreach (var item in itemsQuery)
                 {
-                    buildData.WardFamiliarDic.Add(item.ItemTypeID, item.ItemPurchaseCount);
+                    buildData.PurchasedItemsDic.Add(item.ItemTypeID, item.ItemPurchaseCount);
                 }
 
                 //Find CommandSeal Info

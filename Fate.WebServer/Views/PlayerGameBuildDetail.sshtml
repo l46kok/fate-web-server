@@ -123,18 +123,22 @@
   </div>
   <div class="statsBuildBox">
     <div class="statsBuildHeader">
-      Wards / Familiar Bought
+      Wards / Familiar / Spirit Link Bought
     </div>
     <table class="table statsTable table-striped table-bordered">
       <thead>
         <tr>
-          <th class="centerText">
+          <th class="centerText col-sm-4">
             <img height="48" width="48" src="/content/icons/items/ItemWard.jpg">
               <div>Wards</div>
             </th>
-          <th class="centerText">
+          <th class="centerText col-sm-4">
             <img height="48" width="48" src="/content/icons/items/ItemFamiliar.jpg">
               <div>Familiar</div>
+            </th>
+          <th class="centerText col-sm-4">
+            <img height="48" width="48" src="/content/icons/items/ItemSpiritLink.jpg">
+              <div>Spirit Link</div>
             </th>
         </tr>
       </thead>
@@ -142,6 +146,7 @@
         <tr>
           <td class="centerText statBuildVal">@Model.WardCount</td>
           <td class="centerText statBuildVal">@Model.FamiliarCount</td>
+          <td class="centerText statBuildVal">@Model.SpiritLinkCount</td>
         </tr>
       </tbody>
     </table>
