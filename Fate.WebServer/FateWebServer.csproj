@@ -111,7 +111,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\icons\items\ItemSpiritLink.jpg" />
+    <Content Include="Content\icons\items\ItemSpiritLink.jpg">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
     <Content Include="Content\images\Adblock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
