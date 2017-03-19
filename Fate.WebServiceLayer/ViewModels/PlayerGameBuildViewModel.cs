@@ -22,6 +22,7 @@ namespace Fate.WebServiceLayer.ViewModels
         public int FourthCS { get; set; }
         public int WardCount { get; set; }
         public int FamiliarCount { get; set; }
+        public int SpiritLinkCount { get; set; }
         public List<PlayerGameBuildAttribute> AttributeList { get; set; } 
     }
 
