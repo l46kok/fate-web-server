@@ -38,7 +38,7 @@ namespace Fate.DB.DAL.FRS
                                 LEFT OUTER JOIN GodsHelpInfo F
 	                                ON E.FK_GodsHelpInfoID = F.GodsHelpInfoID
                                 WHERE A.GameID = @GameID
-                                GROUP BY A.GameID, A.TeamOneWinCount, A.TeamTwoWinCount, D.PlayerName, B.Kills, B.Deaths, B.Assists, B.HeroLevel, B.Team, C.HeroUnitTypeID;";
+                                GROUP BY A.GameID, A.TeamOneWinCount, A.TeamTwoWinCount, D.PlayerName, B.Kills, B.Deaths, B.Assists, B.HeroLevel, B.Team, B.DamageDealt, B.DamageTaken, B.GoldSpent, C.HeroUnitTypeID;";
 
                 List<GamePlayerDetailData> gamePlayerDetailData = db.Database.SqlQuery<GamePlayerDetailData>(sql, new MySqlParameter("GameID",gameId)).ToList();
                 return gamePlayerDetailData;
