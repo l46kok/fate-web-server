@@ -24,6 +24,7 @@ namespace Fate.WebServiceLayer
             {
                 ServantStatisticsViewModel vmInner = new ServantStatisticsViewModel
                 {
+                    HeroTypeId = $"{data.HeroTypeId}",
                     HeroImageURL = ContentURL.GetHeroIconURL(data.HeroUnitTypeID),
                     AvgDamageDealt = $"{data.AvgDamageDealt:n0}",
                     AvgDamageTaken = $"{data.AvgDamageTaken:n0}",
