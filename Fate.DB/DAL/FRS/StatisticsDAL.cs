@@ -1,15 +1,74 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using MySql.Data.MySqlClient;
+using System.Runtime.InteropServices;
 using Fate.Common.Data;
 
 namespace Fate.DB.DAL.FRS
 {
     public class StatisticsDAL
     {
+        public Dictionary<string, int> GetTotalGamesPlayedVersion()
+        {
+            var GamePlayCountDict = new Dictionary<string, int>();
+            using (frsDatabase db = frsDatabase.Create())
+            {
+                var GamesPlayedByVersion = (
+                    from game in db.game
+                    group game by new { game.MapVersion } into g
+                    select new
+                    {
+                        g.Key.MapVersion,
+                        PlayedTotal = g.Count()
+                    });
+
+                foreach (var version in GamesPlayedByVersion)
+                {
+                    GamePlayCountDict[version.MapVersion] = version.PlayedTotal;
+                }
+            }
+            return GamePlayCountDict;
+        }
+
+        public List<ServantDetailData> GetServantDetailStatistics(int typeId = 0)
+        {
+            string heroTypeClause = "";
+            if (typeId > 0)
+            {
+                heroTypeClause = "WHERE h.FK_HeroTypeId = " + typeId;
+            }
+            const string sql = @"select 
+                                ht.HeroUnitTypeID as HeroUnitTypeID,
+	                            h.HeroTitle as HeroTitle,
+	                            g.MapVersion,
+	                            SUM(gpd.DamageDealt) as DamageDealt,
+                                SUM(gpd.DamageTaken) as DamageTaken,
+                                SUM(gpd.GoldSpent) as GoldSpent,
+                                SUM(gpd.Kills) as KillCount,
+                                SUM(gpd.Assists) as AssistCount,
+                                SUM(gpd.Deaths) as DeathCount,
+	                            COUNT(*) as PlayCount,
+	                            SUM(if(gpd.Result = 'Win', 1, 0)) as WinCount,
+	                            SUM(TIME_TO_SEC(g.Duration)) as GameDuration,
+	                            SUM(ABS(g.TeamOneWinCount - g.teamTwoWinCount)) as ScoreDifference
+                            FROM HeroTypeName h
+                            INNER JOIN HeroType ht on (h.FK_HeroTypeId = ht.HeroTypeId)
+                            INNER JOIN gameplayerdetail gpd on (h.FK_HeroTypeId = gpd.FK_HeroTypeId)
+                            INNER JOIN game g on (gpd.FK_GameID = g.GameId)
+                            WHERE h.FK_HeroTypeId = @TypeId
+                            GROUP BY h.herotitle, g.MapVersion;";
+            using (var db = frsDatabase.Create())
+            {
+                List<ServantDetailData> servantDetails = db.Database.SqlQuery<ServantDetailData>(sql, new MySqlParameter("TypeId", typeId)).ToList();
+                return servantDetails;
+            }
+        }
+
         public List<ServantStatisticsData> GetServantStatistics()
         {
             const string sql = @"SELECT B.HeroUnitTypeID,
+                                B.HeroTypeId,
 	                            C.HeroName,
                                 C.HeroTitle,
 	                            SUM(CASE WHEN Result='WIN' THEN 1 ELSE 0 END) WinCount, 

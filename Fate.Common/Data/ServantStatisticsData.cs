@@ -2,6 +2,7 @@
 {
     public class ServantStatisticsData
     {
+        public string HeroTypeId { get; set; }
         public string HeroUnitTypeID { get; set; }
         public string HeroName { get; set; }
         public string HeroTitle { get; set; }
