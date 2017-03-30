@@ -43,6 +43,7 @@ namespace FateWebServer
             container.Update(builder => builder.RegisterType<GameDetailSL>().AsSelf().SingleInstance());
             container.Update(builder => builder.RegisterType<BanListSL>().AsSelf().SingleInstance());
             container.Update(builder => builder.RegisterType<AdminSearchSL>().AsSelf().SingleInstance());
+            container.Update(builder => builder.RegisterType<ServantDetailSL>().AsSelf().SingleInstance());
             // These two are dependant on each other, so we allow circular dependencies
             container.Update(builder => builder.RegisterType<GhostCommSL>().AsSelf().PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies).SingleInstance());
             container.Update(builder => builder.RegisterType<AdminBanSL>().AsSelf().PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies).SingleInstance());
