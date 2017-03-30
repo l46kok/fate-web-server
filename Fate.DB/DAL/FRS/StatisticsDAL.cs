@@ -11,10 +11,10 @@ namespace Fate.DB.DAL.FRS
     {
         public Dictionary<string, int> GetTotalGamesPlayedVersion()
         {
-            var GamePlayCountDict = new Dictionary<string, int>();
+            var gamePlayCountDict = new Dictionary<string, int>();
             using (frsDatabase db = frsDatabase.Create())
             {
-                var GamesPlayedByVersion = (
+                var gamesPlayedByVersion = (
                     from game in db.game
                     group game by new { game.MapVersion } into g
                     select new
@@ -23,21 +23,16 @@ namespace Fate.DB.DAL.FRS
                         PlayedTotal = g.Count()
                     });
 
-                foreach (var version in GamesPlayedByVersion)
+                foreach (var version in gamesPlayedByVersion)
                 {
-                    GamePlayCountDict[version.MapVersion] = version.PlayedTotal;
+                    gamePlayCountDict[version.MapVersion] = version.PlayedTotal;
                 }
             }
-            return GamePlayCountDict;
+            return gamePlayCountDict;
         }
 
         public List<ServantDetailData> GetServantDetailStatistics(int typeId = 0)
         {
-            string heroTypeClause = "";
-            if (typeId > 0)
-            {
-                heroTypeClause = "WHERE h.FK_HeroTypeId = " + typeId;
-            }
             const string sql = @"select 
                                 ht.HeroUnitTypeID as HeroUnitTypeID,
 	                            h.HeroTitle as HeroTitle,
