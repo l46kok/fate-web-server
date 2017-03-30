@@ -29,7 +29,7 @@ table.tablesorter thead tr .header {
 table.tablesorter tbody td {
 	color: #3D3D3D;
 	padding: 4px;
-	background-color: #FFF;
+	#background-color: #FFF;
 	vertical-align: middle;
 	border-bottom: 1px solid #CDD2D2;
 	white-space:nowrap;
@@ -74,4 +74,39 @@ table.tablesorter .winrateheader {
 
 .leftText {
 	text-align: left !important;
+}
+
+.searchCriteriaHeader {
+	background-color: #F2F2F2;
+	border-bottom: 1px solid #d5d8d8;
+	font-size: 16px;
+	padding: 8px;
+}
+
+.searchCriteriaBody {
+	font-size: 14px;
+	padding: 8px;
+	border-bottom: 1px solid #d5d8d8;
+}
+
+.statsBox {
+	border-left: 1px solid #cdd2d2;
+	border-right: 1px solid #cdd2d2;
+	border-top: 1px solid #cdd2d2;
+    box-shadow: 0 1px #dcdfdf;
+    background: #EDEDED;
+    border-radius: 2px;
+	margin-bottom: 5px;
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+.hand-cursor:hover {
+    cursor: pointer;
+}
+
+.detail-active {
+    background-color: #BCD3C7;
 }
