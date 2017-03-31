@@ -1,0 +1,37 @@
+﻿@media (min-width: 1200px) {
+    .container{
+        max-width: 1000px;
+    }
+}
+
+.banBox {
+	border-left: 1px solid #cdd2d2;
+	border-right: 1px solid #cdd2d2;
+	border-top: 1px solid #cdd2d2;
+    box-shadow: 0 1px #dcdfdf;
+    background: #EDEDED;
+    border-radius: 2px;
+	margin-bottom: 5px;
+}
+
+.banHeader {
+	background-color: #F2F2F2;
+	font-size: 16px;
+	padding: 8px;
+}
+
+.ban-label {
+    vertical-align: text-top;
+}
+
+.imageCenter {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#ban-submit {
+    margin-top: 5px;
+    font-size: 18pt;
+    font-weight: 700;
+}

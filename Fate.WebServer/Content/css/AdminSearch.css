@@ -1,0 +1,31 @@
+﻿
+.searchBox {
+	border-left: 1px solid #cdd2d2;
+	border-right: 1px solid #cdd2d2;
+	border-top: 1px solid #cdd2d2;
+    box-shadow: 0 1px #dcdfdf;
+    background: #EDEDED;
+    border-radius: 2px;
+	margin-bottom: 5px;
+}
+
+.searchCriteriaHeader {
+	background-color: #F2F2F2;
+	font-size: 16px;
+	padding: 8px;
+}
+
+.search-filter {
+    display: inline;
+    margin-left: 5px;
+}
+
+.search-filter-label {
+    vertical-align: text-top;
+}
+
+.imageCenter {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}

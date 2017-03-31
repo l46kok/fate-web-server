@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="936b1cbc86d14a5f8923a3b2e7836f7d" Name="Diagram1">
+        <EntityTypeShape EntityType="frsModel.attributeinfo" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.attributelearn" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.commandsealuse" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.game" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.gameitempurchase" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.gameplayerdetail" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.godshelpinfo" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.godshelpuse" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.herostatinfo" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.herostatlearn" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.herotype" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.herotypename" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.iteminfo" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.player" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.playerherostat" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.playerstat" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.ranking" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="frsModel.server" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="frsModel.fk_Game_Server" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_GamePlayerDetail_Game1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_GameItemPurchase_ItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_GamePlayerDetail_HeroType1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_GamePlayerDetail_Server1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_HeroTypeName_HeroType1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_PlayerHeroStat_HeroType1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_Player_Server" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_PlayerHeroStat_Server1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_PlayerStat_Server1" ManuallyRouted="false" />
+        <AssociationConnector Association="frsModel.fk_Ranking_Server1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="frsModel.webusers" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="frsModel.ban" Width="1.5" PointX="10.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

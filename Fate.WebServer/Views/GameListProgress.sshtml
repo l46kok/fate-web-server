@@ -1,0 +1,63 @@
+﻿@Each
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered" style="border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th class="col-xs-2 centerText">Game Number</th>
+                <th class="col-xs-4 centerText">Game Name</th>
+                <th class="col-xs-1 centerText">Server</th>
+                <th class="col-xs-1 centerText">Slots</th>
+                <th class="col-xs-3 centerText">Game Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="centerText">@Current.GameNumber</td>
+                <td class="centerText">@Current.GameName</td>
+                <td class="centerText">@Current.Server</td>
+                <td class="centerText">@Current.PlayerCount / @Current.SlotSize</td>
+                <td class="centerText">@Current.GameDuration Minutes</td>
+            </tr>
+            <tr>
+                <td class="td-no-padding" colspan="5">
+                    <table class="table table-condensed inner-table" style="border-collapse:collapse;">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-3 centerText">Player Name</th>
+                                <th class="col-xs-1 centerText">Kills</th>
+                                <th class="col-xs-1 centerText">Deaths</th>
+                                <th class="col-xs-1 centerText">Assists</th>
+                                <th class="col-xs-2 centerText">Realm</th>
+                                <th class="col-xs-1 centerText">Ping</th>
+                                <th class="col-xs-2 centerText">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @Partial['GameListProgressPlayers', Current.Team1DataList]
+                            <tr>
+                                <td class="inner-table-td-no-border td-no-padding" colspan="7">
+                                    <div class="row inner-table-grid">
+                                        <div class="col-md-3 team-row-1 team-win-count-row ">
+                                            <div class="centerText">Score</div>
+                                        </div>
+                                        <div class="col-md-3 team-row-1 team-win-count-row ">
+                                            <div class="centerText">@Current.Team1Wins</div>
+                                        </div>
+                                        <div class="col-md-3 team-row-2 team-win-count-row ">
+                                            <div class="centerText">Score</div>
+                                        </div>
+                                        <div class="col-md-3 team-row-2 team-win-count-row ">
+                                            <div class="centerText">@Current.Team2Wins</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @Partial['GameListProgressPlayers', Current.Team2DataList]
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@EndEach

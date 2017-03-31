@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54BD899D-82FC-477D-92F4-7E12FEAD2C00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fate.DB</RootNamespace>
+    <AssemblyName>Fate.DB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admins.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="attributeinfo.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="attributelearn.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ban.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bans.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="commandsealuse.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\FRS\BanDAL.cs" />
+    <Compile Include="DAL\FRS\LoginDAL.cs" />
+    <Compile Include="DAL\FRS\ServantSearchDAL.cs" />
+    <Compile Include="DAL\FRS\StatisticsDAL.cs" />
+    <Compile Include="DAL\GHost\GHostPlayerDAL.cs" />
+    <Compile Include="dotagames.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dotaplayers.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="downloads.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="frsContext.cs" />
+    <Compile Include="DAL\FRS\GameDAL.cs" />
+    <Compile Include="DAL\FRS\GameDetailDAL.cs" />
+    <Compile Include="DAL\FRS\PlayerStatDAL.cs" />
+    <Compile Include="frsdb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>frsdb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="frsdb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="frsdb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>frsdb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="game.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameitempurchase.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameplayerdetail.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="gameplayers.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="games.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ghostAsia.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ghostAsia.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ghostAsia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ghostAsia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ghostContext.cs" />
+    <Compile Include="godshelpinfo.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="godshelpuse.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="herostatinfo.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="herostatlearn.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="herotype.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="herotypename.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="iteminfo.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="kicks.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="phrases.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="player.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playerherostat.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="playerstat.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="plugindb.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ranking.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scores.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="server.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="users.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="w3mmdplayers.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="w3mmdvars.cs">
+      <DependentUpon>ghostAsia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webusers.cs">
+      <DependentUpon>frsdb.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="frsdb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>frsdb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="frsdb.edmx.diagram">
+      <DependentUpon>frsdb.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="ghostAsia.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ghostAsia.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ghostAsia.edmx.diagram">
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fate.Common\Fate.Common.csproj">
+      <Project>{f3e85a9c-6a70-4631-836c-1e3b26e6bba0}</Project>
+      <Name>Fate.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="frsdb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>frsdb.edmx</DependentUpon>
+      <LastGenOutput>frsdb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="frsdb.edmx.sql" />
+    <Content Include="frsdb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>frsdb.edmx</DependentUpon>
+      <LastGenOutput>frsdb.cs</LastGenOutput>
+    </Content>
+    <Content Include="ghostAsia.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+      <LastGenOutput>ghostAsia.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ghostAsia.edmx.sql" />
+    <Content Include="ghostAsia.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ghostAsia.edmx</DependentUpon>
+      <LastGenOutput>ghostAsia.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

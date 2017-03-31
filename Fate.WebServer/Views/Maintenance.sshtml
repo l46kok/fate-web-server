@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fate / Another III Stats Page</title>
+	<link href="/Content/css/MasterPage.css?ver=1" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+	
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Fate / Another III Stats Page</a>
+			</div>
+		</div>
+	</nav>
+
+    <div id="wrap">
+		<div class="container">
+			<div class="jumbotron">
+				<h1 class="text-center">Server under maintenance</h1>
+				<img class="center-block" src="/Content/images/MaintenanceScreen.jpg">
+				<br/>
+                <br />
+				<p>:( We know, it sucks to have the site down but we occasionally need to perform maintenance on the site
+				to do things like adding new features or fixing bugs.</p>
+				<p>We're working hard to bring more imba into both Fate / Another III and ufwfate.net. In the meanwhile, you can watch this GAR video 
+				to satisfy your personal needs.</p>
+				<iframe class="center-block" width="560" height="315" src="https://www.youtube.com/embed/b5B4jA8kcOo" frameborder="0" allowfullscreen></iframe>
+				<br/>
+				<blockquote>
+					<p>What you should always be imagining is you at your most powerful.</p>
+					<footer>GAR</footer>
+				</blockquote>
+			</div>
+		</div>
+    </div>
+
+	<div id="footer">
+		<div class="container">
+			<p class="text-muted">(C) 2016 by Clan UFW (l46kok@USEast).</p>
+		</div>
+	</div>
+</body>
+</html>
