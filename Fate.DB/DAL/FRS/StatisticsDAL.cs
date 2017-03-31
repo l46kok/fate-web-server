@@ -31,6 +31,27 @@ namespace Fate.DB.DAL.FRS
             return gamePlayCountDict;
         }
 
+        public List<ServantDetailStatData> GetServantDetailStatPoints(int typeId = 0)
+        {
+            const string sql = @"select 
+		                            g.MapVersion,
+                                    stf.HeroStatAbilId as StatTypeId,
+		                            stf.HeroStatName as StatTypeName,
+		                            sum(stl.LearnCount) as Points
+                                from HeroTypeName h
+                                inner join GamePlayerDetail gpd on (h.FK_HeroTypeId = gpd.FK_HeroTypeId)
+                                inner join Game g on (gpd.FK_GameID = g.GameId)
+                                inner join HeroStatLearn stl on (gpd.GamePlayerDetailID = stl.FK_GamePlayerDetailID)
+                                inner join HeroStatInfo stf on (stl.FK_HeroStatInfoID = stf.HeroStatInfoID)
+                                WHERE h.FK_HeroTypeId = @TypeId
+                                group by g.MapVersion, stf.HeroStatName;";
+            using (var db = frsDatabase.Create())
+            {
+                List<ServantDetailStatData> servantStatPointDetails = db.Database.SqlQuery<ServantDetailStatData>(sql, new MySqlParameter("TypeId", typeId)).ToList();
+                return servantStatPointDetails;
+            }
+        }
+
         public List<ServantDetailData> GetServantDetailStatistics(int typeId = 0)
         {
             const string sql = @"select 
@@ -44,9 +65,10 @@ namespace Fate.DB.DAL.FRS
                                 SUM(gpd.Assists) as AssistCount,
                                 SUM(gpd.Deaths) as DeathCount,
 	                            COUNT(*) as PlayCount,
-	                            SUM(if(gpd.Result = 'Win', 1, 0)) as WinCount,
+	                            SUM(IF(gpd.Result = 'Win', 1, 0)) as WinCount,
 	                            SUM(TIME_TO_SEC(g.Duration)) as GameDuration,
-	                            SUM(ABS(g.TeamOneWinCount - g.teamTwoWinCount)) as ScoreDifference
+                                SUM(IF(gpd.result = 'WIN', IF(gpd.team = '1', g.TeamOneWinCount - g.TeamTwoWinCount, g.TeamTwoWinCount - g.TeamOneWinCount), 0)) as WinScoreDifference,
+                                SUM(IF(gpd.result = 'LOSS', IF(gpd.team = '1', g.TeamTwoWinCount - g.TeamOneWinCount, g.TeamOneWinCount - g.TeamTwoWinCount), 0)) as LossScoreDifference
                             FROM HeroTypeName h
                             INNER JOIN HeroType ht on (h.FK_HeroTypeId = ht.HeroTypeId)
                             INNER JOIN gameplayerdetail gpd on (h.FK_HeroTypeId = gpd.FK_HeroTypeId)

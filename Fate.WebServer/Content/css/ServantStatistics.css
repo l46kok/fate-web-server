@@ -6,6 +6,26 @@
 
 
 /* tables */
+.statBuildVal {
+	font-size: 13pt;
+}
+
+.statsBuildTable {
+	margin-bottom: 0px !important;
+}
+
+.statsBuildTable thead tr, .statsBuildTable thead tr td {
+    text-align: center;
+}
+
+.statsAttribute {
+	margin-left: 10px; 
+	font-size: 13pt;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+
 table.tablesorter {
 	font-family:inherit;
 	border: 1px solid #CDD2D2;
@@ -26,6 +46,12 @@ table.tablesorter thead tr .header {
 	background-position: center right;
 	cursor: pointer;
 }
+
+table.tablesorter tbody tr:hover {
+    background-color: #d1e1d8;
+}
+
+
 table.tablesorter tbody td {
 	color: #3D3D3D;
 	padding: 4px;
@@ -108,4 +134,19 @@ table.tablesorter .winrateheader {
 
 .detail-active {
     background-color: #BCD3C7;
+}
+
+.centerText {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-stats {
+    table-layout: fixed;
+    background-color: #F2F2F2;
+    border: 1px solid #d9d9d9;
+}
+
+.table-stats thead tr {
+    background-color: #ededed;
 }

@@ -1,4 +1,6 @@
-﻿namespace Fate.WebServiceLayer.ViewModels
+﻿using System.Collections.Generic;
+
+namespace Fate.WebServiceLayer.ViewModels
 {
     public class ServantStatisticsViewModel
     {
@@ -30,6 +32,17 @@
         public string AvgDamageDealt { get; set; }
         public string AvgDamageTaken { get; set; }
         public string AvgGameDuration { get; set; }
-        public string AvgScoreDifference { get; set; }
+        public string AvgWinScoreDifference { get; set; }
+        public string AvgLossScoreDifference { get; set; }
+        public string AvgStr { get; set; }
+        public string AvgAgi { get; set; }
+        public string AvgInt { get; set; }
+        public string AvgAtk { get; set; }
+        public string AvgHealthRegen { get; set; }
+        public string AvgManaRegen { get; set; }
+        public string AvgMovespeed { get; set; }
+        public string AvgGoldRegen { get; set; }
+        public string AvgArmor { get; set; }
+        public string AvgPrelati { get; set; }
     }
 }

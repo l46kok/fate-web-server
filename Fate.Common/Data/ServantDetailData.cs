@@ -14,6 +14,15 @@
         public double DamageDealt { get; set; }
         public double DamageTaken { get; set; }
         public int GameDuration { get; set; }
-        public double ScoreDifference { get; set; }
+        public double WinScoreDifference { get; set; }
+        public double LossScoreDifference { get; set; }
+    }
+
+    public class ServantDetailStatData
+    {
+        public string MapVersion { get; set; }
+        public string StatTypeId { get; set; }
+        public string StatTypeName { get; set; }
+        public int Points { get; set; }
     }
 }

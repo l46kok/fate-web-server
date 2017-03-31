@@ -46,6 +46,38 @@ namespace Fate.WebServiceLayer
             return dataModel;
         }
 
+        public List<ServantDetailStatData> BuildServantStatPointData(List<ServantDetailStatData> servantStatPoints)
+        {
+            List<ServantDetailStatData> statDataModel = new List<ServantDetailStatData>();
+            foreach (var versionStat in servantStatPoints)
+            {
+                string[] versionStrings = versionStat.MapVersion.Split(new[] {"Ver "}, StringSplitOptions.None);
+                string versionString = versionStrings[1];
+                string[] versionNumbers = versionString.Split('.');
+                string versionMainNumber = versionNumbers[0];
+                string versionSubNumber = Regex.Replace(versionNumbers[1], "[^0-9]+", string.Empty);
+                string version = versionMainNumber + "." + versionSubNumber;
+                int index = statDataModel.FindIndex(c => (c.MapVersion == version) && (c.StatTypeId == versionStat.StatTypeId));
+                if (index != -1)
+                {
+                    statDataModel[index].Points += versionStat.Points;
+                }
+                else
+                {
+                    ServantDetailStatData statData = new ServantDetailStatData();
+                    statData.MapVersion = version;
+                    statData.StatTypeId = versionStat.StatTypeId;
+                    statData.StatTypeName = versionStat.StatTypeName;
+                    statData.Points = versionStat.Points;
+                    statDataModel.Add(statData);
+                }
+            }
+            statDataModel = statDataModel.OrderByDescending(c => Convert.ToInt32(c.MapVersion.Split('.')[0]))
+                                           .ThenByDescending(c => Convert.ToInt32(c.MapVersion.Split('.')[1])).ToList();
+
+            return statDataModel;
+        }
+
         public List<ServantDetailData> BuildServantDetailData(List<ServantDetailData> servantDetails)
         {
             List<ServantDetailData> dataModel = new List<ServantDetailData>();
@@ -70,7 +102,8 @@ namespace Fate.WebServiceLayer
                     dataModel[index].DamageTaken += versionData.DamageTaken;
                     dataModel[index].DamageDealt += versionData.DamageDealt;
                     dataModel[index].GoldSpent += versionData.GoldSpent;
-                    dataModel[index].ScoreDifference += versionData.ScoreDifference;
+                    dataModel[index].WinScoreDifference += versionData.WinScoreDifference;
+                    dataModel[index].LossScoreDifference += versionData.LossScoreDifference;
                     dataModel[index].GameDuration += versionData.GameDuration;
                 }
                 else
@@ -83,7 +116,8 @@ namespace Fate.WebServiceLayer
                     servantDetail.DamageTaken = versionData.DamageTaken;
                     servantDetail.DamageDealt = versionData.DamageDealt;
                     servantDetail.GoldSpent = versionData.GoldSpent;
-                    servantDetail.ScoreDifference = versionData.ScoreDifference;
+                    servantDetail.WinScoreDifference = versionData.WinScoreDifference;
+                    servantDetail.LossScoreDifference = versionData.LossScoreDifference;
                     servantDetail.GameDuration = versionData.GameDuration;
                     servantDetail.HeroTitle = versionData.HeroTitle;
                     servantDetail.WinCount = versionData.WinCount;
@@ -98,15 +132,51 @@ namespace Fate.WebServiceLayer
             return (dataModel.Count > 5) ? dataModel.GetRange(0, 5) : dataModel;
         }
 
+        public Dictionary<string, int> ParseServantStatPointId(List<ServantDetailStatData> versionStatList)
+        {
+            Dictionary<string, int> parsedStat = new Dictionary<string, int>();
+            parsedStat["str"] = 0;
+            parsedStat["agi"] = 0;
+            parsedStat["int"] = 0;
+            parsedStat["atk"] = 0;
+            parsedStat["armor"] = 0;
+            parsedStat["healthRegen"] = 0;
+            parsedStat["manaRegen"] = 0;
+            parsedStat["movespeed"] = 0;
+            parsedStat["goldRegen"] = 0;
+            parsedStat["prelati"] = 0;
+
+            Dictionary<string, string> statPointDic = new Dictionary<string, string>();
+            statPointDic.Add("A02W", @"str");
+            statPointDic.Add("A03D", @"agi");
+            statPointDic.Add("A03E", @"int");
+            statPointDic.Add("A03W", @"atk");
+            statPointDic.Add("A03X", @"armor");
+            statPointDic.Add("A03Y", @"healthRegen");
+            statPointDic.Add("A03Z", @"manaRegen");
+            statPointDic.Add("A04Y", @"movespeed");
+            statPointDic.Add("A0A9", @"goldRegen");
+            statPointDic.Add("A0CJ", @"prelati");
+            foreach (var versionStat in versionStatList)
+            {
+                string statType;
+                statPointDic.TryGetValue(versionStat.StatTypeId, out statType);
+                parsedStat[statType] = versionStat.Points;
+            }
+            return parsedStat;
+        }
+
         public List<ServantStatisticsDetailViewModel> GetServantDetail(int heroId)
         {
             List<ServantStatisticsDetailViewModel> vm = new List<ServantStatisticsDetailViewModel>();
             List<ServantDetailData> servantDetailVersionData = this.BuildServantDetailData(_detailDal.GetServantDetailStatistics(heroId));
+            List<ServantDetailStatData> servantDetailStatData = this.BuildServantStatPointData(_detailDal.GetServantDetailStatPoints(heroId));
             Dictionary<string, int> totalGamesPlayedVersion = this.BuildVersionPlayedData(_detailDal.GetTotalGamesPlayedVersion());
 
             foreach (var versionData in servantDetailVersionData)
             {
                 ServantStatisticsDetailViewModel vmu = new ServantStatisticsDetailViewModel();
+
                 int totalPlayed = totalGamesPlayedVersion[versionData.MapVersion];
                 decimal winRate = Convert.ToDecimal(versionData.WinCount * 100 / versionData.PlayCount);
                 vmu.WinRate = $"{Math.Round(winRate, 1)}";
@@ -131,8 +201,34 @@ namespace Fate.WebServiceLayer
                 TimeSpan time = TimeSpan.FromSeconds(Convert.ToInt32(versionData.GameDuration / versionData.PlayCount));
                 string timeString = time.ToString(@"hh\:mm\:ss");
                 vmu.AvgGameDuration = timeString;
-                decimal avgScoreDifference = Convert.ToDecimal(versionData.ScoreDifference / versionData.PlayCount);
-                vmu.AvgScoreDifference = $"{Math.Round(avgScoreDifference, 1)}";
+                decimal avgWinScoreDifference = Convert.ToDecimal(versionData.WinScoreDifference / versionData.WinCount);
+                vmu.AvgWinScoreDifference = $"{Math.Round(avgWinScoreDifference, 1)}";
+                decimal avgLossScoreDifference = Convert.ToDecimal(versionData.LossScoreDifference / (versionData.PlayCount - versionData.WinCount));
+                vmu.AvgLossScoreDifference = $"{Math.Round(avgLossScoreDifference, 1)}";
+
+                List<ServantDetailStatData> versionStatList = servantDetailStatData.FindAll(c => (c.MapVersion == versionData.MapVersion));
+                Dictionary<string, int> parsedStat = ParseServantStatPointId(versionStatList);
+
+                decimal avgStr = Convert.ToDecimal(parsedStat["str"] / versionData.PlayCount);
+                vmu.AvgStr = $"{Math.Round(avgStr, 1)}";
+                decimal avgAgi = Convert.ToDecimal(parsedStat["agi"] / versionData.PlayCount);
+                vmu.AvgAgi = $"{Math.Round(avgAgi, 1)}";
+                decimal avgInt = Convert.ToDecimal(parsedStat["int"] / versionData.PlayCount);
+                vmu.AvgInt = $"{Math.Round(avgInt, 1)}";
+                decimal avgAtk = Convert.ToDecimal(parsedStat["atk"] / versionData.PlayCount);
+                vmu.AvgAtk = $"{Math.Round(avgAtk, 1)}";
+                decimal avgArmor = Convert.ToDecimal(parsedStat["armor"] / versionData.PlayCount);
+                vmu.AvgArmor = $"{Math.Round(avgArmor, 1)}";
+                decimal avgHealthRegen = Convert.ToDecimal(parsedStat["healthRegen"] / versionData.PlayCount);
+                vmu.AvgHealthRegen = $"{Math.Round(avgHealthRegen, 1)}";
+                decimal avgManaRegen = Convert.ToDecimal(parsedStat["manaRegen"] / versionData.PlayCount);
+                vmu.AvgManaRegen = $"{Math.Round(avgManaRegen, 1)}";
+                decimal avgGoldRegen = Convert.ToDecimal(parsedStat["goldRegen"] / versionData.PlayCount);
+                vmu.AvgGoldRegen = $"{Math.Round(avgGoldRegen, 1)}";
+                decimal avgPrelati = Convert.ToDecimal(parsedStat["prelati"] / versionData.PlayCount);
+                vmu.AvgPrelati = $"{Math.Round(avgPrelati, 1)}";
+                decimal avgMovespeed = Convert.ToDecimal(parsedStat["movespeed"] / versionData.PlayCount);
+                vmu.AvgMovespeed = $"{Math.Round(avgMovespeed, 1)}";
                 vm.Add(vmu);
             }
             return vm;

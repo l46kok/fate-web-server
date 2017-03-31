@@ -51,7 +51,7 @@ function loadServantDetail(typeId) {
 
             data.forEach(function (instance) {
                 var versionId = instance['mapVersion'].split('.').join('_');
-
+                var colRow = $('<div></div>').addClass('row');
                 $("#tabMenu").append("<li><a href='#tab_" + versionId + "' data-toggle='tab'>Version " + instance['mapVersion'] + "</a></li>");
 
                 var tabBody = $("<div id='tab_" + versionId + "'></div>").addClass('tab-pane margin-top');
@@ -59,7 +59,7 @@ function loadServantDetail(typeId) {
                 var col1 = $('<div></div>').addClass('col-sm-4');
 
                 col1.append("<label>Popularity</label>");
-                var popularityTable = $('<table></table>').addClass('table table-bordered');
+                var popularityTable = $('<table></table>').addClass('table table-bordered table-striped');
                 var popularityTableBody = $('<tbody></tbody>');
                 popularityTableBody.append("<tr><td>Games Played</td><td>" + instance['playCount'] + "</td></tr>");
                 popularityTableBody.append("<tr><td>Pick Rate</td><td>" + instance['pickRate'] + "%</td></tr>");
@@ -69,7 +69,7 @@ function loadServantDetail(typeId) {
                 var col2 = $('<div></div>').addClass('col-sm-4');
 
                 col2.append("<label>Combat Average</label>");
-                var combatTable = $('<table></table>').addClass('table table-bordered');
+                var combatTable = $('<table></table>').addClass('table table-bordered table-striped');
                 var combatTableBody = $('<tbody></tbody>');
                 combatTableBody.append("<tr><td>Damage Dealt</td><td>" + instance['avgDamageDealt'] + "</td></tr>");
                 combatTableBody.append("<tr><td>Damage Taken</td><td>" + instance['avgDamageTaken'] + "</td></tr>");
@@ -82,18 +82,89 @@ function loadServantDetail(typeId) {
 
                 var col3 = $('<div></div>').addClass('col-sm-4');
                 col3.append("<label>Match Average</label>");
-                var matchTable = $('<table></table>').addClass('table table-bordered');
+                var matchTable = $('<table></table>').addClass('table table-bordered table-striped');
                 var matchTableBody = $('<tbody></tbody>');
                 matchTableBody.append("<tr><td>Gold Spent</td><td>" + instance['avgGoldSpent'] + "</td></tr>");
                 matchTableBody.append("<tr><td>Game Duration</td><td>" + instance['avgGameDuration'] + "</td></tr>");
-                matchTableBody.append("<tr><td>End Score Difference</td><td>" + instance['avgScoreDifference'] + "</td></tr>");
+                matchTableBody.append("<tr><td>Win Score Difference</td><td>" + instance['avgWinScoreDifference'] + "</td></tr>");
+                matchTableBody.append("<tr><td>Loss Score Difference</td><td>" + instance['avgLossScoreDifference'] + "</td></tr>");
                 matchTableBody.append("<tr><td>Win Rate</td><td>" + instance['winRate'] + "%</td></tr>");
                 matchTable.append(matchTableBody);
                 col3.append(matchTable);
 
-                tabBody.append(col1);
-                tabBody.append(col2);
-                tabBody.append(col3);
+                var tableRow = $('<div></div>').addClass('row');
+                var table12Col = $('<div></div>').addClass('col-sm-12');
+                table12Col.append("<label>Build Average</label>")
+                var statTable = $("<table></table>").addClass("table table-bordered table-stats");
+                var tableHeader1 = $("<thead></thead>");
+                var tableHeaderRow1 = $('<tr></tr>');
+                tableHeaderRow1
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsStr.jpg'><div>Strength</div></th>");
+                tableHeaderRow1
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsAgi.jpg'><div>Agility</div></th>");
+                tableHeaderRow1
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsInt.jpg'><div>Intelligence</div></th>");
+                tableHeaderRow1
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsAtk.jpg'><div>Attack</div></th>");
+                tableHeaderRow1
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsArmor.jpg'><div>Armor</div></th>");
+
+                tableHeader1.append(tableHeaderRow1);
+                statTable.append(tableHeader1);
+
+                var tableBody1 = $("<tbody></tbody>");
+                var tableBodyRow1 = $("<tr></tr>");
+                tableBodyRow1.append("<td class='centerText'>" + instance['avgStr'] + "</td>");
+                tableBodyRow1.append("<td class='centerText'>" + instance['avgAgi'] + "</td>");
+                tableBodyRow1.append("<td class='centerText'>" + instance['avgInt'] + "</td>");
+                tableBodyRow1.append("<td class='centerText'>" + instance['avgAtk'] + "</td>");
+                tableBodyRow1.append("<td class='centerText'>" + instance['avgArmor'] + "</td>");
+
+                tableBody1.append(tableBodyRow1);
+                statTable.append(tableBody1);
+
+                var tableHeader2 = $('<thead></thead>');
+                var tableHeaderRow2 = $('<tr></tr>');
+                tableHeaderRow2
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsHealthRegen.jpg'><div>Health Regen</div></th>");
+                tableHeaderRow2
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsManaRegen.jpg'><div>Mana Regen</div></th>");
+                tableHeaderRow2
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsMS.jpg'><div>Movespeed</div></th>");
+                tableHeaderRow2
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/GHGold.jpg'><div>Gold Regen</div></th>");
+                tableHeaderRow2
+                    .append("<th class='centerText'><img height='32' width='32' src='/content/icons/stats/StatsPrelati.jpg'><div>Prelati</div></th>");
+
+                tableHeader2.append(tableHeaderRow2);
+                statTable.append(tableHeader2);
+
+                var tableBody2 = $("<tbody></tbody>");
+                var tableBodyRow2 = $("<tr></tr>");
+                tableBodyRow2.append("<td class='centerText'>" + instance['avgHealthRegen'] + "</td>");
+                tableBodyRow2.append("<td class='centerText'>" + instance['avgManaRegen'] + "</td>");
+                tableBodyRow2.append("<td class='centerText'>" + instance['avgMovespeed'] + "</td>");
+                tableBodyRow2.append("<td class='centerText'>" + instance['avgGoldRegen'] + "</td>");
+                tableBodyRow2.append("<td class='centerText'>" + instance['avgPrelati'] + "</td>");
+
+                tableBody2.append(tableBodyRow2);
+                statTable.append(tableBody2);
+
+                colRow.append(col1);
+                colRow.append(col2);
+                colRow.append(col3);
+
+                //statTable.append(tableHeader1);
+                //statTable.append(tableBody1);
+                //statTable.append(tableHeader2);
+                //statTable.append(tableBody2);
+
+                table12Col.append(statTable);
+                tableRow.append(table12Col);
+
+                tabBody.append(colRow);
+                tabBody.append(tableRow);
+
                 tabContents.append(tabBody);
             });
             $('#servantInfoDetail').append(tabContents);
