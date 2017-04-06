@@ -25,7 +25,7 @@ namespace Fate.WebServiceLayer
 #if (!DEBUG)
         private const string GHOST_CONNECT_IP = "54.210.38.182";
         private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
-        private const string GHOST_CONNECT_IP_ASIA = "52.198.154.150";
+        private const string GHOST_CONNECT_IP_ASIA = "13.113.76.192";
         private const string GHOST_CONNECT_IP_CN = "182.18.22.91";
 #else
         private const string GHOST_CONNECT_TEST_IP = "54.210.38.182";
