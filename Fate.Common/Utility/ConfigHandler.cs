@@ -16,6 +16,7 @@ namespace Fate.Common.Utility
         public static string MapName { get; private set; }
 
         public static List<GHostDatabaseInfo> GhostDatabaseList { get; } = new List<GHostDatabaseInfo>();
+        public static List<GhostServerInfo> GHostServerList { get; } = new List<GhostServerInfo>();
 
         // ReSharper disable NotAccessedField.Local
         private static string _configFilePath;
@@ -46,6 +47,7 @@ namespace Fate.Common.Utility
             DatabaseName = GetConfigString("databasename");
             MapName = GetConfigString("mapname");
 
+            // Read database information first
             int databaseIdx = 1;
             while (true)
             {
@@ -69,6 +71,23 @@ namespace Fate.Common.Utility
 
                 GhostDatabaseList.Add(ghostDbInfo);
                 databaseIdx++;
+            }
+
+            // Read server information second
+            int serverIdx = 1;
+            while (true)
+            {
+
+                string serverName = GetConfigString("ghost_servername" + serverIdx);
+                if (String.IsNullOrEmpty(serverName))
+                    break;
+                GhostServerInfo ghostServerInfo = new GhostServerInfo
+                {
+                    ServerName = serverName,
+                    IP = GetConfigString("ghost_serverIP" + serverIdx)
+                };
+                GHostServerList.Add(ghostServerInfo);
+                serverIdx++;
             }
         }
 

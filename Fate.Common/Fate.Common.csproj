@@ -69,6 +69,7 @@
     <Compile Include="Data\GameReplayData.cs" />
     <Compile Include="Data\GHost\GHostDatabaseInfo.cs" />
     <Compile Include="Data\GHost\GHostPlayerSearchData.cs" />
+    <Compile Include="Data\GHost\GhostServerInfo.cs" />
     <Compile Include="Data\PlayerBanData.cs" />
     <Compile Include="Data\ServantDetailData.cs" />
     <Compile Include="Data\WebUserData.cs" />

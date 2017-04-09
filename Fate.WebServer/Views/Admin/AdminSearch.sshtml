@@ -78,5 +78,5 @@
 </div>
 <script language="JavaScript" src="/Content/scripts/moment.min.js"></script>
 <script language="JavaScript" src="/Content/scripts/jquery.tablesorter.js"></script>
-<script language="JavaScript" src="/Content/scripts/AdminSearch.js"></script>
+<script language="JavaScript" src="/Content/scripts/AdminSearch.js?ver=2"></script>
 @EndSection

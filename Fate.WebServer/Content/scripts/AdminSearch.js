@@ -10,7 +10,7 @@
     tableBody.empty();
     $("#searchTable").hide();
     $("#loadingDiv").show();
-    $.get("/Admin/Search/" + filterType + "/" + filterTypeInput, function (data) {
+    $.get("/Admin/Search/" + filterType + "/" + filterTypeInput + "/" + filterRange + "/" + filterRangeInput, function (data) {
         $.each(data, function (idx, elem) {
             var tableRow = $('<tr></tr>');
             var playerTd = $('<td><b><a href="/PlayerStats/USEast/' + elem.playerName + '">' + elem.playerName + '</a></b></td>');
