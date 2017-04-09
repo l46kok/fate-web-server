@@ -24,16 +24,18 @@ namespace FateWebServer.Modules
             
             Get["/Admin"] = param => View["Views/Admin/AdminConsole.sshtml"];
             Get["/Admin/PlayerSearch"] = param => View["Views/Admin/AdminSearch.sshtml"];
-            Get["/Admin/Search/{filterType}/{filterInput}"] = param =>
+            Get["/Admin/Search/{filterType}/{filterInput}/{filterRange}/{filterRangeInput}"] = param =>
             {
                 string filterInput = param.filterInput;
                 int filterType = param.filterType;
+                int filterRange = param.filterRange;
+                string filterRangeInput = param.filterRangeInput;
                 //TODO: Currently only handles one database (ASIA)
                 ghostEntities.InitDatabaseConnection(ConfigHandler.GhostDatabaseList.First());
                 switch (filterType)
                 {
                     case 1:
-                        return Response.AsJson(adminSearchSl.SearchByPlayerName(filterInput));
+                        return Response.AsJson(adminSearchSl.SearchByPlayerName(filterInput, filterRange, filterRangeInput));
                     case 2:
                         return Response.AsJson(adminSearchSl.SearchByIp(filterInput));
                     default:

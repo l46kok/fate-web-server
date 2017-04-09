@@ -9,6 +9,7 @@ using Fate.Common.Data;
 using Newtonsoft.Json;
 using NLog;
 using System.Timers;
+using Fate.Common.Data.GHost;
 using Fate.Common.Extension;
 using Fate.Common.Utility;
 using Fate.DB.DAL.FRS;
@@ -22,14 +23,6 @@ namespace Fate.WebServiceLayer
     public class GhostCommSL
     {
         private const int GHOST_FRS_PORT = 6302;
-#if (!DEBUG)
-        private const string GHOST_CONNECT_IP = "54.210.38.182";
-        private const string GHOST_CONNECT_IP_EU = "52.210.121.172";
-        private const string GHOST_CONNECT_IP_ASIA = "13.113.76.192";
-        private const string GHOST_CONNECT_IP_CN = "182.18.22.91";
-#else
-        private const string GHOST_CONNECT_TEST_IP = "54.210.38.182";
-#endif
 
         private const int RECONNECT_TIMER_INTERVAL = 3600 * 1000; // 1800 seconds, 30 minutes
         private const int TIMEBAN_TIMER_INTERVAL = 60 * 1000; // 60 seconds
@@ -78,12 +71,10 @@ namespace Fate.WebServiceLayer
         {
             _socketList.Clear();
 #if (!DEBUG)
-            ConnectSocket(GHOST_CONNECT_IP, GHOST_FRS_PORT, "USEast");
-            // ConnectSocket(GHOST_CONNECT_IP_EU, GHOST_FRS_PORT, "Europe");
-            ConnectSocket(GHOST_CONNECT_IP_ASIA, GHOST_FRS_PORT, "Asia");
-            // ConnectSocket(GHOST_CONNECT_IP_CN, GHOST_FRS_PORT, "China");
-#else
-            // ConnectSocket(GHOST_CONNECT_TEST_IP, GHOST_FRS_PORT, "Test");
+            foreach (GhostServerInfo serverInfo in ConfigHandler.GHostServerList)
+            {
+                ConnectSocket(serverInfo.IP, GHOST_FRS_PORT, serverInfo.ServerName); 
+            }
 #endif
         }
 
