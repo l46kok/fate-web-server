@@ -20,7 +20,8 @@ namespace Fate.WebServiceLayer
 
         public List<GHostPlayerSearchData> SearchByPlayerName(string playerName, int filterType, string filterRangeInput)
         {
-            GHostPlayerDAL.GPSearchType searchType = GetGhostPlayerSearchType(filterType);
+            // TODO: Handle filter type
+            GHostPlayerDAL.GPSearchType searchType = GetGhostPlayerSearchType(1);
             DateTime? filterDateRange = null;
             if (!String.IsNullOrEmpty(filterRangeInput))
             {

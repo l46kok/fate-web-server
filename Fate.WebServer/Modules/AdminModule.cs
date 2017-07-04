@@ -24,7 +24,7 @@ namespace FateWebServer.Modules
             
             Get["/Admin"] = param => View["Views/Admin/AdminConsole.sshtml"];
             Get["/Admin/PlayerSearch"] = param => View["Views/Admin/AdminSearch.sshtml"];
-            Get["/Admin/Search/{filterType}/{filterInput}/{filterRange}/{filterRangeInput}"] = param =>
+            Get["/Admin/Search/{filterType}/{filterInput}"] = param =>
             {
                 string filterInput = param.filterInput;
                 int filterType = param.filterType;
