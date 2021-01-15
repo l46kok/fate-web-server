@@ -2,12 +2,13 @@
 
 @Section['Content']
 <link href="./Content/css/LeaderBoards.css" rel="stylesheet">
-<link href="./Content/css/tablesorter.css" rel="stylesheet">
+<link href="./Content/css/TableSorter.css" rel="stylesheet">
 
 <div class="page-header">
 	<h1>Leaderboards</h1>
 </div>
 	
+<p class="lead">* You must have played 3 games or more to be shown on the leaderboard.</p>
 <div class="statsBox">
 	<div class="searchCriteriaHeader">
 		Filter Type

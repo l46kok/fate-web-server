@@ -47,7 +47,6 @@
 	<li role="presentation"  class="active"><a href="#about" aria-controls="profile" role="tab" data-toggle="tab">What is UFWFATE.NET?</a></li>
 	<li role="presentation" aria-controls="profile" role="tab" data-toggle="tab"><a href="#howtoplay" aria-controls="profile" role="tab" data-toggle="tab">How to Install the Game</a></li>
     <li role="presentation" aria-controls="profile" role="tab" data-toggle="tab"><a href="#howtojoin" aria-controls="profile" role="tab" data-toggle="tab">How to Join a Lobby</a></li>
-    <li role="presentation" aria-controls="profile" role="tab" data-toggle="tab"><a href="#gproxy" aria-controls="profile" role="tab" data-toggle="tab">How to Use GProxy</a></li>
 </ul>
 	
 <div class="jumbotron">
@@ -66,7 +65,7 @@
 			<li>and more...</li>
 			</ul>
 			<br/>
-			<p class="lead text-center">Visit channel Clan UFW at USEast server to play Fate / Another III</p>
+			<!-- <p class="lead text-center">Visit channel Clan UFW at USEast server to play Fate / Another III</p> -->
 			<br/>
 			<p class="text-center"><a class="btn btn-lg btn-success" href="http://fateanother.wikia.com/wiki/New_Player_Guide" role="button">Learn more about the game</a></p>
 			<br/>
@@ -81,8 +80,7 @@
 			<p>Warcraft III Reign of Chaos Installer Download: <a href="https://www.battle.net/download/getLegacy?product=WAR3&locale=en-US&os=WIN" class="noExpand"><img src="/Content/icons/Download.png" width=32 height=32></a></p>
 			<p>Warcraft III The Frozen Throne Installer Download: <a href="https://www.battle.net/download/getLegacy?product=W3XP&locale=en-US&os=WIN" class="noExpand"><img src="/Content/icons/Download.png" width=32 height=32></a></p>
 			<br/>
-			<h3>Step 2 (Optional): Install Eurobattle.net</h3>
-			<p>This step is only necessary if you do not have a CDKEY for Warcraft 3</p>
+			<h3>Step 2: Install Eurobattle.net</h3>
 			<p>Please visit the following link to get instructions on how to install Eurobattle.net</p>
 			<p><a href="http://eurobattle.net/">http://eurobattle.net/</a></p>
 			<br/>
@@ -105,29 +103,6 @@
             <p>And now you are ready to play!</p>
             <br />
             <br />
-            <p>If you can connect to Battle.Net, come to channel Clan UFW at USEast. This is our main channel.</p>
-            <img src="/Content/images/InstructionsServer.png">
-            <img src="/Content/images/InstructionsChannel.png">                
-        </div>
-        <div role="tabpanel" class="tab-pane" id="gproxy">
-            <h2>How to use GProxy</h2>
-            <p>GProxy is a program that will allow you to automatically reconnect to the current game in the event of disconnections</p>
-            <p>We recommend everyone to play Fate / Another III with GProxy enabled at all times</p>
-            <p>Note: If you are playing from Eurobattle.net, GProxy is automatically enabled. You may skip this step.</p>
-            <h3>Step 1: Download GProxy from here <a href="/download/Gproxy.zip" class="noExpand"><img class="downloadPic" src="/Content/icons/Download.png" alt="Download" width=32 height=32></a></h3>
-            <h3>Step 2: Extract the zip file, open gproxy.cfg with notepad</h3>
-            <h3>Step 3: Fill out the configuration file. See following image for instructions</h3>
-            <img src="/Content/images/InstructionsGProxy.png" style="max-width:900px">
-            <h3>Step 4: Open Warcraft 3 and go to LAN (DO NOT GO TO BATTLE.NET)</h3>
-            <h3>Step 5: Launch GProxy.exe then press enter. You should see a screen similar to the following:</h3>
-            <img src="/Content/images/InstructionsGProxy2.png">
-            <h3>Step 6: On the GProxy console, type "/game ACTUALGAMENAME" without the quotes</h3>
-            <p>ACTUALGAMENAME is where the game name goes, obtained from game list of this site</p>
-            <p>Example: /game UFW Fate North America #2</p>
-            <p>You should see a prompt similar to the following:</p>
-            <img src="/Content/images/InstructionsGProxy3.png">
-            <h3>Step 7: Join the game from LAN list in Warcraft 3. Now you are ready to play</h3>
-            <img src="/Content/images/InstructionsGProxy4.png" style="max-width:900px">
         </div>
 	</div>
 </div>

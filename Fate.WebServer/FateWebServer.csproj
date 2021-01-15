@@ -149,18 +149,6 @@
     <Content Include="Content\css\TableSorter.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\images\InstructionsGProxy4.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\images\InstructionsGProxy3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\images\InstructionsGProxy2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\images\InstructionsGProxy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Content\download\Gproxy.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -828,9 +816,6 @@
     <Content Include="Content\images\DiscordImage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\images\InstructionsChannel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\images\InstructionsGameList.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -841,9 +826,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\InstructionsGetGames.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\images\InstructionsServer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\images\MaintenanceScreen.jpg">

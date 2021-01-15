@@ -50,10 +50,6 @@ namespace Fate.WebServiceLayer
             GameReplayData data = _gameDal.GetReplayData(gameId);
             if (data == null)
                 return null;
-            string assemblyLocation = PathHandler.GetAssemblyPath();
-            if (string.IsNullOrEmpty(assemblyLocation))
-                return null;
-            data.ReplayPath = Path.Combine(assemblyLocation, ContentURL.GetLocalReplayPath(data.ReplayPath));
             return data;
         }
     }

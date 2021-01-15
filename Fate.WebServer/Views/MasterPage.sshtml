@@ -31,12 +31,11 @@
 				</form>
 				<ul class="nav navbar-nav">
 					<li><a href="/About">About</a></li>
-					<li><a href="/GameList">Game List</a></li>
-					<li><a href="/BanList">Ban List</a></li>
+					<li><a href="/">Game List (Coming Soon)</a></li>
 					<li><a href="/LeaderBoards">Leaderboards</a></li>
 					<li><a href="/ServantStatistics">Servant Statistics</a></li>
-					<li><a href="/Downloads">Downloads</a></li>
-					<li><a href="http://clanufw.darkbb.com/">Forum</a></li>
+					<!-- <li><a href="/Downloads">Downloads</a></li> -->
+					<!-- <li><a href="http://clanufw.darkbb.com/">Forum</a></li> -->
 				</ul>
 			</div>
 		</div>

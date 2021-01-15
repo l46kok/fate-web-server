@@ -2,7 +2,7 @@
 
 @Section['Content']
 <link href="/Content/css/AdminSearch.css" rel="stylesheet">
-<link href="/Content/css/tablesorter.css" rel="stylesheet">
+<link href="/Content/css/TableSorter.css" rel="stylesheet">
 <div class="container">
     <div class="page-header">
         <h1>Search Player Data</h1>

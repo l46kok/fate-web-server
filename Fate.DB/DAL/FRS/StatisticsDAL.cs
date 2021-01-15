@@ -149,10 +149,10 @@ namespace Fate.DB.DAL.FRS
             switch (time)
             {
                 case PStatTime.LastSevenDays:
-                    timeClause = "WHERE PlayedDate BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()";
+                    timeClause = "WHERE DATE(PlayedDate) BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()";
                     break;
                 case PStatTime.LastThirtyDays:
-                    timeClause = "WHERE PlayedDate BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE()";
+                    timeClause = "WHERE DATE(PlayedDate) BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE()";
                     break;
                 case PStatTime.AllTime:
                     timeClause = "";
@@ -181,7 +181,7 @@ namespace Fate.DB.DAL.FRS
 	                        ON B.FK_PlayerID = C.PlayerID
                         {timeClause}
                         GROUP BY C.PlayerName
-                        HAVING COUNT(C.PlayerID) >= 10
+                        HAVING COUNT(C.PlayerID) >= 3
                         ) Result
                         {orderByClause}";
 

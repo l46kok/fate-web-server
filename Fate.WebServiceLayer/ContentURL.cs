@@ -187,7 +187,7 @@ namespace Fate.WebServiceLayer
 
         public static string GetLocalReplayPath(string replayPath)
         {
-            return "Content\\replays\\" + Path.GetFileName(replayPath);
+            return Path.GetFileName(replayPath);
         }
     }
 }
