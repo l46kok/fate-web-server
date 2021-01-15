@@ -8,7 +8,6 @@ namespace FateWebServer
 {
     static class Program
     {
-        private const ushort WEB_SERVER_PORT = 80;
         private const string CMD_TERMINATE = "/Terminate";
         private const string CMD_MAINTENANCE = "/Maintenance";
         private const string CMD_RELOAD_CONFIG = "/ReloadConfig";
@@ -40,7 +39,7 @@ namespace FateWebServer
 
         private static void RunServer()
         {
-            var uri = new Uri("http://localhost:" + WEB_SERVER_PORT + "/");
+            var uri = new Uri("http://localhost:" + ConfigHandler.WebServerPort + "/");
             var config = new HostConfiguration
             {
                 UrlReservations = { CreateAutomatically = true },

@@ -8,6 +8,7 @@ namespace Fate.Common.Utility
 {
     public static class ConfigHandler
     {
+        public static uint WebServerPort { get; private set; }
         public static string DatabaseServer { get; private set; }
         public static uint DatabasePort { get; private set; }
         public static string DatabaseUserName { get; private set; }
@@ -37,6 +38,11 @@ namespace Fate.Common.Utility
             }
 
             uint parsedInt;
+            if (uint.TryParse(GetConfigString("webserverport"), out parsedInt))
+            {
+                WebServerPort = parsedInt;
+            }
+
             DatabaseServer = GetConfigString("databaseserver");
             if (uint.TryParse(GetConfigString("databaseport"), out parsedInt))
             {

@@ -1,0 +1,10 @@
+/Fate.Common/obj
+/Fate.Common/bin
+/Fate.DB/obj
+/Fate.DB/bin
+/Fate.WebServer/obj
+/Fate.WebServer/bin
+/Fate.WebServiceLayer/obj
+/Fate.WebServiceLayer/bin
+/bin
+/.vs
