@@ -15,6 +15,7 @@ namespace Fate.Common.Utility
         public static string DatabasePassword { get; private set; }
         public static string DatabaseName { get; private set; }
         public static string MapName { get; private set; }
+        public static string ReplayFileLocation { get; private set; }
 
         public static List<GHostDatabaseInfo> GhostDatabaseList { get; } = new List<GHostDatabaseInfo>();
         public static List<GhostServerInfo> GHostServerList { get; } = new List<GhostServerInfo>();
@@ -52,6 +53,7 @@ namespace Fate.Common.Utility
             DatabasePassword = GetConfigString("databasepassword");
             DatabaseName = GetConfigString("databasename");
             MapName = GetConfigString("mapname");
+            ReplayFileLocation = GetConfigString("replayfilelocation");
 
             // Read database information first
             int databaseIdx = 1;

@@ -50,6 +50,9 @@ namespace Fate.WebServiceLayer
             GameReplayData data = _gameDal.GetReplayData(gameId);
             if (data == null)
                 return null;
+            if (string.IsNullOrEmpty(data.ReplayPath))
+                return null;
+            data.ReplayPath = Path.Combine(ConfigHandler.ReplayFileLocation, Path.GetFileName(data.ReplayPath));
             return data;
         }
     }

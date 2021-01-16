@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using Fate.Common.Data;
@@ -7,6 +8,7 @@ using Fate.Common.Utility;
 using Fate.WebServiceLayer;
 using Nancy;
 using Nancy.Responses;
+using NLog;
 
 namespace FateWebServer.Modules
 {
@@ -14,13 +16,19 @@ namespace FateWebServer.Modules
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class FileDownloadModule : NancyModule
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         public FileDownloadModule(GameSL gameSl)
         {
             Get["/download/replay/{gameId}"] = param =>
             {
                 GameReplayData replayData = gameSl.GetReplayData(param.gameId);
+                
                 if (replayData == null || !File.Exists(replayData.ReplayPath))
+                {
+                    _logger.Info($"Replay file not found. GameId: {param.gameId}, path: {replayData.ReplayPath}");
                     return Response.AsError(HttpStatusCode.NotFound, "Replay file cannot be found from the server");
+                }
                 var file = new FileStream(replayData.ReplayPath, FileMode.Open);
                 string fileName = "Fate Another Replay " + replayData.PlayedDateTime.ToString(CultureInfo.InvariantCulture) + ".w3g";
 
