@@ -7,6 +7,7 @@ using Fate.Common.Extension;
 using Fate.DB.DAL.FRS;
 using Fate.WebServiceLayer.ViewModels;
 using System.Text.RegularExpressions;
+using Fate.Common.Utility;
 
 namespace Fate.WebServiceLayer
 {
@@ -203,7 +204,7 @@ namespace Fate.WebServiceLayer
                 vmu.AvgGameDuration = timeString;
                 decimal avgWinScoreDifference = Convert.ToDecimal(versionData.WinScoreDifference / versionData.WinCount);
                 vmu.AvgWinScoreDifference = $"{Math.Round(avgWinScoreDifference, 1)}";
-                decimal avgLossScoreDifference = Convert.ToDecimal(versionData.LossScoreDifference / (versionData.PlayCount - versionData.WinCount));
+                decimal avgLossScoreDifference = Convert.ToDecimal(versionData.LossScoreDifference.SafeDivision(versionData.PlayCount - versionData.WinCount));
                 vmu.AvgLossScoreDifference = $"{Math.Round(avgLossScoreDifference, 1)}";
 
                 List<ServantDetailStatData> versionStatList = servantDetailStatData.FindAll(c => (c.MapVersion == versionData.MapVersion));
@@ -233,5 +234,6 @@ namespace Fate.WebServiceLayer
             }
             return vm;
         }
+
     }
 }

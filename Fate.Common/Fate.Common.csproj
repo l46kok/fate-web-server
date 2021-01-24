@@ -88,6 +88,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ConfigHandler.cs" />
     <Compile Include="Extension\NancyExtensions.cs" />
+    <Compile Include="Utility\MathExtensions.cs" />
     <Compile Include="Utility\PathHandler.cs" />
   </ItemGroup>
   <ItemGroup>

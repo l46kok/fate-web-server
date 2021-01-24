@@ -8,7 +8,7 @@
 	<h1>Leaderboards</h1>
 </div>
 	
-<p class="lead">* You must have played 3 games or more to be shown on the leaderboard.</p>
+<p class="lead">* You must have played 5 games or more to be shown on the leaderboard.</p>
 <div class="statsBox">
 	<div class="searchCriteriaHeader">
 		Filter Type
@@ -20,7 +20,7 @@
 		<label class="radio-inline"><input type="radio" name="radioCriteriaType" value="4">Damage Taken</label>
 	</div>
 	<div class="searchCriteriaHeader">
-		Time (Minimum 10 games)
+		Time
 	</div>
 	<div class="searchCriteriaBody" id="searchCriteriaTime">
 		<label class="radio-inline"><input type="radio" name="radioCriteriaTime" checked="checked" value="1">Last 7 Days</label>

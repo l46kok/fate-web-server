@@ -181,7 +181,7 @@ namespace Fate.DB.DAL.FRS
 	                        ON B.FK_PlayerID = C.PlayerID
                         {timeClause}
                         GROUP BY C.PlayerName
-                        HAVING COUNT(C.PlayerID) >= 3
+                        HAVING COUNT(C.PlayerID) >= 5
                         ) Result
                         {orderByClause}";
 
