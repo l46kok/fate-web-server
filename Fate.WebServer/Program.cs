@@ -53,7 +53,7 @@ namespace FateWebServer
             {
                 host.Start();
 
-                Console.Write("Fate / Another III Stats Page");
+                Console.Write("Fate / Reborn Stats Page");
 
                 Console.Write("\n" +
                               "\t\"" + uri + "\"\n" +

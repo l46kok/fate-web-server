@@ -55,7 +55,7 @@
 		<div role="tabpanel" class="tab-pane active" id="about">
 			<h2>What is UFWFATE.NET?</h2>
 			<br/>
-			<p class="lead">UFWFATE.NET is a statistics site for a Warcraft III custom game known as Fate / Another III.</p>
+			<p class="lead">UFWFATE.NET is a statistics site for a Warcraft III custom game known as Fate / Reborn.</p>
 			<p class="lead">Game data is collected on a real time basis to provide users with:</p>
 			<ul>
 			<li>Match Results</li> 
@@ -65,7 +65,7 @@
 			<li>and more...</li>
 			</ul>
 			<br/>
-			<!-- <p class="lead text-center">Visit channel Clan UFW at USEast server to play Fate / Another III</p> -->
+			<!-- <p class="lead text-center">Visit our discord at https://discord.gg/pU5j8mPEyF to start playing!</p> -->
 			<br/>
 			<p class="text-center"><a class="btn btn-lg btn-success" href="http://fateanother.wikia.com/wiki/New_Player_Guide" role="button">Learn more about the game</a></p>
 			<br/>
